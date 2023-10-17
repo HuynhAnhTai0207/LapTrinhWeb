@@ -2040,24 +2040,9 @@ i:before {
 }
 
 .cake_feature_item .cake_text h4 {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  color: #343434;
-  font-size: 26px;
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  background: #fff;
-  display: inline-block;
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
-  top: -35px;
-  line-height: 68px;
-  margin-bottom: 0px;
-  z-index: 2;
+    margin-top: 20px;
+    color: #343434;
+    font-size: 26px;
 }
 
 .cake_feature_item .cake_text h3 {
@@ -2065,7 +2050,7 @@ i:before {
   color: #343434;
   font-family: "Playfair Display", serif;
   margin-bottom: 22px;
-  padding-top: 35px;
+  padding-top: 15px;
 }
 
 .cake_feature_main {
