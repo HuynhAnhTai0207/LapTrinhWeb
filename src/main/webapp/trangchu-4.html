@@ -14,6 +14,7 @@
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="vendors/linearicons/style.css" rel="stylesheet">
         <link href="vendors/flat-icon/flaticon.css" rel="stylesheet">
+        <link href="vendors/stroke-icon/style.css" rel="stylesheet">
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         
@@ -25,8 +26,9 @@
         
         <!-- Extra plugin css -->
         <link href="vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
-        <link href="vendors/magnifc-popup/magnific-popup.css" rel="stylesheet">
+        <link href="vendors/datetime-picker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link href="vendors/nice-select/css/nice-select.css" rel="stylesheet">
+        <link href="vendors/magnifc-popup/magnific-popup.css" rel="stylesheet">
         
         <link href="css/style.css" rel="stylesheet">
         <link href="css/responsive.css" rel="stylesheet">
@@ -53,11 +55,11 @@
 							<!--							<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
 							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 							<!--							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
-							<li><a href="login.html"> Đăng nhập</a></li>
-							<li><a href="register-account.html"> Đăng ký</a></li>
+							<li><a href="dangnhap.html"> Đăng nhập</a></li>
+							<li><a href="dangky.html"> Đăng ký</a></li>
 						</ul>
 						<ul class="h_search list_style">
-							<li class="shop_cart"><a href="cart.html"><i class="lnr lnr-cart"></i></a></li>
+							<li class="shop_cart"><a href="giohang.html"><i class="lnr lnr-cart"></i></a></li>
 							<li><a class="popup-with-zoom-anim" href="#test-search"><i class="fa fa-search"></i></a></li>
 						</ul>
 					</div>
@@ -66,7 +68,7 @@
 			<div class="main_menu_area">
 				<div class="container">
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
-						<a class="navbar-brand" href="index.html">
+						<a class="navbar-brand" href="trangchu.html">
 							<img src="img/logo.png" alt="">
 							<img src="img/logo-2.png" alt="">
 						</a>
@@ -79,14 +81,14 @@
 						</button>
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto">
-								<li><a href="index.html">Trang chủ</a></li>
+								<li><a href="trangchu.html">Trang chủ</a></li>
 								<li><a href="cake.html">Bánh có sẳn</a></li>
 								<li><a href="menu.html">Xem tất cả bánh</a></li>
 								<li class="dropdown submenu">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Thông tin </a>
 									<ul class="dropdown-menu">
-										<li><a href="about-us.html">Thông tin cửa hàng</a></li>
-										<li><a href="our-team.html">Đầu bếp</a></li>
+										<li><a href="vechungtoi.html">Thông tin cửa hàng</a></li>
+										<li><a href="nhomchungtoi.html">Đầu bếp</a></li>
 										<li><a href="testimonials.html">Đánh giá từ khách hàng</a></li>
 									</ul>
 								</li>
@@ -95,7 +97,7 @@
 								<li class="dropdown submenu">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tiện ích</a>
 									<ul class="dropdown-menu">
-										<li><a href="service.html">Dịch vụ</a></li>
+										<li><a href="dichvu.html">Dịch vụ</a></li>
 										<li class="dropdown submenu">
 											<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Trương bày</a>
 											<ul class="dropdown-menu">
@@ -105,7 +107,7 @@
 										</li>
 										<li><a href="faq.html">Câu hỏi từ khách hàng</a></li>
 										<li><a href="what-we-make.html">Sản phẩm từ cửa hàng</a></li>
-										<li><a href="special.html">Công thức đặc biệt</a></li>
+										<li><a href="dacbiet.html">Công thức đặc biệt</a></li>
 										<li><a href="comming-soon.html">Sản phẩm sấp ra mắt</a></li>
 									</ul>
 								</li>
@@ -120,13 +122,13 @@
 								<li class="dropdown submenu">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 									<ul class="dropdown-menu">
-										<li><a href="shop.html">Cửa hàng chính</a></li>
-										<li><a href="product-details.html">Chi tiết sản phẩm</a></li>
-										<li><a href="cart.html">Giỏ hàng</a></li>
-										<li><a href="checkout.html">Kiểm tra</a></li>
+										<li><a href="cuahang.html">Cửa hàng chính</a></li>
+										<li><a href="chitietsanpham.html">Chi tiết sản phẩm</a></li>
+										<li><a href="giohang.html">Giỏ hàng</a></li>
+										<li><a href="thanhtoan.html">Kiểm tra</a></li>
 									</ul>
 								</li>
-								<li><a href="contact.html">Liên lạc với chúng tôi</a></li>
+								<li><a href="lienhe.html">Liên lạc với chúng tôi</a></li>
 							</ul>
 						</div>
 					</nav>
@@ -137,32 +139,18 @@
         
         <!--================Slider Area =================-->
         <section class="main_slider_area">
-            <div id="main_slider5" class="rev_slider" data-version="5.3.1.6">
+            <div id="main_slider4" class="rev_slider" data-version="5.3.1.6">
                 <ul>
-                    <li data-index="rs-1587" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="img/home-slider/slider-12.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                    <li data-index="rs-1587" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="img/home-slider/slider-9.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="img/home-slider/slider-12.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                    <img src="img/home-slider/slider-9.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
 
                         <!-- LAYER NR. 1 -->
                         <div class="slider_text_box">
-                            <div class="tp-caption tp-resizeme price" 
-                            data-x="['left','left','left','15','15','15']" data-hoffset="['300','300','15','15','15','0']" 
-                            data-y="['top','top','top','top']" 
-                            data-voffset="['120','120','70','70','115','130']" 
-                            data-fontsize="['60','60','60','40','30']"
-                            data-lineheight="['76','76','76','50','40']"
-                            data-width="['780','780','780','400']"
-                            data-height="none"
-                            data-whitespace="normal"
-                            data-type="text" 
-                            data-responsive_offset="on" 
-                            data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
-                            data-textAlign="['left','left','left','left']"><h3>$39</h3></div>
-                            
-                            <div class="tp-caption tp-resizeme first_text" 
+                            <div class="tp-caption tp-resizeme first_text pink" 
                             data-x="['right','right','left','15','15','15']" data-hoffset="['-150','0','15','15','15','0']" 
                             data-y="['top','top','top','top']" 
-                            data-voffset="['155','155','155','155','235','230']" 
+                            data-voffset="['320','320','320','245','200']" 
                             data-fontsize="['60','60','60','40','30']"
                             data-lineheight="['76','76','76','50','40']"
                             data-width="['780','740','780','780','700','400']"
@@ -173,13 +161,13 @@
                             data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                             data-textAlign="['left','left','left','left']">Quality Cake ... <br /> with sweet, eggs & breads</div>
                             
-                            <div class="tp-caption tp-resizeme secand_text" 
+                            <div class="tp-caption tp-resizeme secand_text black" 
                                 data-x="['right','right','left','15','15','15']" 
                                 data-hoffset="['0','110','15','15','15','0']" 
-                                data-y="['top','top','top','top']" data-voffset="['316','316','316','270','330','320']"  
+                                data-y="['top','top','top','top']" data-voffset="['485','485','485','360','300','290']"  
                                 data-fontsize="['20','20','20','20','16']"
                                 data-lineheight="['28','28','28','28']"
-                                data-width="['620','620','620','620','500','380']"
+                                data-width="['620','620','620','620','500','400']"
                                 data-height="none"
                                 data-whitespace="normal"
                                 data-type="text" 
@@ -190,7 +178,7 @@
                             
                             <div class="tp-caption tp-resizeme slider_button" 
                                 data-x="['right','right','left','15','15','15']" data-hoffset="['0','0','15','0','0','0']" 
-                                data-y="['top','top','top','top']" data-voffset="['405','405','405','355','400','415']" 
+                                data-y="['top','top','top','top']" data-voffset="['575','575','575','450','390']" 
                                 data-fontsize="['14','14','14','14']"
                                 data-lineheight="['46','46','46','46']"
                                 data-width="['620','740','620','620','300']"
@@ -203,36 +191,21 @@
                             </div>
                         </div>
                     </li>
-                    <li data-index="rs-1588" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="img/home-slider/slider-13.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                    <li data-index="rs-1588" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="img/home-slider/slider-10.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="img/home-slider/slider-13.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                    <img src="img/home-slider/slider-10.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
                         <!-- LAYERS -->
 
                         <!-- LAYER NR. 1 -->
                         <div class="slider_text_box">
-                           
-                           <div class="tp-caption tp-resizeme price" 
-                            data-x="['left','left','left','15','15','15']" data-hoffset="['300','300','15','15','15','0']" 
+                            <div class="tp-caption tp-resizeme first_text pink" 
+                            data-x="['right','right','right','15','0']" data-hoffset="['-150','-150','-150','0']" 
                             data-y="['top','top','top','top']" 
-                            data-voffset="['120','120','70','70','115','130']" 
+                            data-voffset="['320','320','320','320','130']" 
                             data-fontsize="['60','60','60','40','30']"
                             data-lineheight="['76','76','76','50','40']"
                             data-width="['780','780','780','400']"
-                            data-height="none"
-                            data-whitespace="normal"
-                            data-type="text" 
-                            data-responsive_offset="on" 
-                            data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
-                            data-textAlign="['left','left','left','left']"><h3>$39</h3></div>
-                           
-                            <div class="tp-caption tp-resizeme first_text" 
-                            data-x="['right','right','left','15','15','15']" data-hoffset="['-150','0','15','15','15','0']" 
-                            data-y="['top','top','top','top']" 
-                            data-voffset="['155','155','155','155','235','230']" 
-                            data-fontsize="['60','60','60','40','30']"
-                            data-lineheight="['76','76','76','50','40']"
-                            data-width="['780','740','780','780','700','400']"
                             data-height="none"
                             data-whitespace="normal"
                             data-type="text" 
@@ -240,13 +213,13 @@
                             data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                             data-textAlign="['left','left','left','left']">Cake Bakery ... <br /> make delicious products</div>
                             
-                            <div class="tp-caption tp-resizeme secand_text" 
-                                data-x="['right','right','left','15','15','15']" 
-                                data-hoffset="['0','110','15','15','15','0']" 
-                                data-y="['top','top','top','top']" data-voffset="['316','316','316','270','330','320']"  
+                            <div class="tp-caption tp-resizeme secand_text black" 
+                                data-x="['right','right','right','15','0']" 
+                                data-hoffset="['0','0','0','0']" 
+                                data-y="['top','top','top','top']" data-voffset="['485','485','485','485','225']"  
                                 data-fontsize="['20','20','20','20','16']"
                                 data-lineheight="['28','28','28','28']"
-                                data-width="['620','620','620','620','500','380']"
+                                data-width="['620','620','620','620','300']"
                                 data-height="none"
                                 data-whitespace="normal"
                                 data-type="text" 
@@ -256,11 +229,11 @@
                             </div>
                             
                             <div class="tp-caption tp-resizeme slider_button" 
-                                data-x="['right','right','left','15','15','15']" data-hoffset="['0','0','15','0','0','0']" 
-                                data-y="['top','top','top','top']" data-voffset="['405','405','405','355','400','415']" 
+                                data-x="['right','right','right','15','0']" data-hoffset="['0','0','0','0']" 
+                                data-y="['top','top','top','top']" data-voffset="['575','575','575','575','330']" 
                                 data-fontsize="['14','14','14','14']"
                                 data-lineheight="['46','46','46','46']"
-                                data-width="['620','740','620','620','300']"
+                                data-width="['620','620','620','620','300']"
                                 data-height="none"
                                 data-whitespace="normal"
                                 data-type="text" 
@@ -270,19 +243,18 @@
                             </div>
                         </div>
                     </li>
-                    <li data-index="rs-1589" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="img/home-slider/slider-14.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                    <li data-index="rs-1589" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="img/home-slider/slider-11.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="img/home-slider/slider-14.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                    <img src="img/home-slider/slider-11.jpg"  alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
                         <!-- LAYERS -->
 
                         <!-- LAYER NR. 1 -->
                         <div class="slider_text_box">
-                           
-                           <div class="tp-caption tp-resizeme price" 
-                            data-x="['left','left','left','15','15','15']" data-hoffset="['300','300','15','15','15','0']" 
+                            <div class="tp-caption tp-resizeme first_text pink" 
+                            data-x="['right','right','right','15','0']" data-hoffset="['-150','-150','-150','0']" 
                             data-y="['top','top','top','top']" 
-                            data-voffset="['120','120','70','70','115','130']" 
+                            data-voffset="['320','320','320','320','130']" 
                             data-fontsize="['60','60','60','40','30']"
                             data-lineheight="['76','76','76','50','40']"
                             data-width="['780','780','780','400']"
@@ -291,29 +263,15 @@
                             data-type="text" 
                             data-responsive_offset="on" 
                             data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
-                            data-textAlign="['left','left','left','left']"><h3>$39</h3></div>
-                           
-                            <div class="tp-caption tp-resizeme first_text" 
-                            data-x="['right','right','left','15','15','15']" data-hoffset="['-150','0','15','15','15','0']" 
-                            data-y="['top','top','top','top']" 
-                            data-voffset="['155','155','155','155','235','230']" 
-                            data-fontsize="['60','60','60','40','30']"
-                            data-lineheight="['76','76','76','50','40']"
-                            data-width="['780','740','780','780','700','400']"
-                            data-height="none"
-                            data-whitespace="normal"
-                            data-type="text" 
-                            data-responsive_offset="on" 
-                            data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                             data-textAlign="['left','left','left','left']">Cake theme ... <br /> made with care and love</div>
                             
-                            <div class="tp-caption tp-resizeme secand_text" 
-                                data-x="['right','right','left','15','15','15']" 
-                                data-hoffset="['0','110','15','15','15','0']" 
-                                data-y="['top','top','top','top']" data-voffset="['316','316','316','270','330','320']"  
+                            <div class="tp-caption tp-resizeme secand_text black" 
+                                data-x="['right','right','right','15','0']" 
+                                data-hoffset="['0','0','0','0']" 
+                                data-y="['top','top','top','top']" data-voffset="['485','485','485','485','225']"  
                                 data-fontsize="['20','20','20','20','16']"
                                 data-lineheight="['28','28','28','28']"
-                                data-width="['620','620','620','620','500','380']"
+                                data-width="['620','620','620','620','300']"
                                 data-height="none"
                                 data-whitespace="normal"
                                 data-type="text" 
@@ -323,11 +281,11 @@
                             </div>
                             
                             <div class="tp-caption tp-resizeme slider_button" 
-                                data-x="['right','right','left','15','15','15']" data-hoffset="['0','0','15','0','0','0']" 
-                                data-y="['top','top','top','top']" data-voffset="['405','405','405','355','400','415']" 
+                                data-x="['right','right','right','15','0']" data-hoffset="['0','0','0','0']" 
+                                data-y="['top','top','top','top']" data-voffset="['575','575','575','575','330']" 
                                 data-fontsize="['14','14','14','14']"
                                 data-lineheight="['46','46','46','46']"
-                                data-width="['620','740','620','620','300']"
+                                data-width="['620','620','620','620','300']"
                                 data-height="none"
                                 data-whitespace="normal"
                                 data-type="text" 
@@ -342,110 +300,39 @@
         </section>
         <!--================End Slider Area =================-->
         
-        <!--================Service We offer Area =================-->
-        <section class="service_we_offer_area gray_service white_bg p_100">
+        <!--================Welcome Area =================-->
+        <section class="wel_bakery_two">
         	<div class="container">
-        		<div class="single_b_title">
-        			<h2>Services We offer</h2>
-        		</div>
-        		<div class="row we_offer_inner">
-        			<div class="col-lg-4">
-        				<div class="s_we_item gray_s_item">
-        					<div class="media">
-        						<div class="d-flex">
-        							<i class="flaticon-food-6"></i>
-        						</div>
-        						<div class="media-body">
-        							<a href="#"><h4>Cookies Cakes</h4></a>
-        							<p>Lorem Ipsum is  simply my text of the printing and Ipsum is simply text of the Ipsum is simply.</p>
-        						</div>
+        		<div class="welcome_bakery_inner p_100">
+        			<div class="row">
+        				<div class="col-lg-6">
+        					<div class="main_title">
+								<h2>Welcome to our Bakery</h2>
+								<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur uis autem vel eum.</p>
+							</div>
+        					<div class="welcome_left_text">
+        						<p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise.</p>
+        						<a class="pink_btn" href="#">Know more about us</a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-4">
-        				<div class="s_we_item gray_s_item">
-        					<div class="media">
-        						<div class="d-flex">
-        							<i class="flaticon-food-5"></i>
-        						</div>
-        						<div class="media-body">
-        							<a href="#"><h4>Tasty Cupcakes</h4></a>
-        							<p>Lorem Ipsum is  simply my text of the printing and Ipsum is simply text of the Ipsum is simply.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</div>
-        			<div class="col-lg-4">
-        				<div class="s_we_item gray_s_item">
-        					<div class="media">
-        						<div class="d-flex">
-        							<i class="flaticon-food-3"></i>
-        						</div>
-        						<div class="media-body">
-        							<a href="#"><h4>Wedding Cakes</h4></a>
-        							<p>Lorem Ipsum is  simply my text of the printing and Ipsum is simply text of the Ipsum is simply.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</div>
-        			<div class="col-lg-4">
-        				<div class="s_we_item gray_s_item">
-        					<div class="media">
-        						<div class="d-flex">
-        							<i class="flaticon-book"></i>
-        						</div>
-        						<div class="media-body">
-        							<a href="#"><h4>Awesome Recipes</h4></a>
-        							<p>Lorem Ipsum is  simply my text of the printing and Ipsum is simply text of the Ipsum is simply.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</div>
-        			<div class="col-lg-4">
-        				<div class="s_we_item gray_s_item">
-        					<div class="media">
-        						<div class="d-flex">
-        							<i class="flaticon-food-4"></i>
-        						</div>
-        						<div class="media-body">
-        							<a href="#"><h4>Menu Planner</h4></a>
-        							<p>Lorem Ipsum is  simply my text of the printing and Ipsum is simply text of the Ipsum is simply.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</div>
-        			<div class="col-lg-4">
-        				<div class="s_we_item gray_s_item">
-        					<div class="media">
-        						<div class="d-flex">
-        							<i class="flaticon-transport"></i>
-        						</div>
-        						<div class="media-body">
-        							<a href="#"><h4>Home Delivery</h4></a>
-        							<p>Lorem Ipsum is  simply my text of the printing and Ipsum is simply text of the Ipsum is simply.</p>
-        						</div>
+        				<div class="col-lg-6">
+        					<div class="welcome_img">
+        						<img class="img-fluid" src="img/cake-feature/welcome-right.jpg" alt="">
         					</div>
         				</div>
         			</div>
         		</div>
         	</div>
         </section>
-        <!--================End Service We offer Area =================-->
+        <!--================End Welcome Area =================-->
         
-        <!--================Welcome Area =================-->
-        <section class="welcome_bakery_area pink_cake_feature">
+        <!--================Cake Feature Four Area =================-->
+        <section class="cake_feature_four">
         	<div class="container">
         		<div class="cake_feature_inner">
-      				<div class="title_view_all">
-						<div class="float-left">
-							<div class="main_w_title">
-								<h2>Our Featured Cakes</h2>
-								<h5> Seldolor sit amet consect etur</h5>
-							</div>
-						</div>
-						<div class="float-right">
-							<a class="pest_btn" href="#">View all Products</a>
-						</div>
+        			<div class="main_title">
+						<h2>Our Featured Cakes</h2>
+						<h5> Seldolor sit amet consect etur</h5>
 					</div>
        				<div class="cake_feature_slider owl-carousel">
        					<div class="item">
@@ -500,204 +387,83 @@
         		</div>
         	</div>
         </section>
-        <!--================End Welcome Area =================-->
+        <!--================End Cake Feature Four Area =================-->
         
-        <!--================Special Recipe Area =================-->
-        <section class="special_recipe_area">
+        <!--================Bakery Video Area =================-->
+        <section class="bakery_video_area">
         	<div class="container">
-        		<div class="special_recipe_slider owl-carousel">
-        			<div class="item">
-        				<div class="media">
-        					<div class="d-flex">
-        						<img src="img/recipe/recipe-1.png" alt="">
-        					</div>
-        					<div class="media-body">
-        						<h4>Special Recipe</h4>
-        						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
-        						<a class="w_view_btn" href="#">View Details</a>
-        					</div>
+        		<div class="video_inner">
+        			<h3>Real Taste</h3>
+        			<p>A light, sour wheat dough with roasted walnuts and freshly picked rosemary, thyme, poppy seeds, parsley and sage</p>
+        			<div class="media">
+        				<div class="d-flex">
+        					<a class="popup-youtube" href="http://www.youtube.com/watch?v=0O2aH4XLbto"><i class="flaticon-play-button"></i></a>
         				</div>
-        			</div>
-        			<div class="item">
-        				<div class="media">
-        					<div class="d-flex">
-        						<img src="img/recipe/recipe-1.png" alt="">
-        					</div>
-        					<div class="media-body">
-        						<h4>Special Recipe</h4>
-        						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
-        						<a class="w_view_btn" href="#">View Details</a>
-        					</div>
-        				</div>
-        			</div>
-        			<div class="item">
-        				<div class="media">
-        					<div class="d-flex">
-        						<img src="img/recipe/recipe-1.png" alt="">
-        					</div>
-        					<div class="media-body">
-        						<h4>Special Recipe</h4>
-        						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
-        						<a class="w_view_btn" href="#">View Details</a>
-        					</div>
-        				</div>
-        			</div>
-        			<div class="item">
-        				<div class="media">
-        					<div class="d-flex">
-        						<img src="img/recipe/recipe-1.png" alt="">
-        					</div>
-        					<div class="media-body">
-        						<h4>Special Recipe</h4>
-        						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
-        						<a class="w_view_btn" href="#">View Details</a>
-        					</div>
+        				<div class="media-body">
+        					<h5>Watch intro video <br />about us</h5>
         				</div>
         			</div>
         		</div>
         	</div>
         </section>
-        <!--================End Special Recipe Area =================-->
+        <!--================End Bakery Video Area =================-->
         
-        <!--================End Client Says Area =================-->
-        <section class="our_chef_area p_100">
-        	<div class="container">
-        		<div class="row our_chef_inner">
-        			<div class="col-lg-3 col-6">
-        				<div class="chef_text_item">
-        					<div class="main_title">
-								<h2>Our Chefs</h2>
-								<p>Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion.</p>
-							</div>
-        				</div>
-        			</div>
-        			<div class="col-lg-3 col-6">
-        				<div class="chef_item">
-        					<div class="chef_img">
-        						<img class="img-fluid" src="img/chef/chef-1.jpg" alt="">
-        						<ul class="list_style">
-        							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        							<li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-        							<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-        							<li><a href="#"><i class="fa fa-skype"></i></a></li>
-        						</ul>
-        					</div>
-        					<a href="#"><h4>Michale Joe</h4></a>
-        					<h5>Expert in Cake Making</h5>
-        				</div>
-        			</div>
-        			<div class="col-lg-3 col-6">
-        				<div class="chef_item">
-        					<div class="chef_img">
-        						<img class="img-fluid" src="img/chef/chef-2.jpg" alt="">
-        						<ul class="list_style">
-        							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        							<li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-        							<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-        							<li><a href="#"><i class="fa fa-skype"></i></a></li>
-        						</ul>
-        					</div>
-        					<a href="#"><h4>Michale Joe</h4></a>
-        					<h5>Expert in Cake Making</h5>
-        				</div>
-        			</div>
-        			<div class="col-lg-3 col-6">
-        				<div class="chef_item">
-        					<div class="chef_img">
-        						<img class="img-fluid" src="img/chef/chef-3.jpg" alt="">
-        						<ul class="list_style">
-        							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        							<li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-        							<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-        							<li><a href="#"><i class="fa fa-skype"></i></a></li>
-        						</ul>
-        					</div>
-        					<a href="#"><h4>Michale Joe</h4></a>
-        					<h5>Expert in Cake Making</h5>
-        				</div>
-        			</div>
+        <!--================Discover Menu Area =================-->
+        <section class="discover_menu_area menu_d_two">
+        	<div class="discover_menu_inner">
+        		<div class="container">
+        			<div class="single_pest_title">
+						<h2>Services We offer</h2>
+					</div>
+       				<div class="row">
+       					<div class="col-lg-6">
+       						<div class="discover_item_inner">
+       							<div class="discover_item">
+									<h4>Double Chocolate Pie</h4>
+									<p>Chocolate puding, vanilla, fruite rasberry jam milk <span>$8.99</span></p>
+								</div>
+       							<div class="discover_item">
+									<h4>Double Chocolate Pie</h4>
+									<p>Chocolate puding, vanilla, fruite rasberry jam milk <span>$8.99</span></p>
+								</div>
+       							<div class="discover_item">
+									<h4>Double Chocolate Pie</h4>
+									<p>Chocolate puding, vanilla, fruite rasberry jam milk <span>$8.99</span></p>
+								</div>
+       							<div class="discover_item">
+									<h4>Double Chocolate Pie</h4>
+									<p>Chocolate puding, vanilla, fruite rasberry jam milk <span>$8.99</span></p>
+								</div>
+       						</div>
+       					</div>
+       					<div class="col-lg-6">
+       						<div class="discover_item_inner">
+       							<div class="discover_item">
+									<h4>Double Chocolate Pie</h4>
+									<p>Chocolate puding, vanilla, fruite rasberry jam milk <span>$8.99</span></p>
+								</div>
+       							<div class="discover_item">
+									<h4>Double Chocolate Pie</h4>
+									<p>Chocolate puding, vanilla, fruite rasberry jam milk <span>$8.99</span></p>
+								</div>
+       							<div class="discover_item">
+									<h4>Double Chocolate Pie</h4>
+									<p>Chocolate puding, vanilla, fruite rasberry jam milk <span>$8.99</span></p>
+								</div>
+       							<div class="discover_item">
+									<h4>Double Chocolate Pie</h4>
+									<p>Chocolate puding, vanilla, fruite rasberry jam milk <span>$8.99</span></p>
+								</div>
+       						</div>
+       					</div>
+       					<div class="col-lg-12">
+       						<a class="pest_w_btn" href="#">View Full Menu</a>
+       					</div>
+       				</div>
         		</div>
         	</div>
         </section>
-        <!--================End Client Says Area =================-->
-        
-        <!--================New Arivals Area =================-->
-        <section class="new_arivals_area p_100">
-        	<div class="container">
-        		<div class="single_pest_title">
-					<h2>New Arrivals</h2>
-				</div>
-        		<div class="row arivals_inner">
-        			<div class="col-lg-6 col-sm-7">
-        				<div class="arivals_chocolate">
-        					<div class="arivals_pic">
-        						<img class="img-fluid" src="img/cake-feature/arivals-pic.jpg" alt="">
-        						<div class="price_text">
-        							<h5>$39</h5>
-        						</div>
-        					</div>
-        					<div class="arivals_text">
-        						<h4>Chocolate <span>Crumble</span></h4>
-        						<a href="#">Mine cup</a>
-        					</div>
-        				</div>
-        			</div>
-        			<div class="col-lg-6">
-        				<div class="arivals_slider owl-carousel">
-        					<div class="item">
-        						<div class="cake_feature_item">
-									<div class="cake_img">
-										<img src="img/cake-feature/arivals-1.jpg" alt="">
-									</div>
-									<div class="cake_text">
-										<h4>$29</h4>
-										<h3>Strawberry Cupcakes</h3>
-										<a class="pest_btn" href="#">Add to cart</a>
-									</div>
-								</div>
-        					</div>
-        					<div class="item">
-        						<div class="cake_feature_item">
-									<div class="cake_img">
-										<img src="img/cake-feature/arivals-2.jpg" alt="">
-									</div>
-									<div class="cake_text">
-										<h4>$29</h4>
-										<h3>Chocolate Cupcakes</h3>
-										<a class="pest_btn" href="#">Add to cart</a>
-									</div>
-								</div>
-        					</div>
-        					<div class="item">
-        						<div class="cake_feature_item">
-									<div class="cake_img">
-										<img src="img/cake-feature/arivals-1.jpg" alt="">
-									</div>
-									<div class="cake_text">
-										<h4>$29</h4>
-										<h3>Strawberry Cupcakes</h3>
-										<a class="pest_btn" href="#">Add to cart</a>
-									</div>
-								</div>
-        					</div>
-        					<div class="item">
-        						<div class="cake_feature_item">
-									<div class="cake_img">
-										<img src="img/cake-feature/arivals-2.jpg" alt="">
-									</div>
-									<div class="cake_text">
-										<h4>$29</h4>
-										<h3>Chocolate Cupcakes</h3>
-										<a class="pest_btn" href="#">Add to cart</a>
-									</div>
-								</div>
-        					</div>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        </section>
-        <!--================End New Arivals Area =================-->
+        <!--================End Discover Menu Area =================-->
         
         <!--================Client Says Area =================-->
         <section class="client_says_area p_100">
@@ -748,7 +514,7 @@
         <!--================End Client Says Area =================-->
         
         <!--================Latest News Area =================-->
-        <section class="latest_news_area golden_bg p_100">
+        <section class="latest_news_area gray_bg p_100">
         	<div class="container">
         		<div class="main_title">
 					<h2>Latest Blog</h2>
@@ -794,6 +560,7 @@
         	</div>
         </section>
         <!--================End Latest News Area =================-->
+
 		<!--================Page Navigation=================-->
 		<div class="col-12 pb-1">
 			<nav aria-label="Page navigation">
@@ -805,10 +572,10 @@
 						</a>
 					</li>
 					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="index-2.html">2</a></li>
-					<li class="page-item"><a class="page-link" href="index-3.html">3</a></li>
-					<li class="page-item"><a class="page-link" href="index-4.html">4</a></li>
-					<li class="page-item active"><a class="page-link" href="index-5.html">5</a></li>
+					<li class="page-item"><a class="page-link" href="trangchu-2.html">2</a></li>
+					<li class="page-item"><a class="page-link" href="trangchu-3.html">3</a></li>
+					<li class="page-item active"><a class="page-link" href="trangchu-4.html">4</a></li>
+					<li class="page-item"><a class="page-link" href="trangchu-5.html">5</a></li>
 					<li class="page-item">
 						<a class="page-link" href="#" aria-label="Next">
 							<span aria-hidden="true">»</span>
@@ -820,94 +587,97 @@
 		</div>
 		<!--================End Page Navigation=================-->
         
-        <!--================Bakery Video Area =================-->
-        <section class="bakery_video_area">
-        	<div class="container">
-        		<div class="video_inner">
-        			<h3>Real Taste</h3>
-        			<p>A light, sour wheat dough with roasted walnuts and freshly picked rosemary, thyme, poppy seeds, parsley and sage</p>
-        			<div class="media">
-        				<div class="d-flex">
-        					<a class="popup-youtube" href="http://www.youtube.com/watch?v=0O2aH4XLbto"><i class="flaticon-play-button"></i></a>
-        				</div>
-        				<div class="media-body">
-        					<h5>Watch intro video <br />about us</h5>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        </section>
-        <!--================End Bakery Video Area =================-->
-        
-        <!--================Footer Area =================-->
-        <footer class="footer_area">
-        	<div class="footer_widgets">
-        		<div class="container">
-        			<div class="row footer_wd_inner">
-        				<div class="col-lg-3 col-6">
-        					<aside class="f_widget f_about_widget">
-        						<img src="img/footer-logo.png" alt="">
-        						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui bland itiis praesentium voluptatum deleniti atque corrupti.</p>
-        						<ul class="nav">
-        							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-        							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-        							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-        						</ul>
-        					</aside>
-        				</div>
-        				<div class="col-lg-3 col-6">
-        					<aside class="f_widget f_link_widget">
-        						<div class="f_title">
-        							<h3>Quick links</h3>
-        						</div>
-        						<ul class="list_style">
-        							<li><a href="#">Your Account</a></li>
-        							<li><a href="#">View Order</a></li>
-        							<li><a href="#">Privacy Policy</a></li>
-        							<li><a href="#">Terms & Conditionis</a></li>
-        						</ul>
-        					</aside>
-        				</div>
-        				<div class="col-lg-3 col-6">
-        					<aside class="f_widget f_link_widget">
-        						<div class="f_title">
-        							<h3>Work Times</h3>
-        						</div>
-        						<ul class="list_style">
-        							<li><a href="#">Mon. :  Fri.: 8 am - 8 pm</a></li>
-        							<li><a href="#">Sat. : 9am - 4pm</a></li>
-        							<li><a href="#">Sun. : Closed</a></li>
-        						</ul>
-        					</aside>
-        				</div>
-        				<div class="col-lg-3 col-6">
-        					<aside class="f_widget f_contact_widget">
-        						<div class="f_title">
-        							<h3>Contact Info</h3>
-        						</div>
-        						<h4>(1800) 574 9687</h4>
-        						<p>Justshiop Store <br />256, baker Street,, New Youk, 5245</p>
-        						<h5>cakebakery@contact.co.in</h5>
-        					</aside>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="footer_copyright">
-        		<div class="container">
-        			<div class="copyright_inner">
-        				<div class="float-left">
-        					<h5><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></h5>
-        				</div>
-        				<div class="float-right">
-        					<a href="#">Purchase Now</a>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        </footer>
+        <!--================Newsletter Area =================-->
+		<section class="newsletter_area">
+			<div class="container">
+				<div class="row newsletter_inner">
+					<div class="col-lg-6">
+						<div class="news_left_text">
+							<h4>Tham gia danh sách Bản tin của chúng tôi để nhận được tất cả các ưu đãi, giảm giá và các lợi ích khác mới nhất.</h4>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="newsletter_form">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Nhập địa chỉ email của bạn">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary" type="button">Theo dõi ngay</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--================End Newsletter Area =================-->
+
+		<!--================Footer Area =================-->
+		<footer class="footer_area">
+			<div class="footer_widgets">
+				<div class="container">
+					<div class="row footer_wd_inner">
+						<div class="col-lg-3 col-6">
+							<aside class="f_widget f_about_widget">
+								<img src="img/footer-logo.png" alt="">
+								<p>CỬA HÀNG CAKE BAKERY LUÔN HƯỚNG ĐẾN SỰ HÀI LÒNG CỦA KHÁCH HÀNG VỀ DỊCH VỤ TẠI CỬA HÀNG CỦA CHÚNG TÔI. XIN CẢM ƠN.</p>
+								<ul class="nav">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								</ul>
+							</aside>
+						</div>
+						<div class="col-lg-3 col-6">
+							<aside class="f_widget f_link_widget">
+								<div class="f_title">
+									<h3>Đường dẫn nhanh</h3>
+								</div>
+								<ul class="list_style">
+									<li><a href="#">Tài khoản của bạn</a></li>
+									<li><a href="#">Xem đơn hàng</a></li>
+									<li><a href="#">Chính sách bảo mật</a></li>
+									<li><a href="#">Điều khoản và điều kiện</a></li>
+								</ul>
+							</aside>
+						</div>
+						<div class="col-lg-3 col-6">
+							<aside class="f_widget f_link_widget">
+								<div class="f_title">
+									<h3>Thời gian làm việc</h3>
+								</div>
+								<ul class="list_style">
+									<li><a href="#">Thứ 2 : Thứ 6: 8 am - 8 pm</a></li>
+									<li><a href="#">Thứ 7 : 9am - 4pm</a></li>
+									<li><a href="#">Chủ Nhật : Đóng cửa</a></li>
+								</ul>
+							</aside>
+						</div>
+						<div class="col-lg-3 col-6">
+							<aside class="f_widget f_contact_widget">
+								<div class="f_title">
+									<h3>Thông tin liên lạc</h3>
+								</div>
+								<h4>(1800) 574 9687</h4>
+								<p>Cửa hàng Cake Bakery <br />Khu phố 6, phường Linh Trung, thành phố Thủ Đức</p>
+								<h5>cakebakery@contact.co.in</h5>
+							</aside>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer_copyright">
+				<div class="container">
+					<div class="copyright_inner">
+						<div class="float-right">
+							<a href="#">Mua ngay</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
         <!--================End Footer Area =================-->
+        
         
         <!--================Search Box Area =================-->
         <div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
@@ -922,7 +692,6 @@
             </div>
         </div>
         <!--================End Search Box Area =================-->
-        
         
         
         
