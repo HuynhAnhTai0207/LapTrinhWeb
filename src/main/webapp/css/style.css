@@ -2915,22 +2915,17 @@ i:before {
 
 .arivals_chocolate .arivals_pic .price_text {
   position: absolute;
-  right: 25px;
-  top: 20px;
   height: 92px;
   width: 92px;
-  border-radius: 50%;
-  background: #fff;
-  text-align: center;
+  top: 220px;
+  left: 15px;
 }
 
 .arivals_chocolate .arivals_pic .price_text h5 {
   margin-bottom: 0px;
   font-size: 36px;
-  color: #242424;
-  font-family: "Playfair Display", serif;
-  font-weight: bold;
   line-height: 85px;
+  color: rgb(165, 80, 78);
 }
 
 .arivals_chocolate .arivals_text {
@@ -3185,7 +3180,7 @@ i:before {
   text-align: center;
   color: #fff;
   font-family: Arial;
-  font-size: 120px;
+  font-size: 20px;
   line-height: 60px;
   margin-top: 50px;
 }
