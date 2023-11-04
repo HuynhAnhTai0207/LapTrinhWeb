@@ -444,7 +444,7 @@ i:before {
 }
 
 .top_header_area {
-  background: #f195b2;
+  background: #eca7bd;
   position: relative;
   z-index: 3;
 }
@@ -2040,24 +2040,9 @@ i:before {
 }
 
 .cake_feature_item .cake_text h4 {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  color: #343434;
-  font-size: 26px;
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  background: #fff;
-  display: inline-block;
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
-  top: -35px;
-  line-height: 68px;
-  margin-bottom: 0px;
-  z-index: 2;
+    margin-top: 20px;
+    color: #343434;
+    font-size: 26px;
 }
 
 .cake_feature_item .cake_text h3 {
@@ -2065,7 +2050,7 @@ i:before {
   color: #343434;
   font-family: "Playfair Display", serif;
   margin-bottom: 22px;
-  padding-top: 35px;
+  padding-top: 15px;
 }
 
 .cake_feature_main {
@@ -2540,7 +2525,7 @@ i:before {
 }
 
 .faq_form_area .faq_left_form .contact_us_form .form-group .pest_btn {
-  width: 170px;
+  width: 185px;
   height: 50px;
   border-radius: 25px;
   font-size: 16px;
@@ -2930,22 +2915,17 @@ i:before {
 
 .arivals_chocolate .arivals_pic .price_text {
   position: absolute;
-  right: 25px;
-  top: 20px;
   height: 92px;
   width: 92px;
-  border-radius: 50%;
-  background: #fff;
-  text-align: center;
+  top: 220px;
+  left: 15px;
 }
 
 .arivals_chocolate .arivals_pic .price_text h5 {
   margin-bottom: 0px;
   font-size: 36px;
-  color: #242424;
-  font-family: "Playfair Display", serif;
-  font-weight: bold;
   line-height: 85px;
+  color: rgb(165, 80, 78);
 }
 
 .arivals_chocolate .arivals_text {
@@ -3200,7 +3180,7 @@ i:before {
   text-align: center;
   color: #fff;
   font-family: Arial;
-  font-size: 120px;
+  font-size: 20px;
   line-height: 60px;
   margin-top: 50px;
 }
@@ -4429,6 +4409,14 @@ i:before {
 .order_now_form .form-group:last-child {
   margin-top: 30px;
   margin-bottom: 0px;
+  text-align: center;
+}
+.order_now_form .form-group:last-child a{
+  color: #fff;
+  width: 200px;
+  height: 40px;
+  background: #94c9d9;
+  padding: 10px 20px;
 }
 
 /* End Order Now Area css
@@ -5674,6 +5662,7 @@ i:before {
 
 .product_details_text .quantity_box {
   margin-bottom: 40px;
+  position: relative;
 }
 
 .product_details_text .quantity_box label {
@@ -5684,18 +5673,11 @@ i:before {
   padding-right: 25px;
 }
 
-.product_details_text .quantity_box input {
-  width: 40px;
-  height: 35px;
-  border: 1px solid #eaeaea;
-  text-align: center;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  font-size: 18px;
-  color: #797979;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 600;
+.product_details_text .quantity_box .input-group {
+  width: 100px;
+  position: absolute;
+  top: 0;
+  left: 100px;
 }
 
 .product_details_text .quantity_box input.placeholder {
@@ -5958,14 +5940,14 @@ i:before {
 }
 
 .cart_table_area .table-responsive .table tbody tr:last-child td .form-inline .btn {
-  width: 140px;
+  width: 220px;
   border-radius: 3px;
   background: #242424;
   color: #fff;
   height: 31px;
   line-height: 26px;
   padding: 0px;
-  margin-left: 17px;
+  margin-top: 10px;
   border: none;
   outline: none !important;
   -webkit-box-shadow: none !important;
@@ -5973,10 +5955,9 @@ i:before {
 }
 
 .cart_table_area .table-responsive .table tbody tr:last-child td .pest_btn {
-  margin-left: -80px;
-  margin-right: 15px;
-  line-height: 42px;
-  padding: 0px 30px;
+  margin-right: 50px;
+  width: 200px;
+  height: 35px;
 }
 
 .cart_total_inner .cart_total_text {
