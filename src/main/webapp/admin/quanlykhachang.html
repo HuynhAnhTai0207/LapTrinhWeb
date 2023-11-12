@@ -56,14 +56,14 @@
             class="app-menu__label">Bảng điều khiển</span></a></li>
     <li><a class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i>
       <span class="app-menu__label">Quản lý nhân viên</span></a></li>
-    <li><a class="app-menu__item" href="quanlykhachang.html"><i class='app-menu__icon bx bx-user-voice'></i><span
-            class="app-menu__label">Quản lý khách hàng</span></a></li>
+    <li><a class="app-menu__item active" href="quanlykhachang.html"><i class='app-menu__icon bx bx-user-voice'></i><span
+            class="app-menu__label ">Quản lý khách hàng</span></a></li>
     <li><a class="app-menu__item" href="table-data-product.html"><i
             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
     </li>
     <li><a class="app-menu__item " href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
             class="app-menu__label">Quản lý đơn hàng</span></a></li>
-    <li><a class="app-menu__item active" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
+    <li><a class="app-menu__item " href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
             class="app-menu__label">Quản lý nội bộ
           </span></a></li>
     <li><a class="app-menu__item" href="table-data-money.html"><i class='app-menu__icon bx bx-dollar'></i><span
@@ -80,7 +80,7 @@
 <main class="app-content">
   <div class="app-title">
     <ul class="app-breadcrumb breadcrumb side">
-      <li class="breadcrumb-item active"><a href="#"><b>Quản lý nội bộ</b></a></li>
+      <li class="breadcrumb-item active"><a href="quanlykhachang.html"><b>Quản lý Khách hàng</b></a></li>
     </ul>
     <div id="clock"></div>
   </div>
@@ -91,7 +91,7 @@
           <div class="row element-button">
             <div class="col-sm-2">
 
-              <a class="btn btn-add btn-sm" href="form-add-bi-cam.html" title="Thêm"><i class="fas fa-plus"></i>
+              <a class="btn btn-add btn-sm" href="form-add-bi-cam-khachhang.html" title="Thêm"><i class="fas fa-plus"></i>
                 Tạo mới</a>
             </div>
             <div class="col-sm-2">
@@ -125,9 +125,11 @@
             <tr>
               <th width="10"><input type="checkbox" id="all"></th>
               <th>Họ và Tên</th>
-              <th>Ngày sinh</th>
-              <th>Chức vụ</th>
-              <th>Lý do cấm</th>
+              <th>Id Khách hàng</th>
+              <th>Số Điện thoại</th>
+              <th>Ngày mua</th>
+              <th>Loại sản phẩm</th>
+              <th>Số lượng</th>
               <th>Tình trạng</th>
               <th>Chức năng</th>
             </tr>
@@ -136,43 +138,64 @@
             <tr>
               <td width="10"><input type="checkbox" name="check1" value="1"></td>
               <td>Trần Thị Yến Nhi</td>
-              <td>10/09/2002</td>
-              <td>Bán hàng</td>
-              <td>Gian lận trong công việc đã lấy trộm tiền của Cửa hàng và thái độ không ăn năn hối lỗi.</td>
-              <td><span class="badge bg-danger">Sa thải</span></td>
+              <td>kh001</td>
+              <td>0917264837</td>
+              <td>12/2/2023</td>
+              <td>Bánh kem</td>
+              <td>80</td>
+              <td><span class="badge bg-danger1">Không vi phạm</span></td>
               <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
                 <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
             </tr>
             <tr>
               <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>Nguyễn Thị Kim Yến</td>
-              <td>02/12/001</td>
-              <td>Thu Ngân</td>
-              <td>Gian lận trong công việc đã lấy trộm tiền của công ty và thái độ không ăn năn hối lỗi</td>
-              <td><span class="badge bg-danger">Sa thải</span></td>
+              <td>Trần Thị Huyền</td>
+              <td>kh002</td>
+              <td>0817263997</td>
+              <td>1/7/2023</td>
+              <td>Bánh Ngọt</td>
+              <td>180</td>
+              <td><span class="badge bg-danger1">Không vi phạm</span></td>
               <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
                 <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
             </tr>
             <tr>
               <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>Nguyễn Hoàng Thái Quang</td>
-              <td>07/02/2003</td>
-              <td>Kiểm kho</td>
-              <td>Tự ý thay đổi thông tin nhân viên và không báo cáo quản lý.</td>
+              <td>Nguyễn Ngọc Tân</td>
+              <td>kh003</td>
+              <td>0995274868</td>
+              <td>17/5/2023</td>
+              <td>Bánh mỳ</td>
+              <td>380</td>
+              <td><span class="badge bg-danger1">Không vi phạm</span></td>
+              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
+                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
+            </tr>
+            <tr>
+              <td width="10"><input type="checkbox" name="check1" value="1"></td>
+              <td>Quế Thanh Ngoan</td>
+              <td>kh004</td>
+              <td>017284693</td>
+              <td>11/2/2023</td>
+              <td>Bánh tráng miệng</td>
+              <td>80</td>
+              <td><span class="badge bg-danger1">Không vi phạm</span></td>
+              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
+                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
+            </tr>
+            <tr>
+              <td width="10"><input type="checkbox" name="check1" value="1"></td>
+              <td>Trần Văn Quốc</td>
+              <td>kh005</td>
+              <td>0917261233</td>
+              <td>12/9/2023</td>
+              <td>Bánh kem</td>
+              <td>170</td>
               <td><span class="badge bg-warning">Khóa tài khoản</span></td>
               <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
                 <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
             </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>Võ Thành Trung</td>
-              <td>19/09/2004</td>
-              <td>Làm bánh</td>
-              <td>Phá hỏng 9 sản phẩm của Cửa hàng, có kháng cự khi bị bắt (bồi thường 5.000.000 đ)</td>
-              <td><span class="badge bg-danger">Sa thải</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
+
             </tbody>
           </table>
         </div>
