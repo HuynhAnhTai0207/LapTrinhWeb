@@ -5498,12 +5498,11 @@ i:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-top: 1px solid #dddddd;
-  margin-top: 80px;
+  width: 700px;
+  margin: 80px auto 40px auto;
 }
 
 .product_pagination .left_btn {
-  display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
   width: 50%;
