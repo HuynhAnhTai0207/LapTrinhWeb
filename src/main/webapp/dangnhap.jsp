@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Cake - Bakery</title>
@@ -37,10 +38,11 @@
 <div class="limiter">
     <div class="container-login100" style="background-image: url('img/bg-01.jpg');">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-            <form class="login100-form validate-form">
+            <form class="login100-form validate-form" action="login" method="post">
 					<span class="login100-form-title p-b-49">
 						Đăng nhập
 					</span>
+                    <p class="text-danger">${mess}</p>
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                     <span class="label-input100">Tên tài khoản</span>
@@ -67,9 +69,7 @@
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn">
-                            <a href="trangchu.html">Đăng nhập</a>
-                        </button>
+                        <button class="login100-form-btn" type="submit">Đăng nhập</button>
                     </div>
                 </div>
 
@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="flex-col-c p-t-50">
-                    <a href="dangky.html" class="txt2">
+                    <a href="dangky.jsp" class="txt2">
                         Đăng ký
                     </a>
                 </div>

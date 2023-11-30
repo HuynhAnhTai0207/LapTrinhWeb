@@ -345,6 +345,9 @@ iframe {
     -moz-transition: all 0.4s;
     transition: all 0.4s;
 }
+.login100-form-bgbtn .login100-form-btn i{
+    color: #0b0b0b;
+}
 
 .login100-form-btn {
     font-family:  'Roboto', sans-serif;
