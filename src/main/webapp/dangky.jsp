@@ -34,33 +34,13 @@
                 <label>Xác nhận mật khẩu</label>
                 <input type="password" name="confirm_password" id="confirm_password" class="input-text" placeholder="Nhập mật khẩu của bạn">
             </div>
-            <div class="form-checkbox">
-                <label class="container"><p>Bằng cách đăng ký, bạn đồng ý với <a href="#" class="text">Điều khoản dịch vụ của chúng tôi</a></p>
-                    <input type="checkbox" name="agree" id="agree">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="txt1 text-center p-t-70 p-b-20">
-						<span>
-							Đăng ký với
-						</span>
-            </div>
-
-            <div class="flex-c-m">
-                <a href="#" class="btn-face m-b-15 text-decoration-none">
-                    <i class="fa fa-facebook-official"></i>
-                    Facebook
-                </a>
-
-                <a href="#" class="btn-google m-b-15 text-decoration-none">
-                    <img src="img/icon-google.png" alt="GOOGLE">
-                    Google
-                </a>
-            </div>
             <div class="form-row-last">
                 <button class="register">
-                    <a href="dangnhap.html">Đăng ký</a>
+                    <a href="dangnhap.jsp">Đăng ký</a>
                 </button>
+            </div>
+            <div class="form-row-last">
+                <p style="margin-top: 20px; margin-bottom: 20px; color: #aaaaaa; text-align: center;">Bạn đã có tài khoản? <a href="" class="login-link">Đăng nhập</a></p>
             </div>
         </form>
     </div>
