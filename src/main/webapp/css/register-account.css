@@ -22,7 +22,7 @@ body {
 }
 .form-v2-content  {
     background: #fff;
-    width: 425px;
+    width: 700px;
     border-radius: 15px;
     -o-border-radius: 15px;
     -ms-border-radius: 15px;
@@ -32,6 +32,15 @@ body {
     position: relative;
     display: flex;
     display: -webkit-flex;
+}
+legend{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+}
+.col-sm-10{
+    display: flex;
 }
 .form-v2-content .form-detail {
     padding: 20px 40px 20px 40px;
