@@ -6,7 +6,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "ServletHomeController", value = "/home")
-public class ServletHomeController extends HttpServlet {
+public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

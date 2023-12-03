@@ -18,5 +18,9 @@
       <page-encoding>UTF-8</page-encoding>
     </jsp-property-group>
   </jsp-config>
+  <welcome-file-list>
+    <welcome-file>trangchu.jsp</welcome-file>
+  </welcome-file-list>
+
 
 </web-app>

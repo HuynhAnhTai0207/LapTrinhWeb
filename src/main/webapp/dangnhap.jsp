@@ -42,11 +42,11 @@
 					<span class="login100-form-title p-b-49">
 						Đăng nhập
 					</span>
-                    <p class="text-danger">${mess}</p>
+                        <p class="text-danger">${mess}</p>
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                     <span class="label-input100">Tên tài khoản</span>
-                    <input class="input100" type="text" name="username" placeholder="Nhập tên của bạn">
+                    <input class="input100" type="text" name="email" placeholder="Nhập email của bạn">
                     <span class="focus-input100">
                         <i class="fa-solid fa-user"></i>
                     </span>
