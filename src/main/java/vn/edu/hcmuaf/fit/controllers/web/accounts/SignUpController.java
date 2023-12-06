@@ -56,6 +56,12 @@ public class SignUpController extends HttpServlet {
                 request.setAttribute("mess", "Mật khẩu không trùng khớp! Vui lòng nhập lại");
                 request.getRequestDispatcher("dangky.jsp").forward(request, response);
             }
+            // Kiểm tra mạt khẩu không đủ 6 kí tự chữ in hoa và kí tự đặc biệt
+//
+            if (password.length() <= 6 ) {
+                request.setAttribute("mess", "Mật khẩu phải có độ dài lớn hơn 6 ");
+                request.getRequestDispatcher("dangky.jsp").forward(request, response);
+            }
 
 //            System.out.println("kiểm tra email");
                 CustomerDAO customerDAO = new CustomerDAO();
@@ -72,6 +78,7 @@ public class SignUpController extends HttpServlet {
 
                     // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
 //                    System.out.println("đăng ký thành công");
+                    request.setAttribute("mess", "Đăng ký thành công");
                     request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
                 }
         } catch (IOException e) {

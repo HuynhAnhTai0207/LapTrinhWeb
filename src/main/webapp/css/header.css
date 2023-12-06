@@ -1,0 +1,36 @@
+.top_header_area .container{
+    max-width: 1200px;
+}
+.main_menu_area .container{
+    max-width: 1200px;
+}
+.main_menu_area a{
+    text-decoration: none;
+}
+.top_header_area .float-right{
+    position: relative;
+}
+.top_header_area .float-right .h_social{
+    display: flex;
+    position: absolute;
+    top: 5px;
+    left: -236px;
+}
+.top_header_area .float-right .h_social li a{
+    text-decoration: none;
+    margin-top: -7px;
+    color: black;
+}
+.top_header_area .float-right .h_social li .title{
+    color: whitesmoke;
+}
+.btn.btn-secondary.dropdown-toggle{
+    background: none;
+    border: none;
+}
+a{
+    text-decoration: none;
+}
+
+
+

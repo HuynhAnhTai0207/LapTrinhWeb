@@ -47,8 +47,7 @@ Table of Content:
   margin: 0px;
   padding: 0px;
 }
-
-a {
+* a {
   text-decoration: none;
   vertical-align: middle;
 }

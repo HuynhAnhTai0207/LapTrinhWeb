@@ -44,6 +44,8 @@ public class LoginController extends HttpServlet {
                 request.setAttribute("mess", "Tài khoản hoặc mật khẩu không đúng.");
                 request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
             } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("account", account);
                 request.getRequestDispatcher("trangchu.jsp").forward(request, response);
             }
         } catch (Exception e) {
