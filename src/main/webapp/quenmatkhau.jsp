@@ -30,13 +30,6 @@
                 <label for="password">Nhập mật khẩu mới</label>
                 <input type="password" name="password" id="password" class="input-text" placeholder="Nhập mật khẩu của bạn">
             </div>
-
-            <div class="form-checkbox">
-                <label class="container"><p><a href="#" class="text">Đồng ý với các điều khoản dịch vụ của chúng tôi</a></p>
-                    <input type="checkbox" name="agree" id="agree">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
             <div class="form-row-last">
                 <button class="register">
                     <a href="dangnhap.jsp">Lấy lại mật khẩu</a>

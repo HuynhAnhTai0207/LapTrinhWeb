@@ -30,7 +30,7 @@
 <body onload="time()" class="app sidebar-mini rtl">
   <!-- Navbar-->
   <header class="app-header">
-<%--    	<jsp:include page="../lay    out/SiderbarMenu.jsp" />--%>
+<%--    	<jsp:include page="./layout/SiderbarMenu.jsp" />--%>
     <!-- Sidebar toggle button-->
   <a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
       aria-label="Hide Sidebar"></a>
