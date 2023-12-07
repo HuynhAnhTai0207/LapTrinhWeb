@@ -1,4 +1,4 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.entity.Account" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 4/12/2023
@@ -26,7 +26,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    <link rel="stylesheet" href="../admin/css/main.css">
+    <link rel="stylesheet" href="./admin/css/main.css">
 
 </head>
 
@@ -48,10 +48,12 @@
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="../img/u1.jpg" width="50px"
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="./img/u1.jpg" width="50px"
                                         alt="User Image">
         <div>
-            <p class="app-sidebar__user-name"><b>Quản Lý</b></p>
+            <p class="app-sidebar__user-name"><b>
+                <%= ((Account)session.getAttribute("admin")).getLastName() %>
+            </b></p>
             <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
         </div>
     </div>

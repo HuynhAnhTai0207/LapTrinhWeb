@@ -104,10 +104,13 @@ public class CustomerDAO {
             statement.setString(3, firstname + " " + lastname); // Tạo fullName từ firstName và lastName
             statement.setString(4, email);
             statement.setString(5, password);
-            statement.setString(6, "user");
-            statement.setString(7, "219/4");
+            statement.setString(6, "");
+            statement.setString(7, "");
             statement.setInt(8, phone);
             statement.setDate(9, new java.sql.Date(System.currentTimeMillis())); // Thời gian tạo là thời điểm hiện tại
+            statement.setTimestamp(9, new java.sql.Timestamp(System.currentTimeMillis()));
+
+
 
             // Thực hiện lệnh chèn dữ liệu
             int rowsAffected = statement.executeUpdate();
