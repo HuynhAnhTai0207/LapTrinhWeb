@@ -64,7 +64,7 @@
 							Tài khoản của tôi
 						</button>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" style="color: #0b0b0b" href="#">Chỉnh sửa tài khoản</a></li>
+							<li><a class="dropdown-item" style="color: #0b0b0b" href="editaccount.jsp">Chỉnh sửa tài khoản</a></li>
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="#">Đổi mật khẩu</a></li>
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="#">Lịch sử đơn hàng</a></li>
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="<c:url value='/logout' />">Đăng xuất</a></li>
