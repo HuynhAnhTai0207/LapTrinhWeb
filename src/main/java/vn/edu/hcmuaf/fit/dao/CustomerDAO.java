@@ -104,10 +104,13 @@ public class CustomerDAO {
             statement.setString(3, firstname + " " + lastname); // Tạo fullName từ firstName và lastName
             statement.setString(4, email);
             statement.setString(5, password);
-            statement.setString(6, "user");
-            statement.setString(7, "219/4");
+            statement.setString(6, "");
+            statement.setString(7, "");
             statement.setInt(8, phone);
             statement.setDate(9, new java.sql.Date(System.currentTimeMillis())); // Thời gian tạo là thời điểm hiện tại
+            statement.setTimestamp(9, new java.sql.Timestamp(System.currentTimeMillis()));
+
+
 
             // Thực hiện lệnh chèn dữ liệu
             int rowsAffected = statement.executeUpdate();
@@ -124,6 +127,65 @@ public class CustomerDAO {
 
         return null;
     }
+
+    public Account updateAccount(String firstname, String lastname, String email, String phone, String fullname) {
+        String query = "UPDATE customer\n" +
+                "SET firstName = ?, lastName = ?, fullName = ?, phone = ?\n" +
+                "WHERE email = ?;";
+
+        try (Connection connection = JDBCConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, firstname);
+            statement.setString(2, lastname);
+            statement.setString(3, firstname+lastname);
+            statement.setString(4, phone);
+            statement.setString(5, email);
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                // Cập nhật thành công, trả về đối tượng Account
+                Account updatedAccount = new Account();
+                updatedAccount.setFirstName(firstname);
+                updatedAccount.setLastName(lastname);
+                updatedAccount.setFullName(fullname);
+                updatedAccount.setEmail(email);
+                updatedAccount.setPhone(Integer.parseInt(phone));
+
+                return updatedAccount;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Nếu có lỗi xảy ra hoặc không có hàng nào được cập nhật, trả về null
+        return null;
+    }
+
+    public boolean changePassword(String email, String oldPassword, String newPassword, String confirmPassword){
+        String updateQuery = "UPDATE customer SET password = ? WHERE email = ? AND password = ?";
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement(updateQuery);
+            statement.setString(1, email);
+            statement.setString(2, oldPassword);
+            statement.setString(3, newPassword);
+
+            int rowsAffected = statement.executeUpdate();
+
+            // Nếu có ít nhất một hàng được cập nhật, có nghĩa là mật khẩu đã được thay đổi
+            return rowsAffected > 0;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
+
 
 
 }
