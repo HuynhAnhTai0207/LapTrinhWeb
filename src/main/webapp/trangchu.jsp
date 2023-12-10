@@ -56,16 +56,16 @@
 				<img src="img/footer-logo.png" alt="">
 			</div>
 			<div class="float-right">
-				<ul class="h_social list_style" style="display:flex;">
+				<ul class="h_social list_style" style="display:flex; left: -352px">
 					<% if (session.getAttribute("account") != null) { %>
 					<li><a class="title" href=""><%= ((Account)session.getAttribute("account")).getFullName() %> </a></li>
 					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 185px">
 							Tài khoản của tôi
 						</button>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="editaccount.jsp">Chỉnh sửa tài khoản</a></li>
-							<li><a class="dropdown-item" style="color: #0b0b0b" href="#">Đổi mật khẩu</a></li>
+							<li><a class="dropdown-item" style="color: #0b0b0b" href="changepassword.jsp">Đổi mật khẩu</a></li>
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="#">Lịch sử đơn hàng</a></li>
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="<c:url value='/logout' />">Đăng xuất</a></li>
 

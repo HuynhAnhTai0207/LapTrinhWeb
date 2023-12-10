@@ -162,6 +162,28 @@ public class CustomerDAO {
         return null;
     }
 
+    public boolean changePassword(String email, String oldPassword, String newPassword, String confirmPassword){
+        String updateQuery = "UPDATE customer SET password = ? WHERE email = ? AND password = ?";
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement(updateQuery);
+            statement.setString(1, email);
+            statement.setString(2, oldPassword);
+            statement.setString(3, newPassword);
+
+            int rowsAffected = statement.executeUpdate();
+
+            // Nếu có ít nhất một hàng được cập nhật, có nghĩa là mật khẩu đã được thay đổi
+            return rowsAffected > 0;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 
 
 
