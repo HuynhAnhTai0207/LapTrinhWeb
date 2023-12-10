@@ -1,13 +1,13 @@
 package vn.edu.hcmuaf.fit.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Products {
     private String id;
     private String name;
     private int price;
-
-    private int category;
+    private String category;
     private String stock;
     private int price_buy;
     private int quantity;
@@ -15,7 +15,7 @@ public class Products {
     private String detail;
     private List<String> images;
 
-    public Products(String id, String name, int price, int category, String stock, int price_buy, int quantity, int product_sold, String detail, List<String> images) {
+    public Products(String id, String name, int price, String category, String stock, int price_buy, int quantity, int product_sold, String detail, List<String> images) {
         this.category = category;
         this.id = id;
         this.name = name;
@@ -28,11 +28,24 @@ public class Products {
         this.images = images;
     }
 
-    public int getCategory() {
+    public Products(String id, String name, int price, String category, String stock, int price_buy, int quantity, int product_sold, String detail) {
+        this.category = category;
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.price_buy = price_buy;
+        this.quantity = quantity;
+        this.product_sold = product_sold;
+        this.detail = detail;
+        this.images = new ArrayList<>();
+    }
+
+    public String getCategory() {
         return this.category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
