@@ -121,7 +121,7 @@
 									</ul>
 								</li>
 								<li class="dropdown submenu">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
+									<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 									<ul class="dropdown-menu">
 										<li><a href="ListProduct">Cửa hàng chính</a></li>
 										<li><a href="chitietsanpham.html">Chi tiết sản phẩm</a></li>
