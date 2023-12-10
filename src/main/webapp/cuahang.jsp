@@ -1,67 +1,95 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
 <%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
 <!DOCTYPE html>
 <html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
     
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Cake - Bakery</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Icon css link -->
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="vendors/linearicons/style.css" rel="stylesheet">
-        <link href="vendors/flat-icon/flaticon.css" rel="stylesheet">
-        <link href="vendors/stroke-icon/style.css" rel="stylesheet">
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        
-        <!-- Rev slider css -->
-        <link href="vendors/revolution/css/settings.css" rel="stylesheet">
-        <link href="vendors/revolution/css/layers.css" rel="stylesheet">
-        <link href="vendors/revolution/css/navigation.css" rel="stylesheet">
-        <link href="vendors/animate-css/animate.css" rel="stylesheet">
-        
-        <!-- Extra plugin css -->
-        <link href="vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
-        <link href="vendors/magnifc-popup/magnific-popup.css" rel="stylesheet">
-        <link href="vendors/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-        <link href="vendors/nice-select/css/nice-select.css" rel="stylesheet">
-        
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/responsive.css" rel="stylesheet">
+	<link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Cake - Bakery</title>
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<!-- Icon css link -->
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="vendors/linearicons/style.css" rel="stylesheet">
+	<link href="vendors/flat-icon/flaticon.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Rev slider css -->
+	<link href="vendors/revolution/css/settings.css" rel="stylesheet">
+	<link href="vendors/revolution/css/layers.css" rel="stylesheet">
+	<link href="vendors/revolution/css/navigation.css" rel="stylesheet">
+	<link href="vendors/animate-css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/header.css">
+
+	<!-- Extra plugin css -->
+	<link href="vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+	<link href="vendors/magnifc-popup/magnific-popup.css" rel="stylesheet">
+
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
     <body>
         
         <!--================Main Header Area =================-->
 		<header class="main_header_area">
+			<%--	<jsp:include page="./layout/header.jsp" />--%>
 			<div class="top_header_area row m0">
 				<div class="container">
 					<div class="float-left">
 						<img src="img/footer-logo.png" alt="">
 					</div>
 					<div class="float-right">
-						<ul class="h_social list_style">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<!--							<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<!--							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
-							<li><a href="dangnhap.jsp"> Đăng nhập</a></li>
-							<li><a href="dangky.jsp"> Đăng ký</a></li>
+						<ul class="h_social list_style" style="display:flex; left: -352px">
+							<% if (session.getAttribute("account") != null) { %>
+							<li><a class="title" href=""><%= ((Account)session.getAttribute("account")).getFullName() %> </a></li>
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 185px">
+									Tài khoản của tôi
+								</button>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="editaccount.jsp">Chỉnh sửa tài khoản</a></li>
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="changepassword.jsp">Đổi mật khẩu</a></li>
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="#">Lịch sử đơn hàng</a></li>
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="<c:url value='/logout' />">Đăng xuất</a></li>
+
+								</ul>
+							</div>
+							<% } else { %>
+							<li><a class="title" href="">Xin chào</a></li>
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Tài khoản của tôi
+								</button>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="dangky.jsp">Đăng ký</a></li>
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="dangnhap.jsp">Đăng nhập</a></li>
+								</ul>
+							</div>
+							<% } %>
+
 						</ul>
 						<ul class="h_search list_style">
-							<li class="shop_cart"><a href="giohang.html"><i class="lnr lnr-cart"></i></a></li>
+							<li class="shop_cart"><a href="giohang.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
 							<input>
 							<li><a class="popup-with-zoom-anim" href="#test-search"><i class="fa fa-search"></i></a></li>
 						</ul>
@@ -949,6 +977,9 @@
         <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
         <script src="vendors/jquery-ui/jquery-ui.min.js"></script>
         <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         
         <script src="js/theme.js"></script>
     </body>
