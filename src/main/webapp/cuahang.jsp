@@ -722,6 +722,11 @@
         						<a href="#"><i class="lnr lnr-arrow-left"></i> Trước</a>
         					</div>
         					<div class="middle_list">
+<%--								<div>--%>
+<%--									<c:forEach begin="1" end="${endPage}" var="i">--%>
+<%--										<a href="${i}"></a>--%>
+<%--									</c:forEach>--%>
+<%--								</div>--%>
 								<nav aria-label="Page navigation example">
 									<ul class="pagination">
 									<li class="page-item active"><a class="page-link" href="#">1</a></li>
