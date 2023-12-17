@@ -22,9 +22,9 @@ public class ListProducts extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PageDao dao = new PageDao();
-        int count = dao.getTotalProduct();
-        int endPage = count/10;
-        if (count %20 != 0){
+//        int count = dao.getTotalProduct();
+        int endPage = dao.getTotalProduct() / 10;
+        if (dao.getTotalProduct() % 10 != 0) {
             endPage++;
         }
         request.setAttribute("endP", endPage);
