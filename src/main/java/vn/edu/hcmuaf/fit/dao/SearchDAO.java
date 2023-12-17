@@ -1,8 +1,5 @@
 package vn.edu.hcmuaf.fit.dao;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import vn.edu.hcmuaf.fit.controllers.web.pageProducts.ListProducts;
-import vn.edu.hcmuaf.fit.controllers.web.products.ListProductController;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
 import vn.edu.hcmuaf.fit.entity.Products;
 
@@ -11,35 +8,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class PageDao {
-
+public class SearchDAO {
     Connection connection = null; // mở kết nối đến sql
     PreparedStatement statement = null; // ném câu lệnh sql đến navicat
     ResultSet resultSet = null;
-    public int getTotalProduct(){
-        String query = "SELECT * FROM product";
-        try {
-            Connection connection = JDBCConnector.getConnection();
-            statement = connection.prepareStatement(query);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()){
-                return resultSet.getInt(1);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
-        return 0;
-    }
-    public  List<Products> paging(int index){
-        List<Products> list = new ArrayList<>();
-        String query = "SELECT * FROM product ORDER BY  id_Product OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY;";
+    public List<Products> searchByName(String search) {
+        List<Products> listProduct = new ArrayList<>();
+        String query = "SELECT * FROM product WHERE name LIKE ?";
         try {
             Connection connection = JDBCConnector.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setInt(1,(index-1)*3);
+            statement.setString(1, "%" + search + "%");
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Products product = new Products(
@@ -54,12 +37,12 @@ public class PageDao {
                         resultSet.getString("detail")
                 );
                 setImageInProduct(product);
-                list.add(product);
+                listProduct.add(product);
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        return list;
+        return listProduct;
     }
     private void setImageInProduct(Products products){
         String query = "SELECT * FROM product_images where id_Product=?";
@@ -75,5 +58,7 @@ public class PageDao {
             throw new RuntimeException(e);
         }
     }
+
+
 
 }
