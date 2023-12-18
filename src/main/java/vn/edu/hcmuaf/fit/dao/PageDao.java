@@ -19,13 +19,13 @@ public class PageDao {
     PreparedStatement statement = null; // ném câu lệnh sql đến navicat
     ResultSet resultSet = null;
     public int getTotalProduct(){
-        String query = "SELECT * FROM product";
+        String query = "SELECT count(id_Product ) as count FROM product";
         try {
             Connection connection = JDBCConnector.getConnection();
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
             while (resultSet.next()){
-                return resultSet.getInt(1);
+                return resultSet.getInt("count");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -35,11 +35,13 @@ public class PageDao {
     }
     public  List<Products> paging(int index){
         List<Products> list = new ArrayList<>();
-        String query = "SELECT * FROM product ORDER BY  id_Product OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY;";
+        String query = "SELECT * FROM product\n" +
+                "ORDER BY id_Product\n" +
+                "LIMIT 20 OFFSET ?;";
         try {
             Connection connection = JDBCConnector.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setInt(1,(index-1)*3);
+            statement.setInt(1,(index-1)*5);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Products product = new Products(
@@ -75,5 +77,6 @@ public class PageDao {
             throw new RuntimeException(e);
         }
     }
+
 
 }
