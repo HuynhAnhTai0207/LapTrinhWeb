@@ -1,6 +1,7 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -194,46 +195,27 @@
 	<div class="container">
 		<div class="row product_inner_row">
 			<div class="col-lg-9">
-				<div class="row m0 product_task_bar">
-					<div class="product_task_inner">
-						<div class="float-left">
-							<a class="active" href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
-							<a href="#"><i class="fa fa-th-list" aria-hidden="true"></i></a>
-							<span>Kết quả</span>
-						</div>
-						<div class="float-right">
-							<h4>Tìm kiếm :</h4>
-							<select class="short">
-								<option data-display="Default">Bánh bông lan</option>
-								<option value="1">Bánh kem</option>
-								<option value="2">Bánh mỳ</option>
-								<option value="4">Bánh ngọt</option>
-								<option value="4">Bánh bông lan</option>
-							</select>
-						</div>
-					</div>
-				</div>
 				<div class="row product_item_inner">
-					<% List<Products> listProduct = (List<Products>) request.getAttribute("listProduct");
-						for(Products p : listProduct){
+					<% List<Products> listProducts = (List<Products>) request.getAttribute("listProduct");
+						NumberFormat nf = NumberFormat.getInstance();
+						nf.setMaximumFractionDigits(0);
+						for(Products p : listProducts){
 					%>
 					<div class="col-lg-4 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
 								</div>
 							</a>
 							<div class="cake_text">
-								<h4><%=p.getPrice_buy()%>VNĐ</h4>
+								<h4><%=nf.format(p.getPrice())%>VNĐ</h4>
 								<h3><%=p.getName()%></h3>
 								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<% } %>
-
-
 				</div>
 				<div class="product_pagination">
 					<div class="left_btn">
@@ -254,24 +236,16 @@
 			</div>
 			<div class="col-lg-3">
 				<div class="product_left_sidebar">
-					<aside class="left_sidebar search_widget">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Nhập bánh bạn muốn tìm">
-							<div class="input-group-append">
-								<button class="btn" type="button"><i class="icon icon-Search"></i></button>
-							</div>
-						</div>
-					</aside>
 					<aside class="left_sidebar p_catgories_widget">
 						<div class="p_w_title">
 							<h3>Danh mục sản phẩm</h3>
 						</div>
 						<ul class="list_style">
-							<li><a href="ListProduct?category=Bánh bông lan">Bánh bông lan (17)</a></li>
-							<li><a href="ListProduct?category=Bánh mỳ">Bánh mỳ (15)</a></li>
-							<li><a href="ListProduct?category=Bánh kem">Bánh kem (14)</a></li>
-							<li><a href="ListProduct?category=Bánh su">Bánh su (8)</a></li>
-							<li><a href="ListProduct?category=Bánh tráng miệng">Tráng miệng (11)</a></li>
+							<li><a href="ListProduct?category=Bánh bông lan">Bánh bông lan</a></li>
+							<li><a href="ListProduct?category=Bánh mỳ">Bánh mỳ</a></li>
+							<li><a href="ListProduct?category=Bánh kem">Bánh kem</a></li>
+							<li><a href="ListProduct?category=Bánh su">Bánh su</a></li>
+							<li><a href="ListProduct?category=Bánh tráng miệng">Tráng miệng</a></li>
 						</ul>
 					</aside>
 					<aside class="left_sidebar p_price_widget">
@@ -281,7 +255,7 @@
 						<div class="filter_price">
 							<div id="slider-range"></div>
 							<label for="amount">Phạm vi:_____</label>
-							<input type="text" id="amount" readonly />
+							<input style="border: 1px solid black;" type="text" id="amount" readonly />
 							<a href="#">Lọc</a>
 						</div>
 					</aside>

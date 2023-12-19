@@ -27,9 +27,5 @@ public class ChangePasswordController extends HttpServlet {
         String oldPassword = request.getParameter("oldPassword");
         String newPassword = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirm_password");
-
-
-
-
     }
 }
