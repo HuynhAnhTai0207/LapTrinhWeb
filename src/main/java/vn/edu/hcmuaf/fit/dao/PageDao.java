@@ -35,8 +35,8 @@ public class PageDao {
     }
     public  List<Products> paging(int index){
         List<Products> list = new ArrayList<>();
-        String query = "SELECT * FROM product\n" +
-                "ORDER BY id_Product\n" +
+        String query = "SELECT * FROM product " +
+                "ORDER BY id_Product " +
                 "LIMIT 20 OFFSET ?;";
         try {
             Connection connection = JDBCConnector.getConnection();

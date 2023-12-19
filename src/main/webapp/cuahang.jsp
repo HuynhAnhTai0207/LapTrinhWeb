@@ -5,6 +5,7 @@
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--<%@ page isELIgnored="false" %>--%>
 
 
 <head>
@@ -40,7 +41,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 
-
+	<jsp:useBean id="a" class="vn.edu.hcmuaf.fit.dao.PageDao" scope="request"></jsp:useBean>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -213,8 +214,8 @@
 					</div>
 				</div>
 				<div class="row product_item_inner">
-					<% List<Products> listProducts = (List<Products>) request.getAttribute("listProduct");
-						for(Products p : listProducts){
+					<% List<Products> listProduct = (List<Products>) request.getAttribute("listProduct");
+						for(Products p : listProduct){
 					%>
 					<div class="col-lg-4 col-md-4 col-6">
 						<div class="cake_feature_item">
@@ -241,11 +242,10 @@
 					<div class="middle_list">
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">...</a></li>
-								<li class="page-item"><a class="page-link" href="#">12</a></li>
+								<% int maxPage=(int) request.getAttribute("endP");%>
+								<c:forEach var="i" begin="1" end="<%=maxPage%>">
+									<li class="page-item active"><a class="page-link" href="ListProductPaging?index=${i}">${i}</a></li>
+								</c:forEach>
 							</ul>
 						</nav>
 					</div>
