@@ -10,7 +10,7 @@ public class CustomerDAO {
     PreparedStatement statement = null; // ném câu lệnh sql đến navicat
     ResultSet resultSet = null;
 
-    public Account checkLogin(String email, String password) {
+    public Account checkLogin(String email, String password) throws SQLException {
 
         String query = "SELECT * FROM customer\n" +
                 "WHERE email = ? AND password = ?";
@@ -23,7 +23,7 @@ public class CustomerDAO {
             statement.setString(2, password);
             resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 Account account =  new Account(
                         resultSet.getInt(1),
                         resultSet.getString(2),
@@ -42,6 +42,7 @@ public class CustomerDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
 
         return null;
@@ -128,32 +129,20 @@ public class CustomerDAO {
         return null;
     }
 
-    public Account updateAccount(String firstname, String lastname, String email, String phone, String fullname) {
-        String query = "UPDATE customer\n" +
-                "SET firstName = ?, lastName = ?, fullName = ?, phone = ?\n" +
-                "WHERE email = ?;";
+    public Account updateAccount(String firstname, String lastname, String fullname, String phone, String email) {
+        String updateQuery = "UPDATE customer SET firstname = ?, lastname = ?, fullname = ? ,phone = ? WHERE email = ?";
 
-        try (Connection connection = JDBCConnector.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement(updateQuery);
             statement.setString(1, firstname);
             statement.setString(2, lastname);
-            statement.setString(3, firstname+lastname);
+            statement.setString(3, fullname);
             statement.setString(4, phone);
             statement.setString(5, email);
+            statement.executeUpdate();
 
-            int rowsAffected = statement.executeUpdate();
-
-            if (rowsAffected > 0) {
-                // Cập nhật thành công, trả về đối tượng Account
-                Account updatedAccount = new Account();
-                updatedAccount.setFirstName(firstname);
-                updatedAccount.setLastName(lastname);
-                updatedAccount.setFullName(fullname);
-                updatedAccount.setEmail(email);
-                updatedAccount.setPhone(Integer.parseInt(phone));
-
-                return updatedAccount;
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -162,26 +151,17 @@ public class CustomerDAO {
         return null;
     }
 
-    public boolean changePassword(String email, String oldPassword, String newPassword, String confirmPassword){
-        String updateQuery = "UPDATE customer SET password = ? WHERE email = ? AND password = ?";
+    public void changePassword(String email, String oldPassword, String newPassword) {
+        String updateQuery = "UPDATE customer SET password = ? WHERE email = ? ";
         try {
             Connection connection = JDBCConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(updateQuery);
-            statement.setString(1, email);
-            statement.setString(2, oldPassword);
-            statement.setString(3, newPassword);
-
-            int rowsAffected = statement.executeUpdate();
-
-            // Nếu có ít nhất một hàng được cập nhật, có nghĩa là mật khẩu đã được thay đổi
-            return rowsAffected > 0;
-
-
+            statement.setString(1, newPassword);
+            statement.setString(2, email);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return false;
     }
 
 

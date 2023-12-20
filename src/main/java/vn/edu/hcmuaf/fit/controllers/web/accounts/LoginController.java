@@ -12,6 +12,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.Base64;
 
 @WebServlet(name = "login", value = "/login")
@@ -40,7 +41,7 @@ public class LoginController extends HttpServlet {
 
             if (account == null) {
                 // Cập nhật mật khẩu mới trong trường hợp tài khoản không tồn tại
-                customerDAO.updatePassword(email, hashedPassword);
+//                customerDAO.updatePassword(email, hashedPassword);
 
                 request.setAttribute("mess", "Tài khoản hoặc mật khẩu không đúng.");
                 request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
@@ -61,6 +62,8 @@ public class LoginController extends HttpServlet {
 
         } catch (IOException | NoSuchAlgorithmException e) {
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -19,19 +19,27 @@ public class EditAccountController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
 
-        try {
-            String firstname = request.getParameter("firstname");
-            String lastname = request.getParameter("lastname");
-            String email = request.getParameter("email");
-            String phone = request.getParameter("telephone");
-            String fullname = firstname + " " + lastname;
 
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("telephone");
+        String fullname = request.getParameter("fullname");
+
+        try {
             CustomerDAO customerDAO = new CustomerDAO();
-            Account updatedAccount = customerDAO.updateAccount(firstname, lastname, email, phone, fullname);
+            Account updatedAccount = customerDAO.updateAccount(firstname, lastname, fullname,phone,email);
+            Account account = (Account) request.getSession().getAttribute("account");
+            account.setFirstName(firstname);
+            account.setLastName(lastname);
+            account.setEmail(email);
+            account.setPhone(Integer.parseInt(phone));
+            account.setFullName(fullname);
 
             if (updatedAccount != null) {
-                // Nếu cập nhật thành công, cập nhật session và chuyển hướng về trang MyAccount.jsp
-                request.getSession().setAttribute("account", updatedAccount);
+                HttpSession session = request.getSession();
+                session.setAttribute("account", account);
+
                 request.setAttribute("mess", "Đã cập nhật thông tin");
                 request.getRequestDispatcher("trangchu.jsp").forward(request, response);
             } else {
