@@ -1,66 +1,103 @@
+<%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
 <!DOCTYPE html>
 <html lang="en">
-    
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Cake - Bakery</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Icon css link -->
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="vendors/linearicons/style.css" rel="stylesheet">
-        <link href="vendors/flat-icon/flaticon.css" rel="stylesheet">
-        <link href="vendors/stroke-icon/style.css" rel="stylesheet">
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        
-        <!-- Rev slider css -->
-        <link href="vendors/revolution/css/settings.css" rel="stylesheet">
-        <link href="vendors/revolution/css/layers.css" rel="stylesheet">
-        <link href="vendors/revolution/css/navigation.css" rel="stylesheet">
-        <link href="vendors/animate-css/animate.css" rel="stylesheet">
-        
-        <!-- Extra plugin css -->
-        <link href="vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
-        <link href="vendors/magnifc-popup/magnific-popup.css" rel="stylesheet">
-        
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/responsive.css" rel="stylesheet">
+	<link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Cake - Bakery</title>
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
+	<!-- Icon css link -->
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="vendors/linearicons/style.css" rel="stylesheet">
+	<link href="vendors/flat-icon/flaticon.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Rev slider css -->
+	<link href="vendors/revolution/css/settings.css" rel="stylesheet">
+	<link href="vendors/revolution/css/layers.css" rel="stylesheet">
+	<link href="vendors/revolution/css/navigation.css" rel="stylesheet">
+	<link href="vendors/animate-css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/header.css">
+
+	<!-- Extra plugin css -->
+	<link href="vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+	<link href="vendors/magnifc-popup/magnific-popup.css" rel="stylesheet">
+
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+	<jsp:useBean id="a" class="vn.edu.hcmuaf.fit.dao.PageDao" scope="request"></jsp:useBean>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<style>
+	input[type="text"] {
+		margin-top: 10px;
+		margin-left: 25px;
+	}
+</style>
     <body>
         
         <!--================Main Header Area =================-->
 		<header class="main_header_area">
+			<%--	<jsp:include page="./layout/header.jsp" />--%>
 			<div class="top_header_area row m0">
 				<div class="container">
 					<div class="float-left">
 						<img src="img/footer-logo.png" alt="">
 					</div>
-					<div class="float-right">
-						<ul class="h_social list_style">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<!--							<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<!--							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
-							<li><a href="dangnhap.jsp"> Đăng nhập</a></li>
-							<li><a href="dangky.jsp"> Đăng ký</a></li>
+					<div class="float-right" style="display: flex">
+						<ul class="h_social list_style" style="display:flex; left: -352px">
+							<% if (session.getAttribute("account") != null) { %>
+							<li><a class="title" href=""><%= ((Account)session.getAttribute("account")).getFullName() %> </a></li>
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 185px">
+									Tài khoản của tôi
+								</button>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="editaccount.jsp">Chỉnh sửa tài khoản</a></li>
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="changepassword.jsp">Đổi mật khẩu</a></li>
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="#">Lịch sử đơn hàng</a></li>
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="<c:url value='/logout' />">Đăng xuất</a></li>
+
+								</ul>
+							</div>
+							<% } else { %>
+							<li><a class="title" href="">Xin chào</a></li>
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Tài khoản của tôi
+								</button>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="dangky.jsp">Đăng ký</a></li>
+									<li><a class="dropdown-item" style="color: #0b0b0b" href="dangnhap.jsp">Đăng nhập</a></li>
+								</ul>
+							</div>
+							<% } %>
+
 						</ul>
 						<ul class="h_search list_style">
-							<li class="shop_cart"><a href="giohang.html"><i class="lnr lnr-cart"></i></a></li>
-							<input>
-							<li><a class="popup-with-zoom-anim" href="#test-search"><i class="fa fa-search"></i></a></li>
+							<li class="shop_cart"><a href="giohang.jsp"><i class="fa-solid fa-cart-shopping"></i></a></li>
 						</ul>
+						<form action="Search" method="post">
+							<input type="text" placeholder="Search.." name="search">
+							<button type="submit"><i class="fa fa-search"></i></button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -81,14 +118,14 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto">
 								<li><a href="trangchu.jsp">Trang chủ</a></li>
-								<li><a href="cake.html">Bánh có sẳn</a></li>
-								<li><a href="menu.html">Xem tất cả bánh</a></li>
+								<li><a href="cake.jsp">Bánh có sẳn</a></li>
+								<li><a href="menu.jsp">Xem tất cả bánh</a></li>
 								<li class="dropdown submenu">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Thông tin </a>
 									<ul class="dropdown-menu">
-										<li><a href="vechungtoi.html">Thông tin cửa hàng</a></li>
-										<li><a href="nhomchungtoi.html">Đầu bếp</a></li>
-										<li><a href="feedback.html">Đánh giá từ khách hàng</a></li>
+										<li><a href="vechungtoi.jsp">Thông tin cửa hàng</a></li>
+										<li><a href="nhomchungtoi.jsp">Đầu bếp</a></li>
+										<li><a href="feedback.jsp">Đánh giá từ khách hàng</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -96,36 +133,36 @@
 								<li class="dropdown submenu">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tiện ích</a>
 									<ul class="dropdown-menu">
-										<li><a href="dichvu.html">Dịch vụ</a></li>
+										<li><a href="dichvu.jsp">Dịch vụ</a></li>
 										<li class="dropdown submenu">
 											<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Trương bày</a>
 											<ul class="dropdown-menu">
-												<li><a href="portfolio.html">-  Trưng bày cổ điển</a></li>
-												<li><a href="portfolio-full-width.html">-  Trưng bày đầy đủ</a></li>
+												<li><a href="portfolio.jsp">-  Trưng bày cổ điển</a></li>
+												<li><a href="portfolio-full-width.jsp">-  Trưng bày đầy đủ</a></li>
 											</ul>
 										</li>
-										<li><a href="faq.html">Câu hỏi từ khách hàng</a></li>
-										<li><a href="what-we-make.html">Sản phẩm từ cửa hàng</a></li>
+										<li><a href="faq.jsp">Câu hỏi từ khách hàng</a></li>
+										<li><a href="what-we-make.jsp">Sản phẩm từ cửa hàng</a></li>
 									</ul>
 								</li>
 								<li class="dropdown submenu">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
 									<ul class="dropdown-menu">
-										<li><a href="blog.html">Blog with sidebar</a></li>
-										<li><a href="blog-2column.html">Blog 2 column</a></li>
-										<li><a href="single-blog.html">Blog details</a></li>
+										<li><a href="blog.jsp">Blog with sidebar</a></li>
+										<li><a href="blog-2column.jsp">Blog 2 column</a></li>
+										<li><a href="single-blog.jsp">Blog details</a></li>
 									</ul>
 								</li>
 								<li class="dropdown submenu">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
+									<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 									<ul class="dropdown-menu">
-										<li><a href="cuahang.jsp">Cửa hàng chính</a></li>
-										<li><a href="chitietsanpham.html">Chi tiết sản phẩm</a></li>
-										<li><a href="giohang.html">Giỏ hàng</a></li>
-										<li><a href="thanhtoan.html">Thanh toán</a></li>
+										<li><a href="ListProduct">Cửa hàng chính</a></li>
+										<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
+										<li><a href="giohang.jsp">Giỏ hàng</a></li>
+										<li><a href="thanhtoan.jsp">Thanh toán</a></li>
 									</ul>
 								</li>
-								<li><a href="lienhe.html">Liên lạc với chúng tôi</a></li>
+								<li><a href="lienhe.jsp">Liên lạc với chúng tôi</a></li>
 							</ul>
 						</div>
 					</nav>
@@ -158,7 +195,7 @@
         		<div class="cake_feature_row row">
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-1.jpg" alt="" >
 								</div>
@@ -166,13 +203,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh kem béo</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-2.jpg" alt="">
 								</div>
@@ -180,13 +217,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh trà xanh</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-3.jpg" alt="">
 								</div>
@@ -194,13 +231,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh socola</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-9.jpg" alt="">
 								</div>
@@ -208,14 +245,14 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh kem dâu</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
-								<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
+								<a href="chitietsanpham.jsp">
 									<div class="cake_img">
 										<img src="img/cake-feature/c-feature-4.jpg" alt="">
 									</div>
@@ -224,13 +261,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh cherry</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-5.jpg" alt="">
 								</div>
@@ -238,13 +275,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh nhân socola</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-6.jpg" alt="">
 								</div>
@@ -252,13 +289,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh dâu ngọt</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-7.jpg" alt="">
 								</div>
@@ -266,13 +303,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh sốt nho</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-8.jpg" alt="">
 								</div>
@@ -280,13 +317,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh kem lạnh</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-9.jpg" alt="">
 								</div>
@@ -294,13 +331,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh dâu bắp</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-3.jpg" alt="">
 								</div>
@@ -308,13 +345,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh socola kem</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/c-feature-5.jpg" alt="">
 								</div>
@@ -322,7 +359,7 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh socola chảy</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
@@ -330,7 +367,7 @@
 <!------------------------------------>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/1.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -338,13 +375,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh kem dau</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/2.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -352,13 +389,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh kem nho</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/3.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -366,13 +403,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh coffee</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/4.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -380,14 +417,14 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh hương nhài</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 <!--			-------------------------------		-->
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/5.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -395,13 +432,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh thạch</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/6%20(2).jpg" alt="" height="270px" width="226px">
 								</div>
@@ -409,13 +446,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh thạch kem</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/7.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -423,13 +460,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh bắp sữa</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/8.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -437,14 +474,14 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh socola đắng</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/9.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -452,13 +489,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh kem bánh quy</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/10.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -466,13 +503,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh bắp thơm</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/11.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -480,13 +517,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh socola Ý</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/12.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -494,14 +531,14 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh bơ</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/13.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -509,13 +546,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh ngọt </h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/14.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -523,13 +560,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh vỏ sò</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/15.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -537,13 +574,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh hương hoa</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/16.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -551,14 +588,14 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh su kem</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/17.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -566,13 +603,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh dâu</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/18.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -580,13 +617,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh mức</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/19.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -594,13 +631,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh việt quốc</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/20.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -608,14 +645,14 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh trứng</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/21.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -623,13 +660,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh socola tình yêu</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/22.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -637,13 +674,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh sò kem</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/23.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -651,13 +688,13 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh bông lan bơ</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.html">
+							<a href="chitietsanpham.jsp">
 								<div class="cake_img">
 									<img src="img/cake-feature/24.jpg" alt="" height="270px" width="226px">
 								</div>
@@ -665,7 +702,7 @@
 							<div class="cake_text">
 								<h4>150000VNĐ</h4>
 								<h3>Bánh kem nhật</h3>
-								<a class="pest_btn" href="giohang.html">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
@@ -834,6 +871,8 @@
         <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
         <script src="vendors/jquery-ui/jquery-ui.min.js"></script>
         <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         
         <script src="js/theme.js"></script>
     </body>

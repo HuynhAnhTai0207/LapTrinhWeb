@@ -1,7 +1,4 @@
-<%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
-<%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
-<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -178,184 +175,56 @@
 <section class="banner_area">
 	<div class="container">
 		<div class="banner_text">
-			<h3>Cửa hàng</h3>
+			<h3>Các công thức được nhiểu người quan tâm nhất</h3>
 			<ul>
 				<li><a href="trangchu.jsp">Trang chủ</a></li>
-				<li><a href="cuahang.jsp">Cửa hàng</a></li>
+				<li><a href="chitietsanpham.jsp">Thông tin chi tiết sản phẩm</a></li>
 			</ul>
 		</div>
 	</div>
 </section>
 <!--================End Main Header Area =================-->
 
-<!--================Product Area =================-->
-<section class="product_area p_100">
+<!--================Product Details Area =================-->
+<section class="product_details_area p_100">
 	<div class="container">
-		<div class="row product_inner_row">
-			<div class="col-lg-9">
-				<div class="row product_item_inner">
-					<% List<Products> listProducts = (List<Products>) request.getAttribute("listProduct");
-						NumberFormat nf = NumberFormat.getInstance();
-						nf.setMaximumFractionDigits(0);
-						for(Products p : listProducts){
-					%>
-					<div class="col-lg-4 col-md-4 col-6">
-						<div class="cake_feature_item">
-							<a href="chitietsanpham.jsp">
-								<div class="cake_img">
-									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
-								</div>
-							</a>
-							<div class="cake_text">
-								<h4><%=nf.format(p.getPrice())%>VNĐ</h4>
-								<h3><%=p.getName()%></h3>
-								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
-							</div>
-						</div>
-					</div>
-					<% } %>
-				</div>
-				<div class="product_pagination">
-					<div class="left_btn">
-						<a href="#"><i class="lnr lnr-arrow-left"></i> Trước</a>
-					</div>
-					<div class="middle_list">
-						<nav aria-label="Page navigation example">
-							<ul class="pagination">
-								<% int maxPage=(int) request.getAttribute("endP");%>
-								<c:forEach var="i" begin="1" end="<%=maxPage%>">
-									<li class="page-item active"><a class="page-link" href="ListProductPaging?index=${i}">${i}</a></li>
-								</c:forEach>
-							</ul>
-						</nav>
-					</div>
-					<div class="right_btn"><a href="#">Sau <i class="lnr lnr-arrow-right"></i></a></div>
+		<div class="row product_d_price">
+			<div class="col-lg-6">
+				<div class="product_img"><img class="img-fluid" src="img/product/product-details-1.jpg" alt=""></div>
+			</div>
+			<div class="col-lg-6">
+				<div class="product_details_text">
+					<h4>Bánh nâu</h4>
+					<p>Thành phần: Bột mì, dầu, đường, trứng, sữa, chocolate, bột ca cao. Phía trên trang trí bánh Oreo và chocolate phủ bề mặt. </p>
+					<h5>Giá :<span>150000VNĐ</span></h5>
+					<a class="pink_more" href="giohang.jsp">Thêm vào giỏ hàng</a>
 				</div>
 			</div>
-			<div class="col-lg-3">
-				<div class="product_left_sidebar">
-					<aside class="left_sidebar p_catgories_widget">
-						<div class="p_w_title">
-							<h3>Danh mục sản phẩm</h3>
-						</div>
-						<ul class="list_style">
-							<li><a href="ListProduct?category=Bánh bông lan">Bánh bông lan</a></li>
-							<li><a href="ListProduct?category=Bánh mỳ">Bánh mỳ</a></li>
-							<li><a href="ListProduct?category=Bánh kem">Bánh kem</a></li>
-							<li><a href="ListProduct?category=Bánh su">Bánh su</a></li>
-							<li><a href="ListProduct?category=Bánh tráng miệng">Tráng miệng</a></li>
-						</ul>
-					</aside>
-					<aside class="left_sidebar p_price_widget">
-						<div class="p_w_title">
-							<h3>Lọc theo giá</h3>
-						</div>
-						<div class="filter_price">
-							<div id="slider-range"></div>
-							<label for="amount">Phạm vi:_____</label>
-							<input style="border: 1px solid black;" type="text" id="amount" readonly />
-							<a href="#">Lọc</a>
-						</div>
-					</aside>
-					<aside class="left_sidebar p_sale_widget">
-						<div class="p_w_title">
-							<h3>Sản phẩm bán chạy nhất</h3>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-1.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh bông lan cacao</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-2.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh kem lạnh</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-3.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh kem phô mai</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-4.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh kem dâu</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
-					</aside>
+		</div>
+		<div class="product_tab_area">
+			<nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Mô tả</a>
+					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Thông tin bổ sung</a>
+					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Đánh giá(1)</a>
+				</div>
+			</nav>
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+					<p>Không phải ngẫu nhiên mà Chocolate Cake trở thành chiếc bánh sinh nhật dễ khiến người ta “gật đầu” khi đứng giữa muôn vàn lựa chọn. Sức hút khó chối từ của chiếc bánh này đến từ vị đắng đặc trưng của lớp chocolate đen hảo hạng cùng hương thơm nồng nàn, rất êm và sâu của bột ca cao.</p>
+					<p>Hãy thử nhắm mắt lại và cảm nhận từng muỗng bánh tan vào khoang miệng: một chút đăng đắng nhẹ thoảng qua để lại ngọt ngào nơi đầu lưỡi, kèm theo lớp bông lan mềm mịn điều hòa vị giác. Đây hẳn là thức bánh có thể giúp bạn sốc lại tinh thần sau một ngày mệt mõi rà rời bởi thành phần ca cao trong bánh có khả năng giải tỏa stress và cải thiện tâm trạng hiệu quả.</p>
+				</div>
+				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+					<p>Trọng lượng: 150g</p>
+					<p>Đường kính: 8cm</p>
+				</div>
+				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+					<p>Tôi thích nếu những chiếc bánh này không ngọt như vậy; với tôi nó nếm như ăn một khối bơ cực kỳ ngọt. Có lẽ bạn có thể sử dụng một nửa cả đường và bơ? Cần nếm hương vị và không bơ và đường nhiều.</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<!--================End Product Area =================-->
-
-<!--================Newsletter Area =================-->
-<section class="newsletter_area">
-	<div class="container">
-		<div class="row newsletter_inner">
-			<div class="col-lg-6">
-				<div class="news_left_text">
-					<h4>Tham gia danh sách Bản tin của chúng tôi để nhận được tất cả các ưu đãi, giảm giá và các lợi ích khác mới nhất.</h4>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="newsletter_form">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Nhập địa chỉ email của bạn">
-						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button">Theo dõi ngay</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--================End Newsletter Area =================-->
 
 <!--================Footer Area =================-->
 <footer class="footer_area">
@@ -466,11 +335,12 @@
 <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
 <script src="vendors/jquery-ui/jquery-ui.min.js"></script>
 <script src="vendors/lightbox/simpleLightbox.min.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="js/theme.js"></script>
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
 </body>
 
 </html>
