@@ -52,6 +52,8 @@ public class ListProductController extends HttpServlet {
         System.out.println(listProducts.size());
 
         request.setAttribute("listProduct", listProducts);
+        ProductDAO productDAO = new ProductDAO();
+        List<Products> listTop = productDAO.getTopproduct();
         request.setAttribute("endP", endPage);
         request.getRequestDispatcher("cuahang.jsp").forward(request, response);
     }

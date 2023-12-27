@@ -159,7 +159,7 @@
 						<li class="dropdown submenu">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 							<ul class="dropdown-menu">
-								<li><a href="ListProduct">Cửa hàng chính</a></li>
+								<li><a href="ListProductPaging">Cửa hàng chính</a></li>
 								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
 								<li><a href="giohang.jsp">Giỏ hàng</a></li>
 								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
@@ -263,70 +263,22 @@
 						<div class="p_w_title">
 							<h3>Sản phẩm bán chạy nhất</h3>
 						</div>
+						<% List<Products> listTop = (List<Products>) request.getAttribute("listTopProducts");
+							for (Products p: listTop){
+						%>
 						<div class="media">
 							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-1.jpg" alt="">
+								<img style="height: 160px; width: 190px;" src="<%=p.getImages().get(0)%>" alt="" >
 							</div>
 							<div class="media-body">
-								<a href="#"><h4>Bánh bông lan cacao</h4></a>
+								<a href="#"><h4 > <%=p.getName()%> </h4></a>
 								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
+									<p>Đá bán: <%=p.getProduct_sold()%></p>
 								</ul>
-								<h5>150000VNĐ</h5>
+								<h5><%=p.getPrice_buy()%> VNĐ</h5>
 							</div>
 						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-2.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh kem lạnh</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-3.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh kem phô mai</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-4.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh kem dâu</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
+						<% } %>
 					</aside>
 				</div>
 			</div>
