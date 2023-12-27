@@ -201,7 +201,7 @@
 					%>
 					<div class="col-lg-4 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.jsp">
+							<a href="ProductDetailController?id_Product=<%=p.getId()%>">
 								<div class="cake_img">
 									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
 								</div>
@@ -250,12 +250,14 @@
 						<div class="p_w_title">
 							<h3>Lọc theo giá</h3>
 						</div>
-						<div class="filter_price">
-							<div id="slider-range"></div>
-							<label for="amount">Phạm vi:_____</label>
-							<input style="border: 1px solid black;" type="text" id="amount" readonly />
-							<a href="#">Lọc</a>
-						</div>
+						<form action="FilterByPriceController" method="POST">
+							<div class="filter_price">
+								<div id="slider-range"></div>
+								<label for="amount">Phạm vi:</label>
+								<input style="margin: 0;" type="text" id="amount" name="priceRange" />
+								<button type="submit">Lọc</button>
+							</div>
+						</form>
 					</aside>
 					<aside class="left_sidebar p_sale_widget">
 						<div class="p_w_title">

@@ -1,4 +1,7 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -189,14 +192,20 @@
 <section class="product_details_area p_100">
 	<div class="container">
 		<div class="row product_d_price">
+			<% Products p = (Products) request.getAttribute("product");
+				NumberFormat nf = NumberFormat.getInstance();
+				nf.setMaximumFractionDigits(0);
+			%>
 			<div class="col-lg-6">
-				<div class="product_img"><img class="img-fluid" src="img/product/product-details-1.jpg" alt=""></div>
+				<div class="product_img">
+					<img class="img-fluid" src="<%=p.getImages().get(0)%>" alt="">
+				</div>
 			</div>
 			<div class="col-lg-6">
 				<div class="product_details_text">
-					<h4>Bánh nâu</h4>
-					<p>Thành phần: Bột mì, dầu, đường, trứng, sữa, chocolate, bột ca cao. Phía trên trang trí bánh Oreo và chocolate phủ bề mặt. </p>
-					<h5>Giá :<span>150000VNĐ</span></h5>
+					<h4><%=p.getName()%></h4>
+					<h5><%=nf.format(p.getPrice())%>VNĐ</span></h5>
+					<p>Mô tả: <%=p.getDetail()%></p>
 					<a class="pink_more" href="giohang.jsp">Thêm vào giỏ hàng</a>
 				</div>
 			</div>
