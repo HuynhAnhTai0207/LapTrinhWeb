@@ -122,4 +122,34 @@ public class ProductDAO {
         }
         return null;
     }
+    public List<Products> getTopproduct() {
+        List<Products> listProducts = new ArrayList<>();
+
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            PreparedStatement statement;
+            String query = "SELECT * FROM product ORDER BY product_sold DESC LIMIT 5";
+            statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Products product =  new Products(
+                        resultSet.getString("id_Product"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("price"),
+                        resultSet.getString("category"),
+                        resultSet.getString("stock"),
+                        resultSet.getInt("price_buy"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getInt("product_sold"),
+                        resultSet.getString("detail")
+                );
+                setImageInProduct(product);
+                listProducts.add(product);
+            }
+
+            return listProducts;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

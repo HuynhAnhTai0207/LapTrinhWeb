@@ -31,6 +31,9 @@ public class FilterByPriceController extends HttpServlet {
         List<Products> listProducts = dao.getListProductsByPriceRange(priceRange);
 
         System.out.println(listProducts.size());
+        ProductDAO productDAO = new ProductDAO();
+        List<Products> listTop = productDAO.getTopproduct();
+        request.setAttribute("listTopProducts",listTop);
         request.setAttribute("endP",1);
         request.setAttribute("listProduct", listProducts);
         request.getRequestDispatcher("cuahang.jsp").forward(request, response);
