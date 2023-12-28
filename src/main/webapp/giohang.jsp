@@ -1,4 +1,8 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Cart" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -201,12 +205,18 @@
 							</tr>
 						</thead>
 						<tbody>
+						<% List<Products> listProducts = (List<Products>) request.getAttribute("listProducts");
+							Cart cart = (Cart) request.getSession().getAttribute("cart");
+							if(!cart.getCart().keySet().isEmpty())
+							{
+								for (Map.Entry<Products,Integer> entry : cart.getCart().entrySet()) {
+						%>
 							<tr>
 								<td>
-									<img src="img/product/cart-img.jpg" alt="">
+									<img style="height:130px" src="<%=entry.getKey().getImages().get(0)%>" alt="">
 								</td>
-								<td>Bánh sinh nhật dâu</td>
-								<td>150000</td>
+								<td><%=entry.getKey().getName()%></td>
+								<td><%=entry.getKey().getPrice()%></td>
 								<td class="align-middle">
 									<div class="input-group quantity mx-auto" style="width: 100px;">
 										<div class="input-group-btn">
@@ -214,7 +224,7 @@
 												<i class="fa fa-minus"></i>
 											</button>
 										</div>
-										<input style="height: 30px" type="text" class="form-control text-center" value="1">
+										<input style="height: 30px" type="text" class="form-control text-center" value="<%=entry.getValue()%>">
 										<div class="input-group-btn">
 											<button class="btn btn-sm btn-primary  btn-plus">
 												<i class="fa fa-plus"></i>
@@ -222,9 +232,19 @@
 										</div>
 									</div>
 								</td>
-								<td>150000</td>
+								<td><%=entry.getKey().getPrice() * entry.getValue()%></td>
 								<td>X</td>
 							</tr>
+						<%
+							}
+						} else {
+						%>
+						<tr>
+							<td colspan="6">Danh sách sản phẩm trống.</td>
+						</tr>
+						<%
+							}
+						%>
 							<tr>
 								<td></td>
 								<td></td>

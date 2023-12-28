@@ -11,6 +11,7 @@ public class LogoutController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("account");
+        session.removeAttribute("cart");
        request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
 
     }

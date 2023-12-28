@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Cart" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -197,11 +198,17 @@
 					<% List<Products> listProducts = (List<Products>) request.getAttribute("listProduct");
 						NumberFormat nf = NumberFormat.getInstance();
 						nf.setMaximumFractionDigits(0);
+						Cart cart = (Cart) session.getAttribute("cart");
+						if (cart == null){
+							cart = new Cart();
+							session.setAttribute("cart", cart);
+
+						}
 						for(Products p : listProducts){
 					%>
 					<div class="col-lg-4 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="ProductDetailController?id_Product=<%=p.getId()%>">
+							<a href="ProductDetailController?id_Product=<%=p.getId_Product()%>">
 								<div class="cake_img">
 									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
 								</div>
@@ -209,7 +216,7 @@
 							<div class="cake_text">
 								<h4><%=nf.format(p.getPrice())%>VNĐ</h4>
 								<h3><%=p.getName()%></h3>
-								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="Cart?id_Product=<%=p.getId_Product()%>">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>

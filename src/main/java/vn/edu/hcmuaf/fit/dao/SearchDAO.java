@@ -50,7 +50,7 @@ public class SearchDAO {
         try {
             Connection connection = JDBCConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, products.getId());
+            statement.setString(1, products.getId_Product());
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 products.getImages().add(resultSet.getString("link"));

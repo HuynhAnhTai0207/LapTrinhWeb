@@ -56,7 +56,7 @@ public class ProductDAO {
         try {
             Connection connection = JDBCConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, products.getId());
+            statement.setString(1, products.getId_Product());
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 products.getImages().add(resultSet.getString("link"));
@@ -151,5 +151,35 @@ public class ProductDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Products getProductById(String id_Product) {
+        Products product = null;
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            String query = "SELECT * FROM product WHERE id_Product=?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, id_Product);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                product = new Products(
+                        resultSet.getString("id_Product"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("price"),
+                        resultSet.getString("category"),
+                        resultSet.getString("stock"),
+                        resultSet.getInt("price_buy"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getInt("product_sold"),
+                        resultSet.getString("detail")
+                );
+                setImageInProduct(product);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return product;
     }
 }

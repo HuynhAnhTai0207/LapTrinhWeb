@@ -22,7 +22,7 @@ public class ProductDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productId = request.getParameter("id_Product");
         Products product = productDAO.getProductsDetail(productId);
-        System.out.println(product.toString());
+//        System.out.println(product.toString());
         request.setAttribute("product",product);
         request.getRequestDispatcher("chitietsanpham.jsp").forward(request, response);
     }
