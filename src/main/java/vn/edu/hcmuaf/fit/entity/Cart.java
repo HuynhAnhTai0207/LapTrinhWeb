@@ -49,6 +49,14 @@ public class Cart
         // Trả về đối tượng Products hoặc null nếu không tìm thấy
         return null;
     }
+    public double getTotal(){
+        double total = 0;
+
+        for (Map.Entry<Products,Integer> entry : getCart().entrySet()) {
+            total= total+entry.getValue()*entry.getKey().getPrice();
+        }
+        return total;
+    }
 
 
 //    public void addProduct(String id, int quantity) {
