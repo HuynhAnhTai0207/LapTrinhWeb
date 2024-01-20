@@ -1,4 +1,8 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Cart" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -55,7 +59,7 @@
 
 <!--================Main Header Area =================-->
 <header class="main_header_area">
-<%--	<jsp:include page="./layout/header.jsp" />--%>
+	<%--	<jsp:include page="./layout/header.jsp" />--%>
 	<div class="top_header_area row m0">
 		<div class="container">
 			<div class="float-left">
@@ -117,7 +121,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li><a href="trangchu.jsp">Trang chủ</a></li>
+						<li><a href="home">Trang chủ</a></li>
 						<li><a href="cake.jsp">Bánh có sẳn</a></li>
 						<li><a href="menu.jsp">Xem tất cả bánh</a></li>
 						<li class="dropdown submenu">
@@ -156,10 +160,10 @@
 						<li class="dropdown submenu">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 							<ul class="dropdown-menu">
-								<li><a href="ListProduct">Cửa hàng chính</a></li>
-								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
-								<li><a href="giohang.jsp">Giỏ hàng</a></li>
-								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
+								<li><a href="ListProductPaging">Cửa hàng chính</a></li>
+								<li><a href="ProductDetailController">Chi tiết sản phẩm</a></li>
+								<li><a href="Cart">Giỏ hàng</a></li>
+								<li><a href="ThanhToan">Thanh toán</a></li>
 							</ul>
 						</li>
 						<li><a href="lienhe.jsp">Liên lạc với chúng tôi</a></li>
@@ -286,434 +290,56 @@
 			<h5> Hãy lựa chọn sản phẩm ưa thích của bạn.</h5>
 		</div>
 		<div class="cake_feature_row row">
-			<div class="col-lg-3 col-md-4 col-6">
-				<div class="cake_feature_item">
-					<a href="chitietsanpham.jsp">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-1.jpg" alt="">
+			<div class="col-md-12">
+				<div class="row cake_feature_item">
+					<% List<Products> listProducts = (List<Products>) request.getAttribute("listProduct");
+						NumberFormat nf = NumberFormat.getInstance();
+						nf.setMaximumFractionDigits(0);
+						Cart cart = (Cart) session.getAttribute("cart");
+						if (cart == null){
+							cart = new Cart();
+							session.setAttribute("cart", cart);
+						}
+						for(Products p : listProducts){
+					%>
+					<div class="col-lg-3 col-md-3 col-6">
+						<div class="cake_feature_item">
+							<a href="ProductDetailController?productId=<%=p.getId_Product()%>">
+								<div class="cake_img">
+									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
+								</div>
+							</a>
+							<div class="cake_text">
+								<h4><%=nf.format(p.getPrice())%>VNĐ</h4>
+								<h3><%=p.getName()%></h3>
+								<a class="pest_btn" href="Cart?id_Product=<%=p.getId_Product()%>">Thêm vào giỏ hàng</a>
+							</div>
 						</div>
-					</a>
-					<div class="cake_text">
-						<h4>150000VNĐ</h4>
-						<h3>Bánh kem béo</h3>
-						<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
 					</div>
+					<% } %>
 				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-6">
-				<div class="cake_feature_item">
-					<a href="chitietsanpham.jsp">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-2.jpg" alt="">
-						</div>
-					</a>
-					<div class="cake_text">
-						<h4>150000VNĐ</h4>
-						<h3>Bánh trà xanh</h3>
-						<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
+				<div class="product_pagination">
+					<div class="left_btn">
+						<a href="#"><i class="lnr lnr-arrow-left"></i> Trước</a>
 					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-6">
-				<div class="cake_feature_item">
-					<a href="chitietsanpham.jsp">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
-						</div>
-					</a>
-					<div class="cake_text">
-						<h4>150000VNĐ</h4>
-						<h3>Bánh socola</h3>
-						<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
+					<div class="middle_list">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<% int maxPage=(int) request.getAttribute("endP");%>
+								<c:forEach var="i" begin="1" end="<%=maxPage%>">
+									<li class="page-item active"><a class="page-link" href="home?index=${i}">${i}</a></li>
+								</c:forEach>
+							</ul>
+						</nav>
 					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-6">
-				<div class="cake_feature_item">
-					<a href="chitietsanpham.jsp">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-4.jpg" alt="">
-						</div>
-					</a>
-					<div class="cake_text">
-						<h4>150000VNĐ</h4>
-						<h3>Bánh cherry</h3>
-						<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-6">
-				<div class="cake_feature_item">
-					<a href="chitietsanpham.jsp">
-						<div class="cake_img">
-							<img src="img/cake-feature/3.jpg" alt="" alt="" height="270px" width="226px">
-						</div>
-					</a>
-					<div class="cake_text">
-						<h4>150000VNĐ</h4>
-						<h3>Bánh bông lan coffee</h3>
-						<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-6">
-				<div class="cake_feature_item">
-					<a href="chitietsanpham.jsp">
-						<div class="cake_img">
-							<img src="img/cake-feature/7.jpg" alt="" alt="" height="270px" width="226px">
-						</div>
-					</a>
-					<div class="cake_text">
-						<h4>150000VNĐ</h4>
-						<h3>Bánh kem bắp</h3>
-						<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-6">
-				<div class="cake_feature_item">
-					<a href="chitietsanpham.jsp">
-						<div class="cake_img">
-							<img src="img/cake-feature/15.jpg" alt="" alt="" height="270px" width="226px">
-						</div>
-					</a>
-					<div class="cake_text">
-						<h4>150000VNĐ</h4>
-						<h3>Bánh phô mai</h3>
-						<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-4 col-6">
-				<div class="cake_feature_item">
-					<a href="chitietsanpham.jsp">
-						<div class="cake_img">
-							<img src="img/cake-feature/28.jpg" alt="" alt="" height="270px" width="226px">
-						</div>
-					</a>
-					<div class="cake_text">
-						<h4>150000VNĐ</h4>
-						<h3>Bánh bông lan việt quốc</h3>
-						<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
-					</div>
+					<div class="right_btn"><a href="#">Sau <i class="lnr lnr-arrow-right"></i></a></div>
 				</div>
 			</div>
 		</div>
 	</div>
-</section>
-<!--================End Welcome Area =================-->
 
-<!--================Special Recipe Area =================-->
-<section class="special_recipe_area">
-	<div class="container">
-		<div class="special_recipe_slider owl-carousel">
-			<div class="item">
-				<div class="media">
-					<div class="d-flex">
-						<img src="img/recipe/recipe-1.png" alt="">
-					</div>
-					<div class="media-body">
-						<h4>Special Recipe</h4>
-						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
-						<a class="w_view_btn" href="#">View Details</a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="media">
-					<div class="d-flex">
-						<img src="img/recipe/recipe-1.png" alt="">
-					</div>
-					<div class="media-body">
-						<h4>Special Recipe</h4>
-						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
-						<a class="w_view_btn" href="#">View Details</a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="media">
-					<div class="d-flex">
-						<img src="img/recipe/recipe-1.png" alt="">
-					</div>
-					<div class="media-body">
-						<h4>Special Recipe</h4>
-						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
-						<a class="w_view_btn" href="#">View Details</a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="media">
-					<div class="d-flex">
-						<img src="img/recipe/recipe-1.png" alt="">
-					</div>
-					<div class="media-body">
-						<h4>Special Recipe</h4>
-						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
-						<a class="w_view_btn" href="#">View Details</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </section>
-<!--================End Special Recipe Area =================-->
 
-<!--================Service Area =================-->
-<section class="service_area">
-	<div class="container">
-		<div class="single_w_title">
-			<h2>Dịch vụ chính chúng tôi cung cấp</h2>
-		</div>
-		<div class="row service_inner">
-			<div class="col-lg-4 col-6">
-				<div class="service_item">
-					<i class="flaticon-food-2"></i>
-					<h4>Bánh kỷ niệm</h4>
-					<p>Bánh được làm từ 3 lớp gato xen giữa 3 lớp kem. Kế tiếp là lớp kem bơ socola vị rượu rum và 1 lớp socola chảy phủ bên ngoài.</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-6">
-				<div class="service_item">
-					<i class="flaticon-food-1"></i>
-					<h4>Bánh kỷ niệm</h4>
-					<p>Bánh được làm từ 3 lớp gato xen giữa 3 lớp kem. Kế tiếp là lớp kem bơ socola vị rượu rum và 1 lớp socola chảy phủ bên ngoài.</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-6">
-				<div class="service_item">
-					<i class="flaticon-food"></i>
-					<h4>Bánh kỷ niệm</h4>
-					<p>Bánh được làm từ 3 lớp gato xen giữa 3 lớp kem. Kế tiếp là lớp kem bơ socola vị rượu rum và 1 lớp socola chảy phủ bên ngoài.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--================End Service Area =================-->
-
-<!--================Discover Menu Area =================-->
-<section class="discover_menu_area">
-	<div class="discover_menu_inner">
-		<div class="container">
-			<div class="main_title">
-				<h2>Khám phá thực đơn</h2>
-				<h5>Bánh được làm từ 3 lớp gato xen giữa 3 lớp kem. Kế tiếp là lớp kem bơ socola vị rượu rum và 1 lớp socola chảy phủ bên ngoài.</h5>
-			</div>
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="discover_item_inner">
-						<div class="discover_item">
-							<h4>Bánh kem dâu</h4>
-							<p>Pudding sô cô la, vani, sữa mứt mâm xôi trái cây<span>250000VNĐ</span></p>
-						</div>
-						<div class="discover_item">
-							<h4>Bánh kem phô mai</h4>
-							<p>Pudding sô cô la, vani, sữa mứt mâm xôi trái cây<span>100000VNĐ</span></p>
-						</div>
-						<div class="discover_item">
-							<h4>Bánh bông lan trứng muối</h4>
-							<p>Pudding sô cô la, vani, sữa mứt mâm xôi trái cây<span>250000VNĐ</span></p>
-						</div>
-						<div class="discover_item">
-							<h4>Bánh kem trứng</h4>
-							<p>Pudding sô cô la, vani, sữa mứt mâm xôi trái cây<span>150000VNĐ</span></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="discover_item_inner">
-						<div class="discover_item">
-							<h4>Bánh kem bắp</h4>
-							<p>Pudding sô cô la, vani, sữa mứt mâm xôi trái cây<span>350000VNĐ</span></p>
-						</div>
-						<div class="discover_item">
-							<h4>Bánh kem chery</h4>
-							<p>Pudding sô cô la, vani, sữa mứt mâm xôi trái cây<span>100000VNĐ</span></p>
-						</div>
-						<div class="discover_item">
-							<h4>Bánh bông lan dâu</h4>
-							<p>Pudding sô cô la, vani, sữa mứt mâm xôi trái cây<span>290000VNĐ</span></p>
-						</div>
-						<div class="discover_item">
-							<h4>Bánh mỳ phô mai</h4>
-							<p>Pudding sô cô la, vani, sữa mứt mâm xôi trái cây<span>390000VNĐ</span></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--================End Discover Menu Area =================-->
-
-<!--================Client Says Area =================-->
-<section class="client_says_area p_100">
-	<div class="container">
-		<div class="client_says_inner">
-			<div class="c_says_title">
-				<h2>Khách hàng của chúng tôi nói gì?</h2>
-			</div>
-			<div class="client_says_slider">
-				<div class="item">
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/client/client-1.png" alt="">
-							<h3>Robert joe</h3>
-						</div>
-						<div class="media-body">
-							<p>Khi thưởng thức chiếc bánh, tôi thấy hài lòng không chỉ vì hương vị ngọt ngào mà còn vì độ mềm mịn của bánh. Thật sự là một trải nghiệm ẩm thực tuyệt vời và đáng nhớ!</p>
-							<h5>- Robert joe</h5>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/client/client-1.png" alt="">
-							<h3>Robert joe</h3>
-						</div>
-						<div class="media-body">
-							<p>Khi thưởng thức chiếc bánh, tôi thấy hài lòng không chỉ vì hương vị ngọt ngào mà còn vì độ mềm mịn của bánh. Thật sự là một trải nghiệm ẩm thực tuyệt vời và đáng nhớ!</p>
-							<h5>- Robert joe</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--================End Client Says Area =================-->
-
-<!--================End Client Says Area =================-->
-<section class="our_chef_area p_100">
-	<div class="container">
-		<div class="row our_chef_inner">
-			<div class="col-lg-3 col-6">
-				<div class="chef_text_item">
-					<div class="main_title">
-						<h2>Đầu bếp của chúng tôi</h2>
-						<p>Bắt đầu sự nghiệp đời mình là một người rửa chén khi bỏ học đại học, sau đó là bếp phó và bây giờ đã trở thành một vị bếp trưởng đại tài.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-6">
-				<div class="chef_item">
-					<div class="chef_img">
-						<img class="img-fluid" src="img/chef/chef-1.jpg" alt="">
-						<ul class="list_style">
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-							<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-							<li><a href="#"><i class="fa fa-skype"></i></a></li>
-						</ul>
-					</div>
-					<a href="#"><h4>Michale Joe</h4></a>
-					<h5>Chuyên gia trong làm bánh.</h5>
-				</div>
-			</div>
-			<div class="col-lg-3 col-6">
-				<div class="chef_item">
-					<div class="chef_img">
-						<img class="img-fluid" src="img/chef/chef-2.jpg" alt="">
-						<ul class="list_style">
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-							<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-							<li><a href="#"><i class="fa fa-skype"></i></a></li>
-						</ul>
-					</div>
-					<a href="#"><h4>Michale Joe</h4></a>
-					<h5>Chuyên gia trong làm bánh.</h5>
-				</div>
-			</div>
-			<div class="col-lg-3 col-6">
-				<div class="chef_item">
-					<div class="chef_img">
-						<img class="img-fluid" src="img/chef/chef-3.jpg" alt="">
-						<ul class="list_style">
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-							<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-							<li><a href="#"><i class="fa fa-skype"></i></a></li>
-						</ul>
-					</div>
-					<a href="#"><h4>Michale Joe</h4></a>
-					<h5>Chuyên gia trong làm bánh.</h5>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--================End Client Says Area =================-->
-
-<!--================Latest News Area =================-->
-<section class="latest_news_area p_100">
-	<div class="container">
-		<div class="main_title">
-			<h2>Blog mới nhất</h2>
-			<h5>Trở thành người hướng dẫn của bạn, người trợ giúp của bạn, </h5>
-		</div>
-		<div class="row latest_news_inner">
-			<div class="col-lg-4 col-md-6">
-				<div class="l_news_image">
-					<div class="l_news_img">
-						<img class="img-fluid" src="img/blog/latest-news/l-news-1.jpg" alt="">
-					</div>
-					<div class="l_news_hover">
-						<a href="#"><h5>15-10-2023</h5></a>
-						<a href="#"><h4>Công nghệ nano đắm chìm cùng thông tin</h4></a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="l_news_item">
-					<div class="l_news_img">
-						<img class="img-fluid" src="img/blog/latest-news/l-news-2.jpg" alt="">
-					</div>
-					<div class="l_news_text">
-						<a href="#"><h5>15-10-2023</h5></a>
-						<a href="#"><h4>Công nghệ nano đắm chìm cùng thông tin</h4></a>
-						<p>Ngành công nghệ thực phẩm hiện nay đã có rất nhiều cải tiến và phát triển vượt trội. Trong đó phải nói đến công nghệ nano thực phẩm, là một công nghệ còn khá mới mẻ.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="l_news_item">
-					<div class="l_news_img">
-						<img class="img-fluid" src="img/blog/latest-news/l-news-3.jpg" alt="">
-					</div>
-					<div class="l_news_text">
-						<a href="#"><h5>15-10-2023</h5></a>
-						<a href="#"><h4>Công nghệ nano đắm chìm cùng thông tin</h4></a>
-						<p>Ngành công nghệ thực phẩm hiện nay đã có rất nhiều cải tiến và phát triển vượt trội. Trong đó phải nói đến công nghệ nano thực phẩm, là một công nghệ còn khá mới mẻ.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--================End Latest News Area =================-->
-
-<!--================Page Navigation=================-->
-<div class="product_pagination">
-	<div class="left_btn">
-		<a href="#"><i class="lnr lnr-arrow-left"></i> Trước</a>
-	</div>
-	<div class="middle_list">
-		<nav aria-label="Page navigation example">
-			<ul class="pagination">
-				<li class="page-item active"><a class="page-link" href="trangchu.jsp">1</a></li>
-				<li class="page-item"><a class="page-link" href="trangchu-2.html">2</a></li>
-				<li class="page-item"><a class="page-link" href="trangchu-3.html">3</a></li>
-				<li class="page-item"><a class="page-link" href="trangchu-4.html">4</a></li>
-				<li class="page-item"><a class="page-link" href="trangchu-5.html">5</a></li>
-			</ul>
-		</nav>
-	</div>
-	<div class="right_btn"><a href="#">Sau <i class="lnr lnr-arrow-right"></i></a></div>
-</div>
 <!--================End Page Navigation=================-->
 
 <!--================Newsletter Area =================-->

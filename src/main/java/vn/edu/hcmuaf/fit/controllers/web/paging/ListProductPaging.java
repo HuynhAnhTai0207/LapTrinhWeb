@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.controllers.web.products.ListProductController;
 import vn.edu.hcmuaf.fit.dao.PageDao;
 import vn.edu.hcmuaf.fit.entity.Products;
 
+
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -35,7 +36,7 @@ public class ListProductPaging extends HttpServlet {
             endPage++;
         }
         List<Products> list = pageDao.paging(index);
-        System.out.println(list.size());
+//        System.out.println(list.size());
         request.setAttribute("listProduct",list);
         request.setAttribute("endP",endPage);
         request.getRequestDispatcher("cuahang.jsp").forward(request, response);

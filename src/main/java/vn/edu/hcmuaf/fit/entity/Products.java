@@ -3,8 +3,8 @@ package vn.edu.hcmuaf.fit.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Products {
-    private String id;
+public class Products  implements  Comparable<Products>{
+    private String id_Product;
     private String name;
     private int price;
     private String category;
@@ -16,9 +16,9 @@ public class Products {
     private List<String> images;
 
 
-    public Products(String id, String name, int price, String category, String stock, int price_buy, int quantity, int product_sold, String detail) {
+    public Products(String id_Product, String name, int price, String category, String stock, int price_buy, int quantity, int product_sold, String detail) {
         this.category = category;
-        this.id = id;
+        this.id_Product = id_Product;
         this.name = name;
         this.price = price;
         this.stock = stock;
@@ -27,6 +27,10 @@ public class Products {
         this.product_sold = product_sold;
         this.detail = detail;
         this.images = new ArrayList<>();
+    }
+
+    public Products() {
+
     }
 
 
@@ -38,12 +42,12 @@ public class Products {
         this.category = category;
     }
 
-    public String getId() {
-        return this.id;
+    public String getId_Product() {
+        return this.id_Product;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId_Product(String id) {
+        this.id_Product = id_Product;
     }
 
     public String getName() {
@@ -113,7 +117,7 @@ public class Products {
     @Override
     public String toString() {
         return "Product{" +
-                "id='" + id + '\'' +
+                "id_Product='" + id_Product + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", category=" + category +
@@ -124,5 +128,40 @@ public class Products {
                 ", detail='" + detail + '\'' +
                 ", images=" + images +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if(this == obj)
+        {
+            return true;
+        }
+
+        if(!(obj instanceof Products))
+        {
+            return false;
+        }
+        Products other = (Products) obj;
+
+        if(other.getId_Product() == null)
+        {
+            return false;
+        }
+        return id_Product.equals(other.getId_Product());
+    }
+
+    @Override
+    public int hashCode() {
+        if(getId_Product() !=null)
+        {
+            return getId_Product().hashCode();
+        }
+        return super.hashCode();
+    }
+
+    @Override
+    public int compareTo(Products sp) {
+        return Integer.parseInt(this.id_Product) - Integer.parseInt(sp.id_Product);
     }
 }

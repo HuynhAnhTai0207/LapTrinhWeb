@@ -1,4 +1,8 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Cart" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
+<%@ page import="vn.edu.hcmuaf.fit.dao.ProductDAO" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -186,59 +190,86 @@
         <!--================End Main Header Area =================-->
         
         <!--================Cart Table Area =================-->
-        <section class="cart_table_area p_100">
-        	<div class="container">
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Xem trước</th>
-								<th scope="col">Sản phẩm</th>
-								<th scope="col">Giá</th>
-								<th scope="col">Số lượng</th>
-								<th scope="col">Tổng</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<img src="img/product/cart-img.jpg" alt="">
-								</td>
-								<td>Bánh sinh nhật dâu</td>
-								<td>150000</td>
-								<td class="align-middle">
-									<div class="input-group quantity mx-auto" style="width: 100px;">
-										<div class="input-group-btn">
-											<button class="btn btn-sm btn-primary btn-minus">
-												<i class="fa fa-minus"></i>
-											</button>
-										</div>
-										<input style="height: 30px" type="text" class="form-control text-center" value="1">
-										<div class="input-group-btn">
-											<button class="btn btn-sm btn-primary  btn-plus">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-									</div>
-								</td>
-								<td>150000</td>
-								<td>X</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>
-									<a class="pest_btn" href="thanhtoan.jsp">Thanh toán</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-        	</div>
-        </section>
+		<section class="cart_table_area p_100">
+	<div class="container">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+				<tr>
+					<th scope="col">Hình ảnh</th>
+					<th scope="col">Sản phẩm</th>
+					<th scope="col">Giá</th>
+					<th scope="col">Số lượng</th>
+					<th scope="col">Tổng</th>
+					<th scope="col"></th>
+				</tr>
+				</thead>
+				<tbody>
+				<% List<Products> listProducts = (List<Products>) request.getAttribute("listProducts");
+					Cart cart = (Cart) request.getSession().getAttribute("cart");
+					if(!cart.getCart().keySet().isEmpty())
+					{
+						for (Map.Entry<Products,Integer> entry : cart.getCart().entrySet()) {
+				%>
+				<tr>
+					<td>
+						<img style="height:130px" src="<%=entry.getKey().getImages().get(0)%>" alt="">
+					</td>
+					<td><%=entry.getKey().getName()%></td>
+					<td><%=entry.getKey().getPrice()%></td>
+					<td class="align-middle">
+						<div class="input-group quantity mx-auto" style="width: 100px;">
+							<div class="input-group-btn">
+								<button class="btn btn-sm btn-primary btn-minus">
+									<i class="fa fa-minus"></i>
+								</button>
+							</div>
+							<input style="height: 30px" type="text" class="form-control text-center" value="<%=entry.getValue()%>">
+							<div class="input-group-btn">
+								<button class="btn btn-sm btn-primary  btn-plus">
+									<i class="fa fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</td>
+					<td><%=entry.getKey().getPrice() * entry.getValue()%></td>
+					<td>X</td>
+				</tr>
+				<%
+					}
+				} else {
+				%>
+				<tr>
+					<td colspan="6">Danh sách sản phẩm trống.</td>
+				</tr>
+				<%
+					}
+				%>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a class="pest_btn" href="ThanhToan">Thanh toán</a>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+<%
+	// In ra thông tin danh sách sản phẩm
+	System.out.println("List of Products: " + listProducts);
+
+	// In ra thông tin từng sản phẩm trong danh sách
+	if (listProducts != null) {
+		for (Products p : listProducts) {
+			System.out.println("Product Name: " + p.getName() + ", Price: " + p.getPrice() + ", Quantity: " + p.getQuantity());
+		}
+	}
+%>
         <!--================End Cart Table Area =================-->
         
         <!--================Newsletter Area =================-->

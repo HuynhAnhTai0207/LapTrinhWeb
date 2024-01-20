@@ -39,7 +39,7 @@ public class SearchDAO {
                 setImageInProduct(product);
                 listProduct.add(product);
             }
-            System.out.println(listProduct.size() +"----searchString = "+search);
+//            System.out.println(listProduct.size() +"----searchString = "+search);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,7 +50,7 @@ public class SearchDAO {
         try {
             Connection connection = JDBCConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, products.getId());
+            statement.setString(1, products.getId_Product());
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 products.getImages().add(resultSet.getString("link"));

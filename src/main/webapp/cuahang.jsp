@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Cart" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -75,7 +76,7 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="editaccount.jsp">Chỉnh sửa tài khoản</a></li>
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="changepassword.jsp">Đổi mật khẩu</a></li>
-							<li><a class="dropdown-item" style="color: #0b0b0b" href="#">Lịch sử đơn hàng</a></li>
+							<li><a class="dropdown-item" style="color: #0b0b0b" href="lich-su-don-hang">Lịch sử đơn hàng</a></li>
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="<c:url value='/logout' />">Đăng xuất</a></li>
 
 						</ul>
@@ -120,7 +121,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li><a href="trangchu.jsp">Trang chủ</a></li>
+						<li><a href="home">Trang chủ</a></li>
 						<li><a href="cake.jsp">Bánh có sẳn</a></li>
 						<li><a href="menu.jsp">Xem tất cả bánh</a></li>
 						<li class="dropdown submenu">
@@ -159,10 +160,10 @@
 						<li class="dropdown submenu">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 							<ul class="dropdown-menu">
-								<li><a href="ListProduct">Cửa hàng chính</a></li>
-								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
-								<li><a href="giohang.jsp">Giỏ hàng</a></li>
-								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
+								<li><a href="ListProductPaging">Cửa hàng chính</a></li>
+								<li><a href="ProductDetailController">Chi tiết sản phẩm</a></li>
+								<li><a href="Cart">Giỏ hàng</a></li>
+								<li><a href="ThanhToan">Thanh toán</a></li>
 							</ul>
 						</li>
 						<li><a href="lienhe.jsp">Liên lạc với chúng tôi</a></li>
@@ -197,11 +198,16 @@
 					<% List<Products> listProducts = (List<Products>) request.getAttribute("listProduct");
 						NumberFormat nf = NumberFormat.getInstance();
 						nf.setMaximumFractionDigits(0);
+						Cart cart = (Cart) session.getAttribute("cart");
+						if (cart == null){
+							cart = new Cart();
+							session.setAttribute("cart", cart);
+						}
 						for(Products p : listProducts){
 					%>
 					<div class="col-lg-4 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="chitietsanpham.jsp">
+							<a href="ProductDetailController?productId=<%=p.getId_Product()%>">
 								<div class="cake_img">
 									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
 								</div>
@@ -209,7 +215,7 @@
 							<div class="cake_text">
 								<h4><%=nf.format(p.getPrice())%>VNĐ</h4>
 								<h3><%=p.getName()%></h3>
-								<a class="pest_btn" href="giohang.jsp">Thêm vào giỏ hàng</a>
+								<a class="pest_btn" href="Cart?id_Product=<%=p.getId_Product()%>">Thêm vào giỏ hàng</a>
 							</div>
 						</div>
 					</div>
@@ -250,81 +256,14 @@
 						<div class="p_w_title">
 							<h3>Lọc theo giá</h3>
 						</div>
-						<div class="filter_price">
-							<div id="slider-range"></div>
-							<label for="amount">Phạm vi:_____</label>
-							<input style="border: 1px solid black;" type="text" id="amount" readonly />
-							<a href="#">Lọc</a>
-						</div>
-					</aside>
-					<aside class="left_sidebar p_sale_widget">
-						<div class="p_w_title">
-							<h3>Sản phẩm bán chạy nhất</h3>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-1.jpg" alt="">
+						<form action="FilterByPriceController" method="POST">
+							<div class="filter_price">
+								<div id="slider-range"></div>
+								<label for="amount">Phạm vi:</label>
+								<input style="margin: 0;" type="text" id="amount" name="priceRange" />
+								<button type="submit">Lọc</button>
 							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh bông lan cacao</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-2.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh kem lạnh</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-3.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh kem phô mai</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
-						<div class="media">
-							<div class="d-flex">
-								<img src="img/product/sale-product/s-product-4.jpg" alt="">
-							</div>
-							<div class="media-body">
-								<a href="#"><h4>Bánh kem dâu</h4></a>
-								<ul class="list_style">
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-									<li><a href="#"><i class="fa fa-star-o"></i></a></li>
-								</ul>
-								<h5>150000VNĐ</h5>
-							</div>
-						</div>
+						</form>
 					</aside>
 				</div>
 			</div>

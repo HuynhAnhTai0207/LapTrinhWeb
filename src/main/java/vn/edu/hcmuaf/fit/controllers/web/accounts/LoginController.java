@@ -57,7 +57,7 @@ public class LoginController extends HttpServlet {
                 } else {
 
                     request.setAttribute("mess", "Tài khoản đã bị khóa, vui lòng liên hệ admin để được giải quyết");
-                    request.getRequestDispatcher("Login.jsp").forward(request, response);
+                    request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
                 }
 
         } catch (IOException | NoSuchAlgorithmException e) {
