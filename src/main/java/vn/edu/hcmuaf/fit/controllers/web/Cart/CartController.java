@@ -55,18 +55,19 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
-//        Account account = (Account) request.getSession().getAttribute("account");
-//        Cart cart = (Cart) request.getSession().getAttribute("cart");
-//
-//        if (account == null) {
-//            request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
-//            return;
-//        }
-//
-//        String id_Product = request.getParameter("id_Product");
-//        int quantity = Integer.parseInt(request.getParameter("quantity"));
-//
-//        request.getRequestDispatcher("giohang.jsp").forward(request, response);
+        Account account = (Account) request.getSession().getAttribute("account");
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+
+        if (account == null) {
+            request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
+            return;
+        }
+
+        String id_Product = request.getParameter("id_Product");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+//        cart.addProductUpdate(id_Product, quantity);
+
+        request.getRequestDispatcher("giohang.jsp").forward(request, response);
     }
 
 

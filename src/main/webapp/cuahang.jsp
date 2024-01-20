@@ -76,7 +76,7 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="editaccount.jsp">Chỉnh sửa tài khoản</a></li>
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="changepassword.jsp">Đổi mật khẩu</a></li>
-							<li><a class="dropdown-item" style="color: #0b0b0b" href="#">Lịch sử đơn hàng</a></li>
+							<li><a class="dropdown-item" style="color: #0b0b0b" href="lich-su-don-hang">Lịch sử đơn hàng</a></li>
 							<li><a class="dropdown-item" style="color: #0b0b0b" href="<c:url value='/logout' />">Đăng xuất</a></li>
 
 						</ul>

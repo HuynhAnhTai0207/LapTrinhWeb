@@ -3,6 +3,7 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
 <%@ page import="vn.edu.hcmuaf.fit.dao.ProductDAO" %>
 <%@ page import="java.util.*" %>
+<%@ page import="vn.edu.hcmuaf.fit.entity.Orders" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -160,7 +161,7 @@
 						<li class="dropdown submenu">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 							<ul class="dropdown-menu">
-								<li><a href="ListProduct">Cửa hàng chính</a></li>
+								<li><a href="ListProductPaging">Cửa hàng chính</a></li>
 								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
 								<li><a href="giohang.jsp">Giỏ hàng</a></li>
 								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
@@ -173,74 +174,57 @@
 		</div>
 	</div>
 </header>
-<!--================End Main Header Area =================-->
-
-<!--================End Main Header Area =================-->
-<section class="banner_area">
-	<div class="container">
-		<div class="banner_text">
-			<h3>Giỏ hàng</h3>
-			<ul>
-				<li><a href="trangchu.jsp">Trang chủ</a></li>
-				<li><a href="giohang.jsp">Giỏ hàng</a></li>
-			</ul>
-		</div>
-	</div>
-</section>
-<!--================End Main Header Area =================-->
-
-<!--================Cart Table Area =================-->
-<section class="cart_table_area p_100">
+        <!--================End Main Header Area =================-->
+        
+        <!--================End Main Header Area =================-->
+        <section class="banner_area">
+        	<div class="container">
+        		<div class="banner_text">
+        			<h3>Chi tiết đơn hàng</h3>
+        			<ul>
+        				<li><a href="trangchu.jsp">Trang chủ</a></li>
+        				<li><a href="giohang.jsp">Giỏ hàng</a></li>
+        			</ul>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Main Header Area =================-->
+        
+        <!--================Cart Table Area =================-->
+		<section class="cart_table_area p_100">
 	<div class="container">
 		<div class="table-responsive">
 			<table class="table">
 				<thead>
 				<tr>
-					<th scope="col">Hình ảnh</th>
-					<th scope="col">Sản phẩm</th>
-					<th scope="col">Giá</th>
-					<th scope="col">Số lượng</th>
+					<th scope="col">Tên</th>
+					<th scope="col">Số điện thoại</th>
+					<th scope="col">Địa chỉ</th>
 					<th scope="col">Tổng</th>
-					<th scope="col"></th>
+					<th scope="col">Tình trạng</th>
+					<th scope="col">Chi tiết đơn hàng</th>
+
 				</tr>
 				</thead>
 				<tbody>
-				<% List<Products> listProducts = (List<Products>) request.getAttribute("listProducts");
-					Cart cart = (Cart) request.getSession().getAttribute("cart");
-					if(!cart.getCart().keySet().isEmpty())
-					{
-						for (Map.Entry<Products,Integer> entry : cart.getCart().entrySet()) {
+				<% List<Orders> orders = (List<Orders>) request.getSession().getAttribute("orders");
+				if (orders!=null){
+				for (Orders o:orders){
 				%>
 				<tr>
-					<td>
-						<img style="height:130px" src="<%=entry.getKey().getImages().get(0)%>" alt="">
-					</td>
-					<td><%=entry.getKey().getName()%></td>
-					<td><%=entry.getKey().getPrice()%></td>
-					<td class="align-middle">
-						<div class="input-group quantity mx-auto" style="width: 100px;">
-							<div class="input-group-btn">
-								<button class="btn btn-sm btn-primary btn-minus">
-									<i class="fa fa-minus"></i>
-								</button>
-							</div>
-							<input style="height: 30px" type="text" class="form-control text-center" value="<%=entry.getValue()%>">
-							<div class="input-group-btn">
-								<button class="btn btn-sm btn-primary  btn-plus">
-									<i class="fa fa-plus"></i>
-								</button>
-							</div>
-						</div>
-					</td>
-					<td><%=entry.getKey().getPrice() * entry.getValue()%></td>
-					<td>X</td>
+					<td><%=o.getFullname()%></td>
+					<td><%=o.getPhoneNumber()%></td>
+					<td><%=o.getAddress()%></td>
+					<td><%=o.getTotal()%></td>
+					<td><%=o.getStatus()%></td>
+					<td><a class="pest_btn" href="chi-tiet-don-hang?orderId=<%=o.getId()%>">Chi tiết đơn hàng</a></td>
 				</tr>
 				<%
 					}
 				} else {
 				%>
 				<tr>
-					<td colspan="6">Danh sách sản phẩm trống.</td>
+					<td colspan="6">Đơn hàng trống</td>
 				</tr>
 				<%
 					}
@@ -251,7 +235,7 @@
 					<td></td>
 					<td></td>
 					<td>
-						<a class="pest_btn" href="ThanhToan">Thanh toán</a>
+						<a class="pest_btn" href="#">Chi tiết đơn hàng</a>
 					</td>
 				</tr>
 				</tbody>
@@ -259,158 +243,148 @@
 		</div>
 	</div>
 </section>
-<%
-	// In ra thông tin danh sách sản phẩm
-	System.out.println("List of Products: " + listProducts);
 
-	// In ra thông tin từng sản phẩm trong danh sách
-	if (listProducts != null) {
-		for (Products p : listProducts) {
-			System.out.println("Product Name: " + p.getName() + ", Price: " + p.getPrice() + ", Quantity: " + p.getQuantity());
-		}
-	}
-%>
-<!--================End Cart Table Area =================-->
-
-<!--================Newsletter Area =================-->
-<section class="newsletter_area">
-	<div class="container">
-		<div class="row newsletter_inner">
-			<div class="col-lg-6">
-				<div class="news_left_text">
-					<h4>Tham gia danh sách Bản tin của chúng tôi để nhận được tất cả các ưu đãi, giảm giá và các lợi ích khác mới nhất.</h4>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="newsletter_form">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Nhập địa chỉ email của bạn">
-						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button">Theo dõi ngay</button>
+        <!--================End Cart Table Area =================-->
+        
+        <!--================Newsletter Area =================-->
+		<section class="newsletter_area">
+			<div class="container">
+				<div class="row newsletter_inner">
+					<div class="col-lg-6">
+						<div class="news_left_text">
+							<h4>Tham gia danh sách Bản tin của chúng tôi để nhận được tất cả các ưu đãi, giảm giá và các lợi ích khác mới nhất.</h4>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="newsletter_form">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Nhập địa chỉ email của bạn">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary" type="button">Theo dõi ngay</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</section>
-<!--================End Newsletter Area =================-->
+		</section>
+		<!--================End Newsletter Area =================-->
 
-<!--================Footer Area =================-->
-<footer class="footer_area">
-	<div class="footer_widgets">
-		<div class="container">
-			<div class="row footer_wd_inner">
-				<div class="col-lg-3 col-6">
-					<aside class="f_widget f_about_widget">
-						<img src="img/footer-logo.png" alt="">
-						<p>CỬA HÀNG CAKE BAKERY LUÔN HƯỚNG ĐẾN SỰ HÀI LÒNG CỦA KHÁCH HÀNG VỀ DỊCH VỤ TẠI CỬA HÀNG CỦA CHÚNG TÔI. XIN CẢM ƠN.</p>
-						<ul class="nav">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						</ul>
-					</aside>
-				</div>
-				<div class="col-lg-3 col-6">
-					<aside class="f_widget f_link_widget">
-						<div class="f_title">
-							<h3>Đường dẫn nhanh</h3>
+		<!--================Footer Area =================-->
+		<footer class="footer_area">
+			<div class="footer_widgets">
+				<div class="container">
+					<div class="row footer_wd_inner">
+						<div class="col-lg-3 col-6">
+							<aside class="f_widget f_about_widget">
+								<img src="img/footer-logo.png" alt="">
+								<p>CỬA HÀNG CAKE BAKERY LUÔN HƯỚNG ĐẾN SỰ HÀI LÒNG CỦA KHÁCH HÀNG VỀ DỊCH VỤ TẠI CỬA HÀNG CỦA CHÚNG TÔI. XIN CẢM ƠN.</p>
+								<ul class="nav">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								</ul>
+							</aside>
 						</div>
-						<ul class="list_style">
-							<li><a href="#">Tài khoản của bạn</a></li>
-							<li><a href="#">Xem đơn hàng</a></li>
-							<li><a href="#">Chính sách bảo mật</a></li>
-							<li><a href="#">Điều khoản và điều kiện</a></li>
-						</ul>
-					</aside>
-				</div>
-				<div class="col-lg-3 col-6">
-					<aside class="f_widget f_link_widget">
-						<div class="f_title">
-							<h3>Thời gian làm việc</h3>
+						<div class="col-lg-3 col-6">
+							<aside class="f_widget f_link_widget">
+								<div class="f_title">
+									<h3>Đường dẫn nhanh</h3>
+								</div>
+								<ul class="list_style">
+									<li><a href="#">Tài khoản của bạn</a></li>
+									<li><a href="#">Xem đơn hàng</a></li>
+									<li><a href="#">Chính sách bảo mật</a></li>
+									<li><a href="#">Điều khoản và điều kiện</a></li>
+								</ul>
+							</aside>
 						</div>
-						<ul class="list_style">
-							<li><a href="#">Thứ 2 : Thứ 6: 8 am - 8 pm</a></li>
-							<li><a href="#">Thứ 7 : 9am - 4pm</a></li>
-							<li><a href="#">Chủ Nhật : Đóng cửa</a></li>
-						</ul>
-					</aside>
-				</div>
-				<div class="col-lg-3 col-6">
-					<aside class="f_widget f_contact_widget">
-						<div class="f_title">
-							<h3>Thông tin liên lạc</h3>
+						<div class="col-lg-3 col-6">
+							<aside class="f_widget f_link_widget">
+								<div class="f_title">
+									<h3>Thời gian làm việc</h3>
+								</div>
+								<ul class="list_style">
+									<li><a href="#">Thứ 2 : Thứ 6: 8 am - 8 pm</a></li>
+									<li><a href="#">Thứ 7 : 9am - 4pm</a></li>
+									<li><a href="#">Chủ Nhật : Đóng cửa</a></li>
+								</ul>
+							</aside>
 						</div>
-						<h4>(1800) 574 9687</h4>
-						<p>Cửa hàng Cake Bakery <br />Khu phố 6, phường Linh Trung, thành phố Thủ Đức</p>
-						<h5>cakebakery@contact.co.in</h5>
-					</aside>
+						<div class="col-lg-3 col-6">
+							<aside class="f_widget f_contact_widget">
+								<div class="f_title">
+									<h3>Thông tin liên lạc</h3>
+								</div>
+								<h4>(1800) 574 9687</h4>
+								<p>Cửa hàng Cake Bakery <br />Khu phố 6, phường Linh Trung, thành phố Thủ Đức</p>
+								<h5>cakebakery@contact.co.in</h5>
+							</aside>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="footer_copyright">
-		<div class="container">
-			<div class="copyright_inner">
-				<div class="float-right">
-					<a href="#">Mua ngay</a>
+			<div class="footer_copyright">
+				<div class="container">
+					<div class="copyright_inner">
+						<div class="float-right">
+							<a href="#">Mua ngay</a>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</footer>
-<!--================End Footer Area =================-->
-
-
-<!--================Search Box Area =================-->
-<div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
-	<div class="search_box_inner">
-		<h3>Search</h3>
-		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Search for...">
-			<span class="input-group-btn">
+		</footer>
+        <!--================End Footer Area =================-->
+        
+        
+        <!--================Search Box Area =================-->
+        <div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
+            <div class="search_box_inner">
+                <h3>Search</h3>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
                         <button class="btn btn-default" type="button"><i class="icon icon-Search"></i></button>
                     </span>
-		</div>
-	</div>
-</div>
-<!--================End Search Box Area =================-->
-
-
-
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-3.2.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- Rev slider js -->
-<script src="vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
-<script src="vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
-<script src="vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
-<script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-<!-- Extra plugin js -->
-<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-<script src="vendors/magnifc-popup/jquery.magnific-popup.min.js"></script>
-<script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-<script src="vendors/isotope/isotope.pkgd.min.js"></script>
-<script src="vendors/datetime-picker/js/moment.min.js"></script>
-<script src="vendors/datetime-picker/js/bootstrap-datetimepicker.min.js"></script>
-<script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
-<script src="vendors/jquery-ui/jquery-ui.min.js"></script>
-<script src="vendors/lightbox/simpleLightbox.min.js"></script>
+                </div>
+            </div>
+        </div>
+        <!--================End Search Box Area =================-->
+        
+        
+        
+        
+        
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Rev slider js -->
+        <script src="vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
+        <script src="vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+        <!-- Extra plugin js -->
+        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="vendors/magnifc-popup/jquery.magnific-popup.min.js"></script>
+        <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="vendors/isotope/isotope.pkgd.min.js"></script>
+        <script src="vendors/datetime-picker/js/moment.min.js"></script>
+        <script src="vendors/datetime-picker/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="vendors/jquery-ui/jquery-ui.min.js"></script>
+        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="js/theme.js"></script>
-<!-- Template Javascript -->
-<script src="js/main.js"></script>
-</body>
+        
+        <script src="js/theme.js"></script>
+		<!-- Template Javascript -->
+		<script src="js/main.js"></script>
+    </body>
 
 </html>
