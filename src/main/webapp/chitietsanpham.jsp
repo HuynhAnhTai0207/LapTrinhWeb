@@ -1,5 +1,6 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
 <%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
@@ -192,6 +193,43 @@
 <section class="product_details_area p_100">
 	<div class="container">
 		<div class="row product_d_price">
+			<%
+				Products product = (Products) request.getAttribute("product");
+				DecimalFormat decimalFormat  =new DecimalFormat("#,##0");
+
+			%>
+			<div class="col-lg-6">
+				<div class="product_img"><img class="img-fluid" src="<%= product.getImages().get(0)%>" alt=""></div>
+			</div>
+
+			<div class="col-lg-6">
+				<div class="product_details_text">
+					<h4><%= product.getName()%></h4>
+					<p><%= product.getDetail()%></p>
+					<p>Đã bán <%= product.getProduct_sold()%></p>
+					<p>Còn lại:  <%= product.getQuantity()%> sản phẩm</p>
+					<h5>Giá :<span><%= decimalFormat.format(product.getPrice())%> VNĐ</span></h5>
+					<a class="pink_more" href="Cart?id_Product=<%=product.getId_Product()%>">Thêm vào giỏ hàng</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="product_tab_area">
+			<nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Mô tả</a>
+					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Thông tin bổ sung</a>
+					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Đánh giá(1)</a>
+				</div>
+			</nav>
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+					<p>Không phải ngẫu nhiên mà Chocolate Cake trở thành chiếc bánh sinh nhật dễ khiến người ta “gật đầu” khi đứng giữa muôn vàn lựa chọn. Sức hút khó chối từ của chiếc bánh này đến từ vị đắng đặc trưng của lớp chocolate đen hảo hạng cùng hương thơm nồng nàn, rất êm và sâu của bột ca cao.</p>
+					<p>Hãy thử nhắm mắt lại và cảm nhận từng muỗng bánh tan vào khoang miệng: một chút đăng đắng nhẹ thoảng qua để lại ngọt ngào nơi đầu lưỡi, kèm theo lớp bông lan mềm mịn điều hòa vị giác. Đây hẳn là thức bánh có thể giúp bạn sốc lại tinh thần sau một ngày mệt mõi rà rời bởi thành phần ca cao trong bánh có khả năng giải tỏa stress và cải thiện tâm trạng hiệu quả.</p>
+				</div>
+				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+					<p>Trọng lượng: 150g</p>
+					<p>Đường kính: 8cm</p>
 			<% Products product = (Products) request.getAttribute("product");
 				NumberFormat nf = NumberFormat.getInstance();
 				nf.setMaximumFractionDigits(0);

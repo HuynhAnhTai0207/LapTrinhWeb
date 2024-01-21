@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 public class ProductDAO {
     public List<Products> getListProducts(String category) {
         List<Products> listProducts = new ArrayList<>();
-
         try {
             Connection connection = JDBCConnector.getConnection();
             PreparedStatement statement;
@@ -65,6 +64,17 @@ public class ProductDAO {
             throw new RuntimeException(e);
         }
     }
+    public Products getProductById(String id_Product) {
+        Products product = null;
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            String query = "SELECT * FROM product WHERE id_Product=?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, id_Product);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                product = new Products(
     public List<Products> getListProductsByPriceRange(String priceRange) {
         List<Products> productList = new ArrayList<>();
         String query = "SELECT * FROM product WHERE price BETWEEN 0 AND ?";
@@ -115,6 +125,25 @@ public class ProductDAO {
                         resultSet.getString("detail")
                 );
                 setImageInProduct(product);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return product;
+    }
+
+    public List<Products> getListProductsByPriceRange(String priceRange) {
+        List<Products> productList = new ArrayList<>();
+        String query = "SELECT * FROM product WHERE price BETWEEN 0 AND ?";
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            PreparedStatement statement;
+            statement = connection.prepareStatement(query);
+            statement.setString(1, priceRange);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Products product = new Products(
                 return product;
             }
         } catch (SQLException e) {
@@ -144,6 +173,14 @@ public class ProductDAO {
                         resultSet.getString("detail")
                 );
                 setImageInProduct(product);
+                productList.add(product);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
                 listProducts.add(product);
             }
 

@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.dao.PageDao;
 import vn.edu.hcmuaf.fit.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.entity.Products;
 
+
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -37,6 +38,7 @@ public class ListProductPaging extends HttpServlet {
             endPage++;
         }
         List<Products> list = pageDao.paging(index);
+//        System.out.println(list.size());
         ProductDAO productDAO = new ProductDAO();
         List<Products> listTop = productDAO.getTopproduct();
         request.setAttribute("listTopProducts",listTop);

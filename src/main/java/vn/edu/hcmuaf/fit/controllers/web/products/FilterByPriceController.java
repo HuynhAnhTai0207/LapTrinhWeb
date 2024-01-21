@@ -38,4 +38,8 @@ public class FilterByPriceController extends HttpServlet {
         request.setAttribute("listProduct", listProducts);
         request.getRequestDispatcher("cuahang.jsp").forward(request, response);
     }
+
+}
+
+
 }

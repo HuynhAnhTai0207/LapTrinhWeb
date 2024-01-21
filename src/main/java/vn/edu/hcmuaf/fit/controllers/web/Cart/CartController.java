@@ -11,6 +11,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CartController", value = "/Cart")
 public class CartController extends HttpServlet {
@@ -23,6 +24,7 @@ public class CartController extends HttpServlet {
         }
 
         String id_Product = request.getParameter("id_Product");
+//        Long productId = Long.parseLong(id_Product);
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         if(cart == null)
         {
@@ -33,6 +35,22 @@ public class CartController extends HttpServlet {
         List<Products> listProducts  = new ArrayList<>();
 
         // Log the value of listProducts
+        System.out.println("List of Products in CartController: " + listProducts);
+        if (id_Product != null) {
+//            Map<String, Integer> cartItems = cart.getCart();
+            ProductDAO productDAO = new ProductDAO();
+
+            // Lặp qua mỗi sản phẩm trong giỏ hàng và lấy thông tin từ cơ sở dữ liệu
+//            for (Map.Entry<String, Integer> entry : cartItems.entrySet()) {
+//                String productId = entry.getKey();
+//                int quantity = entry.getValue();
+
+                Products product = productDAO.getProductById(id_Product);
+
+                // Kiểm tra nếu sản phẩm tồn tại
+                if (product != null) {
+                    cart.addProductUpdate(product,1);
+                }
 //        System.out.println("List of Products in CartController: " + listProducts);
         if (id_Product != null) {
             ProductDAO productDAO = new ProductDAO();
@@ -69,6 +87,4 @@ public class CartController extends HttpServlet {
 
         request.getRequestDispatcher("giohang.jsp").forward(request, response);
     }
-
-
 }

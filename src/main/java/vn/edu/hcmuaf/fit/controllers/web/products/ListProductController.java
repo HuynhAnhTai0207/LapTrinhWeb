@@ -18,6 +18,8 @@ public class ListProductController extends HttpServlet {
     PageDao pageDao = new PageDao();
     @Inject
     ProductDAO dao = new ProductDAO();
+    @Inject
+    ProductDAO productDAO= new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,7 +51,7 @@ public class ListProductController extends HttpServlet {
                 endPage++;
             }
         }
-        System.out.println(listProducts.size());
+//        System.out.println(listProducts.size());
 
         request.setAttribute("listProduct", listProducts);
         ProductDAO productDAO = new ProductDAO();
@@ -60,22 +62,6 @@ public class ListProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String indexPage = request.getParameter("index");
-//        if(indexPage==null){
-//            indexPage="1";
-//        }
-//        int index = Integer.parseInt(indexPage);
-//        PageDao pageDao= new PageDao();
-//        int count = pageDao.getTotalProduct();
-//        int endPage= count/20;
-//        if(count%20!=0){
-//            endPage++;
-//        }
-//        List<Products> list = pageDao.paging(index);
-//        System.out.println(list.size());
-//        request.setAttribute("listProduct",list);
-//        request.setAttribute("endP",endPage);
-
         request.getRequestDispatcher("cuahang.jsp").forward(request, response);
     }
 

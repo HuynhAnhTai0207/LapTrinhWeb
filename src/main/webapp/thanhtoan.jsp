@@ -172,6 +172,137 @@
 		</div>
 	</div>
 </header>
+        <!--================End Main Header Area =================-->
+        
+        <!--================End Main Header Area =================-->
+        <section class="banner_area">
+        	<div class="container">
+        		<div class="banner_text">
+        			<h3>Thanh toán</h3>
+        			<ul>
+        				<li><a href="trangchu.jsp">Trang chủ</a></li>
+        				<li><a href="thanhtoan.jsp">Thanh toán</a></li>
+        			</ul>
+
+        		</div>
+        	</div>
+        </section>
+        <!--================End Main Header Area =================-->
+        
+        <!--================Billing Details Area =================-->    
+        <section class="billing_details_area p_100">
+            <div class="container">
+                <div class="return_option">
+                	<h4>Phản hồi khách hàng? <a href="dangnhap.jsp">Nhấn vào đây để đăng nhập</a></h4>
+                </div>
+                <div class="row">
+                	<div class="col-lg-7">
+               	    	<div class="main_title">
+               	    		<h2>Chi tiết thanh toán</h2>
+               	    	</div>
+                		<div class="billing_form_area">
+                			<form class="billing_form row" action="ThanhToan" method="post" id="contactForm" novalidate="novalidate">
+								<div class="form-group col-md-6">
+								    <label for="fullname">Tên của bạn</label>
+									<input type="text" class="form-control" id="fullname" name="fullname" placeholder="Tên của bạn">
+								</div>
+<%--								<div class="form-group col-md-6">--%>
+<%--								    <label for="last">Họ và tên đệm của bạn *</label>--%>
+<%--									<input type="text" class="form-control" id="last" name="name" placeholder="Họ và tên đệm của bạn">--%>
+<%--								</div>--%>
+								<div class="form-group col-md-6">
+									<label for="phoneNumber">Điện thoại *</label>
+									<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Điện thoại">
+								</div>
+
+								<div class="form-group col-md-12">
+								    <label for="address">Địa chỉ *</label>
+									<input type="text" class="form-control" id="address" name="address" placeholder="Địa chỉ">
+<%--									<input type="text" class="form-control" id="address2" name="address2" placeholder="Căn hộ, căn hộ Suite, v.v. (tùy chọn)">--%>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="total">Tổng tiền</label>
+									<input type="text" class="form-control" id="total" name="total" placeholder="Tổng tiền">
+									<%--									<input type="text" class="form-control" id="address2" name="address2" placeholder="Căn hộ, căn hộ Suite, v.v. (tùy chọn)">--%>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="notes">Ghi chú đặt hàng</label>
+									<textarea class="form-control" name="notes" id="notes" rows="1" placeholder="Lưu ý về đơn đặt hàng của bạn. ví dụ. lưu ý đặc biệt khi giao hàng"></textarea>
+								</div>
+								<button type="submit" value="submit" class="btn pest_btn">Đặt hàng</button>
+							</form>
+                		</div>
+                	</div>
+                	<div class="col-lg-5">
+                		<div class="order_box_price">
+                			<div class="main_title">
+                				<h2>Đơn hàng của bạn</h2>
+                			</div>
+							<div class="payment_list">
+
+								<div class="price_single_cost">
+									<h5>Sản phẩm <span>Tổng cộng</span>  <span>   </span> <span>Số lượng</span> </h5>
+									<%
+										Cart cart = (Cart) request.getSession().getAttribute("cart");
+										if(!cart.getCart().keySet().isEmpty())
+										{
+											for (Map.Entry<Products,Integer> entry : cart.getCart().entrySet()) {
+									%>
+									<h5><%=entry.getKey().getName()%> <span>   </span> <span><%=entry.getKey().getPrice()%></span> <span><%=entry.getValue()%></span> </h5>
+									<%}%>
+									<h5>Vận chuyển và xử lý<span class="text_f">Miễn phí vận chuyển</span></h5>
+									<h3>Tổng cộng <span><%=cart.getTotal()%></span></h3>
+								</div>
+								<%}%>
+
+								<div id="accordion" class="accordion_area">
+									<div class="card">
+										<div class="card-header" id="headingOne">
+											<h5 class="mb-0">
+												<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+													Chuyển khoản trực tiếp
+												</button>
+											</h5>
+										</div>
+										<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+											<div class="card-body">
+												Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán. Đơn đặt hàng của bạn sẽ không được giao cho đến khi tiền đã được xóa trong tài khoản của chúng tôi.
+											</div>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header" id="headingTwo">
+											<h5 class="mb-0">
+												<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+													Kiểm tra thanh toán
+												</button>
+											</h5>
+										</div>
+										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+											<div class="card-body">
+												Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán. Đơn đặt hàng của bạn sẽ không được giao cho đến khi tiền đã được xóa trong tài khoản của chúng tôi.
+											</div>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header" id="headingThree">
+											<h5 class="mb-0">
+												<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+												Paypal
+												<img src="img/checkout-card.png" alt="">
+												</button>
+												<a href="#">PayPal là gì?</a>
+											</h5>
+										</div>
+										<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+											<div class="card-body">
+												Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn hàng của bạn làm tài liệu tham khảo thanh toán. Đơn đặt hàng của bạn sẽ không được giao cho đến khi tiền đã được xóa trong tài khoản của chúng tôi.
+											</div>
+										</div>
+									</div>
+								</div>
+
 <!--================End Main Header Area =================-->
 
 <!--================End Main Header Area =================-->

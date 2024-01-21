@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.util;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.InvocationTargetException;
 
 public class FormUtil {
     @SuppressWarnings("unchecked")

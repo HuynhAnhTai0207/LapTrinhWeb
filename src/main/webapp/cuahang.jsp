@@ -121,7 +121,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li><a href="trangchu.jsp">Trang chủ</a></li>
+						<li><a href="home">Trang chủ</a></li>
 						<li><a href="cake.jsp">Bánh có sẳn</a></li>
 						<li><a href="menu.jsp">Xem tất cả bánh</a></li>
 						<li class="dropdown submenu">
@@ -161,6 +161,9 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 							<ul class="dropdown-menu">
 								<li><a href="ListProductPaging">Cửa hàng chính</a></li>
+								<li><a href="ProductDetailController">Chi tiết sản phẩm</a></li>
+								<li><a href="Cart">Giỏ hàng</a></li>
+								<li><a href="ThanhToan">Thanh toán</a></li>
 								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
 								<li><a href="giohang.jsp">Giỏ hàng</a></li>
 								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
@@ -202,12 +205,12 @@
 						if (cart == null){
 							cart = new Cart();
 							session.setAttribute("cart", cart);
-
 						}
 						for(Products p : listProducts){
 					%>
 					<div class="col-lg-4 col-md-4 col-6">
 						<div class="cake_feature_item">
+							<a href="ProductDetailController?productId=<%=p.getId_Product()%>">
 							<a href="ProductDetailController?id_Product=<%=p.getId_Product()%>">
 								<div class="cake_img">
 									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">

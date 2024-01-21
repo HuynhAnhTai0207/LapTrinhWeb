@@ -1,5 +1,11 @@
 package vn.edu.hcmuaf.fit.entity;
 
+import javafx.beans.binding.MapExpression;
+import vn.edu.hcmuaf.fit.dao.ProductDAO;
+
+import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.HashMap;
 import java.util.Map;
 

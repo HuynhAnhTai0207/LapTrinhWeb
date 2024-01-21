@@ -173,6 +173,25 @@
 		</div>
 	</div>
 </header>
+        <!--================End Main Header Area =================-->
+        
+        <!--================End Main Header Area =================-->
+        <section class="banner_area">
+        	<div class="container">
+        		<div class="banner_text">
+        			<h3>Giỏ hàng</h3>
+        			<ul>
+        				<li><a href="trangchu.jsp">Trang chủ</a></li>
+        				<li><a href="giohang.jsp">Giỏ hàng</a></li>
+        			</ul>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Main Header Area =================-->
+        
+        <!--================Cart Table Area =================-->
+		<section class="cart_table_area p_100">
+=======
 <!--================End Main Header Area =================-->
 
 <!--================End Main Header Area =================-->
@@ -229,6 +248,65 @@
 								<button class="btn btn-sm btn-primary  btn-plus">
 									<i class="fa fa-plus"></i>
 								</button>
+							</div>
+						</div>
+					</td>
+					<td><%=entry.getKey().getPrice() * entry.getValue()%></td>
+					<td>X</td>
+				</tr>
+				<%
+					}
+				} else {
+				%>
+				<tr>
+					<td colspan="6">Danh sách sản phẩm trống.</td>
+				</tr>
+				<%
+					}
+				%>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a class="pest_btn" href="ThanhToan">Thanh toán</a>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+<%
+	// In ra thông tin danh sách sản phẩm
+	System.out.println("List of Products: " + listProducts);
+
+	// In ra thông tin từng sản phẩm trong danh sách
+	if (listProducts != null) {
+		for (Products p : listProducts) {
+			System.out.println("Product Name: " + p.getName() + ", Price: " + p.getPrice() + ", Quantity: " + p.getQuantity());
+		}
+	}
+%>
+        <!--================End Cart Table Area =================-->
+        
+        <!--================Newsletter Area =================-->
+		<section class="newsletter_area">
+			<div class="container">
+				<div class="row newsletter_inner">
+					<div class="col-lg-6">
+						<div class="news_left_text">
+							<h4>Tham gia danh sách Bản tin của chúng tôi để nhận được tất cả các ưu đãi, giảm giá và các lợi ích khác mới nhất.</h4>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="newsletter_form">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Nhập địa chỉ email của bạn">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary" type="button">Theo dõi ngay</button>
+								</div>
 							</div>
 						</div>
 					</td>

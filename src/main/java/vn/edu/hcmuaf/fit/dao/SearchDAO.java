@@ -39,7 +39,7 @@ public class SearchDAO {
                 setImageInProduct(product);
                 listProduct.add(product);
             }
-            System.out.println(listProduct.size() +"----searchString = "+search);
+//            System.out.println(listProduct.size() +"----searchString = "+search);
         } catch (Exception e) {
             e.printStackTrace();
         }
