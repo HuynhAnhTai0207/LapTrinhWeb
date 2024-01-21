@@ -55,7 +55,6 @@ public class Cart
         // Trả về đối tượng Products hoặc null nếu không tìm thấy
         return null;
     }
-
     public double getTotal(){
         double total = 0;
 

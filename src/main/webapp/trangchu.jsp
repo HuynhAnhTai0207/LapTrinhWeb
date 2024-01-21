@@ -164,6 +164,9 @@
 								<li><a href="ProductDetailController">Chi tiết sản phẩm</a></li>
 								<li><a href="Cart">Giỏ hàng</a></li>
 								<li><a href="ThanhToan">Thanh toán</a></li>
+								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
+								<li><a href="giohang.jsp">Giỏ hàng</a></li>
+								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
 							</ul>
 						</li>
 						<li><a href="lienhe.jsp">Liên lạc với chúng tôi</a></li>

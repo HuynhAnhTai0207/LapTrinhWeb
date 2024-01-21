@@ -160,6 +160,7 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 							<ul class="dropdown-menu">
 								<li><a href="ListProduct">Cửa hàng chính</a></li>
+								<li><a href="ListProductPaging">Cửa hàng chính</a></li>
 								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
 								<li><a href="giohang.jsp">Giỏ hàng</a></li>
 								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
