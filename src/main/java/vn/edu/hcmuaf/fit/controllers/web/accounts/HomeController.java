@@ -26,9 +26,12 @@ public class HomeController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String detail = request.getParameter("detail");
+//        String detail = request.getParameter("detail");
+        String newProduct = request.getParameter("newProduct");
         ProductDAO dao = new ProductDAO();
-        List<Products> listProducts = dao.getListNewProducts(detail);
+        ProductDAO productDAO = new ProductDAO();
+//        List<Products> listProducts = dao.getListNewProducts(detail);
+        List<Products> listNewProducts = dao.getListNewProducts1(newProduct);
 
         String indexPage = request.getParameter("index");
         if (indexPage == null) {
@@ -36,9 +39,9 @@ public class HomeController extends HttpServlet {
         }
         int index = Integer.parseInt(indexPage);
         int endPage = 0;
-        System.out.println(detail+"abc");
-        if (detail != null) {
-            listProducts = dao.getListNewProducts(detail);
+        System.out.println(newProduct+"abc");
+        if (newProduct != null) {
+            listNewProducts = dao.getListNewProducts(newProduct);
 //            int count = listProducts.size();
 //            endPage = count / 20;
 //            if (count % 20 != 0) {
@@ -48,17 +51,17 @@ public class HomeController extends HttpServlet {
 //            listProducts = listProducts.subList((index-1) * 20,endList);
 
         } else {
-            listProducts = pageDao.paging(index);
+            listNewProducts = pageDao.paging(index);
             int count = pageDao.getTotalProduct();
             endPage = count / 20;
             if (count % 20 != 0) {
                 endPage++;
             }
         }
-        System.out.println(listProducts.size());
-        request.setAttribute("listProduct", listProducts);
+        System.out.println(listNewProducts.size());
+//        request.setAttribute("listProduct", listProducts);
+        request.setAttribute("listProduct", listNewProducts);
         request.setAttribute("endP", endPage);
-        ProductDAO productDAO = new ProductDAO();
         List<Products> listTop = productDAO.getTopproduct();
         request.setAttribute("listTopProducts",listTop);
         request.getRequestDispatcher("trangchu.jsp").forward(request, response);

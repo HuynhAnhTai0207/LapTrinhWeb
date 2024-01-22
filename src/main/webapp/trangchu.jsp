@@ -335,18 +335,18 @@
 						for(Products p : listProducts){
 					%>
 					<div class="col-lg-4 col-md-4 col-6">
-						<div class="cake_feature_item">
-							<a href="ProductDetailController?id_Product=<%=p.getId_Product()%>">
-								<div class="cake_img">
-									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
+							<div class="cake_feature_item">
+								<a href="ProductDetailController?productId=<%=p.getId_Product()%>">
+									<div class="cake_img">
+										<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
+									</div>
+								</a>
+								<div class="cake_text">
+									<h4><%=nf.format(p.getPrice())%>VNĐ</h4>
+									<h3><%=p.getName()%></h3>
+									<a class="pest_btn" href="Cart?id_Product=<%=p.getId_Product()%>">Thêm vào giỏ hàng</a>
 								</div>
-							</a>
-							<div class="cake_text">
-								<h4><%=nf.format(p.getPrice())%>VNĐ</h4>
-								<h3><%=p.getName()%></h3>
-								<a class="pest_btn" href="Cart?id_Product=<%=p.getId_Product()%>">Thêm vào giỏ hàng</a>
 							</div>
-						</div>
 					</div>
 					<% } %>
 				</div>
@@ -403,8 +403,8 @@
 							<h3>Xem các sản phẩm mới nhất của cửa hàng</h3>
 						</div>
 						<ul class="list_style">
-							<li><a href="home?detail=Bánh mới">Sản phẩm mới nhất</a></li>
-							<li><a href="">Sản phẩm chuẩn bị ra mắt</a></li>
+							<li><a href="home?newProduct=Bánh mới">Sản phẩm mới nhất</a></li>
+							<li><a href="home?newProduct=Sấp ra mắt">Top 10 bánh bán chạy nhất</a></li>
 						</ul>
 					</aside>
 				</div>
