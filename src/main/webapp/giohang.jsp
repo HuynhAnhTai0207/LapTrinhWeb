@@ -122,7 +122,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li><a href="trangchu.jsp">Trang chủ</a></li>
+						<li><a href="home">Trang chủ</a></li>
 						<li><a href="cake.jsp">Bánh có sẳn</a></li>
 						<li><a href="menu.jsp">Xem tất cả bánh</a></li>
 						<li class="dropdown submenu">
@@ -159,12 +159,12 @@
 							</ul>
 						</li>
 						<li class="dropdown submenu">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="ListProductPaging" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 							<ul class="dropdown-menu">
-								<li><a href="ListProduct">Cửa hàng chính</a></li>
-								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
-								<li><a href="giohang.jsp">Giỏ hàng</a></li>
-								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
+								<li><a href="ListProductPaging">Cửa hàng chính</a></li>
+								<li><a href="ProductDetailController">Chi tiết sản phẩm</a></li>
+								<li><a href="Cart">Giỏ hàng</a></li>
+								<li><a href="ThanhToan">Thanh toán</a></li>
 							</ul>
 						</li>
 						<li><a href="lienhe.jsp">Liên lạc với chúng tôi</a></li>
@@ -174,24 +174,24 @@
 		</div>
 	</div>
 </header>
-        <!--================End Main Header Area =================-->
-        
-        <!--================End Main Header Area =================-->
-        <section class="banner_area">
-        	<div class="container">
-        		<div class="banner_text">
-        			<h3>Giỏ hàng</h3>
-        			<ul>
-        				<li><a href="trangchu.jsp">Trang chủ</a></li>
-        				<li><a href="giohang.jsp">Giỏ hàng</a></li>
-        			</ul>
-        		</div>
-        	</div>
-        </section>
-        <!--================End Main Header Area =================-->
-        
-        <!--================Cart Table Area =================-->
-		<section class="cart_table_area p_100">
+<!--================End Main Header Area =================-->
+
+<!--================End Main Header Area =================-->
+<section class="banner_area">
+	<div class="container">
+		<div class="banner_text">
+			<h3>Giỏ hàng</h3>
+			<ul>
+				<li><a href="trangchu.jsp">Trang chủ</a></li>
+				<li><a href="giohang.jsp">Giỏ hàng</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+<!--================End Main Header Area =================-->
+
+<!--================Cart Table Area =================-->
+<section class="cart_table_area p_100">
 	<div class="container">
 		<div class="table-responsive">
 			<table class="table">
@@ -208,6 +208,7 @@
 				<tbody>
 				<% List<Products> listProducts = (List<Products>) request.getAttribute("listProducts");
 					NumberFormat nf = NumberFormat.getInstance();
+					nf.setMaximumFractionDigits(0);
 					Cart cart = (Cart) request.getSession().getAttribute("cart");
 					if(!cart.getCart().keySet().isEmpty())
 					{
@@ -218,24 +219,25 @@
 						<img style="height:130px" src="<%=entry.getKey().getImages().get(0)%>" alt="">
 					</td>
 					<td><%=entry.getKey().getName()%></td>
-					<td><%=entry.getKey().getPrice()%></td>
+					<td><%=nf.format(entry.getKey().getPrice())%>VNĐ</td>
 					<td class="align-middle">
 						<div class="input-group quantity mx-auto" style="width: 100px;">
 							<div class="input-group-btn">
-								<button class="btn btn-sm btn-primary btn-minus">
+								<button class="btn btn-sm btn-primary btn-minus" onclick="decrementQuantity('<%=entry.getKey().getId_Product()%>', this, <%=entry.getKey().getPrice()%>)">
 									<i class="fa fa-minus"></i>
 								</button>
 							</div>
-							<input style="height: 30px" type="text" class="form-control text-center" value="<%=entry.getValue()%>">
+							<input style="height: 30px" type="text" class="form-control text-center" value="<%=entry.getValue()%>" id="quantity_<%=entry.getKey().getId_Product()%>" data-price="<%=entry.getKey().getPrice()%>" onchange="quantityChanged('<%=entry.getKey().getId_Product()%>', this)">
 							<div class="input-group-btn">
-								<button class="btn btn-sm btn-primary  btn-plus">
+								<button class="btn btn-sm btn-primary  btn-plus" onclick="incrementQuantity('<%=entry.getKey().getId_Product()%>', this, <%=entry.getKey().getPrice()%>)">
 									<i class="fa fa-plus"></i>
 								</button>
 							</div>
 						</div>
 					</td>
-					<td><%=nf.format(entry.getKey().getPrice() * entry.getValue())%>VNĐ</td>
-					<td>X</td>
+					<td class="total-price"><%= nf.format(entry.getKey().getPrice() * entry.getValue()) %>VNĐ</td>
+
+					<td><a href="RemoveCart?productId=<%=entry.getKey().getId_Product()%>" class="btn btn-danger">Remove</a></td>
 				</tr>
 				<%
 					}
@@ -272,147 +274,222 @@
 		}
 	}
 %>
-        <!--================End Cart Table Area =================-->
-        
-        <!--================Newsletter Area =================-->
-		<section class="newsletter_area">
-			<div class="container">
-				<div class="row newsletter_inner">
-					<div class="col-lg-6">
-						<div class="news_left_text">
-							<h4>Tham gia danh sách Bản tin của chúng tôi để nhận được tất cả các ưu đãi, giảm giá và các lợi ích khác mới nhất.</h4>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="newsletter_form">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Nhập địa chỉ email của bạn">
-								<div class="input-group-append">
-									<button class="btn btn-outline-secondary" type="button">Theo dõi ngay</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!--================End Newsletter Area =================-->
+<!--================End Cart Table Area =================-->
 
-		<!--================Footer Area =================-->
-		<footer class="footer_area">
-			<div class="footer_widgets">
-				<div class="container">
-					<div class="row footer_wd_inner">
-						<div class="col-lg-3 col-6">
-							<aside class="f_widget f_about_widget">
-								<img src="img/footer-logo.png" alt="">
-								<p>CỬA HÀNG CAKE BAKERY LUÔN HƯỚNG ĐẾN SỰ HÀI LÒNG CỦA KHÁCH HÀNG VỀ DỊCH VỤ TẠI CỬA HÀNG CỦA CHÚNG TÔI. XIN CẢM ƠN.</p>
-								<ul class="nav">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								</ul>
-							</aside>
-						</div>
-						<div class="col-lg-3 col-6">
-							<aside class="f_widget f_link_widget">
-								<div class="f_title">
-									<h3>Đường dẫn nhanh</h3>
-								</div>
-								<ul class="list_style">
-									<li><a href="#">Tài khoản của bạn</a></li>
-									<li><a href="#">Xem đơn hàng</a></li>
-									<li><a href="#">Chính sách bảo mật</a></li>
-									<li><a href="#">Điều khoản và điều kiện</a></li>
-								</ul>
-							</aside>
-						</div>
-						<div class="col-lg-3 col-6">
-							<aside class="f_widget f_link_widget">
-								<div class="f_title">
-									<h3>Thời gian làm việc</h3>
-								</div>
-								<ul class="list_style">
-									<li><a href="#">Thứ 2 : Thứ 6: 8 am - 8 pm</a></li>
-									<li><a href="#">Thứ 7 : 9am - 4pm</a></li>
-									<li><a href="#">Chủ Nhật : Đóng cửa</a></li>
-								</ul>
-							</aside>
-						</div>
-						<div class="col-lg-3 col-6">
-							<aside class="f_widget f_contact_widget">
-								<div class="f_title">
-									<h3>Thông tin liên lạc</h3>
-								</div>
-								<h4>(1800) 574 9687</h4>
-								<p>Cửa hàng Cake Bakery <br />Khu phố 6, phường Linh Trung, thành phố Thủ Đức</p>
-								<h5>cakebakery@contact.co.in</h5>
-							</aside>
+<!--================Newsletter Area =================-->
+<section class="newsletter_area">
+	<div class="container">
+		<div class="row newsletter_inner">
+			<div class="col-lg-6">
+				<div class="news_left_text">
+					<h4>Tham gia danh sách Bản tin của chúng tôi để nhận được tất cả các ưu đãi, giảm giá và các lợi ích khác mới nhất.</h4>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="newsletter_form">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Nhập địa chỉ email của bạn">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button">Theo dõi ngay</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="footer_copyright">
-				<div class="container">
-					<div class="copyright_inner">
-						<div class="float-right">
-							<a href="#">Mua ngay</a>
+		</div>
+	</div>
+</section>
+<!--================End Newsletter Area =================-->
+
+<!--================Footer Area =================-->
+<footer class="footer_area">
+	<div class="footer_widgets">
+		<div class="container">
+			<div class="row footer_wd_inner">
+				<div class="col-lg-3 col-6">
+					<aside class="f_widget f_about_widget">
+						<img src="img/footer-logo.png" alt="">
+						<p>CỬA HÀNG CAKE BAKERY LUÔN HƯỚNG ĐẾN SỰ HÀI LÒNG CỦA KHÁCH HÀNG VỀ DỊCH VỤ TẠI CỬA HÀNG CỦA CHÚNG TÔI. XIN CẢM ƠN.</p>
+						<ul class="nav">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+						</ul>
+					</aside>
+				</div>
+				<div class="col-lg-3 col-6">
+					<aside class="f_widget f_link_widget">
+						<div class="f_title">
+							<h3>Đường dẫn nhanh</h3>
 						</div>
-					</div>
+						<ul class="list_style">
+							<li><a href="#">Tài khoản của bạn</a></li>
+							<li><a href="#">Xem đơn hàng</a></li>
+							<li><a href="#">Chính sách bảo mật</a></li>
+							<li><a href="#">Điều khoản và điều kiện</a></li>
+						</ul>
+					</aside>
+				</div>
+				<div class="col-lg-3 col-6">
+					<aside class="f_widget f_link_widget">
+						<div class="f_title">
+							<h3>Thời gian làm việc</h3>
+						</div>
+						<ul class="list_style">
+							<li><a href="#">Thứ 2 : Thứ 6: 8 am - 8 pm</a></li>
+							<li><a href="#">Thứ 7 : 9am - 4pm</a></li>
+							<li><a href="#">Chủ Nhật : Đóng cửa</a></li>
+						</ul>
+					</aside>
+				</div>
+				<div class="col-lg-3 col-6">
+					<aside class="f_widget f_contact_widget">
+						<div class="f_title">
+							<h3>Thông tin liên lạc</h3>
+						</div>
+						<h4>(1800) 574 9687</h4>
+						<p>Cửa hàng Cake Bakery <br />Khu phố 6, phường Linh Trung, thành phố Thủ Đức</p>
+						<h5>cakebakery@contact.co.in</h5>
+					</aside>
 				</div>
 			</div>
-		</footer>
-        <!--================End Footer Area =================-->
-        
-        
-        <!--================Search Box Area =================-->
-        <div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
-            <div class="search_box_inner">
-                <h3>Search</h3>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
+		</div>
+	</div>
+	<div class="footer_copyright">
+		<div class="container">
+			<div class="copyright_inner">
+				<div class="float-right">
+					<a href="#">Mua ngay</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!--================End Footer Area =================-->
+
+
+<!--================Search Box Area =================-->
+<div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
+	<div class="search_box_inner">
+		<h3>Search</h3>
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search for...">
+			<span class="input-group-btn">
                         <button class="btn btn-default" type="button"><i class="icon icon-Search"></i></button>
                     </span>
-                </div>
-            </div>
-        </div>
-        <!--================End Search Box Area =================-->
-        
-        
-        
-        
-        
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <!-- Rev slider js -->
-        <script src="vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
-        <script src="vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-        <!-- Extra plugin js -->
-        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="vendors/magnifc-popup/jquery.magnific-popup.min.js"></script>
-        <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-        <script src="vendors/isotope/isotope.pkgd.min.js"></script>
-        <script src="vendors/datetime-picker/js/moment.min.js"></script>
-        <script src="vendors/datetime-picker/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
-        <script src="vendors/jquery-ui/jquery-ui.min.js"></script>
-        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+		</div>
+	</div>
+</div>
+<!--================End Search Box Area =================-->
+
+<script>
+	function updateTotalPrice(productId) {
+		var quantityElement = document.getElementById('quantity_' + productId);
+		var totalElements = document.getElementsByClassName('total-price');
+
+		if (quantityElement && totalElements) {
+			var quantity = parseInt(quantityElement.value);
+			var price = parseFloat(quantityElement.getAttribute('data-price'));
+			var totalPrice = price * quantity;
+
+			// Lặp qua tất cả các phần tử có class 'total-price'
+			for (var i = 0; i < totalElements.length; i++) {
+				totalElements[i].textContent = formatCurrency(totalPrice);
+			}
+
+			// Gọi hàm cập nhật tổng giá tiền khi có thay đổi số lượng
+			updateGrandTotal();
+		}
+	}
+
+	function incrementQuantity(productId) {
+		var quantityElement = document.getElementById('quantity_' + productId);
+		var currentValue = parseInt(quantityElement.value);
+
+		quantityElement.value = currentValue + 1;
+
+		console.log("Incremented quantity for product ID " + productId + ": " + quantityElement.value);
+
+		updateTotalPrice(productId);
+	}
+
+	function decrementQuantity(productId) {
+		var quantityElement = document.getElementById('quantity_' + productId);
+		var currentValue = parseInt(quantityElement.value);
+
+		if (currentValue > 1) {
+			quantityElement.value = currentValue - 1;
+		} else {
+			quantityElement.value = 1;
+		}
+
+		console.log("Decremented quantity for product ID " + productId + ": " + quantityElement.value);
+
+		updateTotalPrice(productId);
+	}
+
+	function quantityChanged(productId) {
+		console.log("Quantity changed for product ID " + productId);
+
+		updateTotalPrice(productId);
+	}
+
+	// Hàm cập nhật tổng giá tiền của toàn bộ giỏ hàng
+	function updateGrandTotal() {
+		var totalElements = document.querySelectorAll('.total');
+		var grandTotal = 0;
+
+		totalElements.forEach(function (element) {
+			grandTotal += parseFloat(element.textContent.replace(/[^\d.-]/g, ''));
+		});
+
+		// Hiển thị tổng giá tiền ở đây, thay thế "updateTotalPrice" bằng id thích hợp của bạn
+		document.getElementById('total_').textContent = formatCurrency(grandTotal);
+	}
+
+	// Hàm định dạng số tiền sang định dạng tiền tệ
+	function formatCurrency(value) {
+		var formatter = new Intl.NumberFormat('vi-VN', {
+			style: 'currency',
+			currency: 'VND'
+		});
+
+		return formatter.format(value);
+	}
+
+</script>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- Rev slider js -->
+<script src="vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script src="vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
+<script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<!-- Extra plugin js -->
+<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="vendors/magnifc-popup/jquery.magnific-popup.min.js"></script>
+<script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+<script src="vendors/isotope/isotope.pkgd.min.js"></script>
+<script src="vendors/datetime-picker/js/moment.min.js"></script>
+<script src="vendors/datetime-picker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+<script src="vendors/jquery-ui/jquery-ui.min.js"></script>
+<script src="vendors/lightbox/simpleLightbox.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        
-        <script src="js/theme.js"></script>
-		<!-- Template Javascript -->
-		<script src="js/main.js"></script>
-    </body>
+
+<script src="js/theme.js"></script>
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+</body>
 
 </html>
