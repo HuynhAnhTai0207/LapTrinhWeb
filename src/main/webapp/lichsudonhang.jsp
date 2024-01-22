@@ -4,6 +4,7 @@
 <%@ page import="vn.edu.hcmuaf.fit.dao.ProductDAO" %>
 <%@ page import="java.util.*" %>
 <%@ page import="vn.edu.hcmuaf.fit.entity.Orders" %>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -208,6 +209,8 @@
 				</thead>
 				<tbody>
 				<% List<Orders> orders = (List<Orders>) request.getSession().getAttribute("orders");
+					NumberFormat nf = NumberFormat.getInstance();
+					nf.setMaximumFractionDigits(0);
 				if (orders!=null){
 				for (Orders o:orders){
 				%>
@@ -215,7 +218,7 @@
 					<td><%=o.getFullname()%></td>
 					<td><%=o.getPhoneNumber()%></td>
 					<td><%=o.getAddress()%></td>
-					<td><%=o.getTotal()%></td>
+					<td><%=nf.format(o.getTotal())%></td>
 					<td><%=o.getStatus()%></td>
 					<td><a class="pest_btn" href="chi-tiet-don-hang?orderId=<%=o.getId()%>">Chi tiết đơn hàng</a></td>
 				</tr>

@@ -147,7 +147,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -164,7 +164,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -181,7 +181,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
 
@@ -199,7 +199,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
                             </td>
                         </tr>
@@ -215,7 +215,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -232,7 +232,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -249,7 +249,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i> </button>
 
                             </td>
@@ -266,7 +266,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -283,7 +283,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -300,7 +300,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -317,7 +317,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -334,7 +334,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -351,7 +351,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -368,7 +368,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -385,7 +385,7 @@
                             <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" data-toggle="modal"
                                         data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
                             </td>
@@ -446,7 +446,7 @@
                     </div>
                     <div class="form-group col-md-6 ">
                         <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
-                        <select class="form-control" id="exampleSelect1">
+                        <select class="form-control" >
                             <option>Còn hàng</option>
                             <option>Hết hàng</option>
                             <option>Đang nhập hàng</option>

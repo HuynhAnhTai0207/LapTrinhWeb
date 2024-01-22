@@ -30,7 +30,9 @@ public class PaymentController extends HttpServlet {
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         Account account = (Account) request.getSession().getAttribute("account");
         orderForm.setCustomerId(account.getIdUser());
-        System.out.println(account.getFullName());
+//        System.out.println(account.getFullName());
+
+
         Orders order = orderService.saveOder(orderForm,cart);
         if(order!=null){
             cart = new Cart();

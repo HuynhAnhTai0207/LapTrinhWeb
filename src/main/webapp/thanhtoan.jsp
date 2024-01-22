@@ -2,6 +2,7 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Cart" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -234,25 +235,35 @@
 							</form>
                 		</div>
                 	</div>
-                	<div class="col-lg-5">
-                		<div class="order_box_price">
-                			<div class="main_title">
-                				<h2>Đơn hàng của bạn</h2>
-                			</div>
+					<div class="col-lg-5">
+						<div class="order_box_price">
+							<div class="main_title">
+								<h2>Đơn hàng của bạn</h2>
+							</div>
 							<div class="payment_list">
 
 								<div class="price_single_cost">
-									<h5>Sản phẩm <span>Tổng cộng</span>  <span>   </span> <span>Số lượng</span> </h5>
+									<h5>
+										Sản phẩm
+										<span>Tổng cộng</span>
+										<span style="margin-right: 20px;">Số lượng</span>
+									</h5>
 									<%
 										Cart cart = (Cart) request.getSession().getAttribute("cart");
+										NumberFormat nf = NumberFormat.getInstance();
 										if(!cart.getCart().keySet().isEmpty())
 										{
 											for (Map.Entry<Products,Integer> entry : cart.getCart().entrySet()) {
 									%>
-									<h5><%=entry.getKey().getName()%> <span>   </span> <span><%=entry.getKey().getPrice()%></span> <span><%=entry.getValue()%></span> </h5>
+									<h5>
+										<%= entry.getKey().getName() %>
+										<span><%= nf.format(entry.getKey().getPrice()) %> VNĐ</span>
+										<span style="margin-right: 20px;"><%= entry.getValue() %></span>
+									</h5>
+
 									<%}%>
 									<h5>Vận chuyển và xử lý<span class="text_f">Miễn phí vận chuyển</span></h5>
-									<h3>Tổng cộng <span><%=cart.getTotal()%></span></h3>
+									<h3>Tổng cộng <span><%=nf.format(cart.getTotal())%>VNĐ</span></h3>
 								</div>
 								<%}%>
 
@@ -289,8 +300,8 @@
 										<div class="card-header" id="headingThree">
 											<h5 class="mb-0">
 												<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-												Paypal
-												<img src="img/checkout-card.png" alt="">
+													Paypal
+													<img src="img/checkout-card.png" alt="">
 												</button>
 												<a href="#">PayPal là gì?</a>
 											</h5>
@@ -305,7 +316,7 @@
 
 							</div>
 						</div>
-                	</div>
+					</div>
                 </div>
             </div>
         </section>

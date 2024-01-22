@@ -3,6 +3,7 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
 <%@ page import="vn.edu.hcmuaf.fit.dao.ProductDAO" %>
 <%@ page import="java.util.*" %>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -206,6 +207,8 @@
 				</thead>
 				<tbody>
 				<% List<Products> listProducts = (List<Products>) request.getAttribute("listProducts");
+					NumberFormat nf = NumberFormat.getInstance();
+					nf.setMaximumFractionDigits(0);
 					Cart cart = (Cart) request.getSession().getAttribute("cart");
 					if(!cart.getCart().keySet().isEmpty())
 					{
@@ -216,24 +219,25 @@
 						<img style="height:130px" src="<%=entry.getKey().getImages().get(0)%>" alt="">
 					</td>
 					<td><%=entry.getKey().getName()%></td>
-					<td><%=entry.getKey().getPrice()%></td>
+					<td><%=nf.format(entry.getKey().getPrice())%>VNĐ</td>
 					<td class="align-middle">
 						<div class="input-group quantity mx-auto" style="width: 100px;">
 							<div class="input-group-btn">
-								<button class="btn btn-sm btn-primary btn-minus">
+								<button class="btn btn-sm btn-primary btn-minus" onclick="decrementQuantity('<%=entry.getKey().getId_Product()%>', this, <%=entry.getKey().getPrice()%>)">
 									<i class="fa fa-minus"></i>
 								</button>
 							</div>
-							<input style="height: 30px" type="text" class="form-control text-center" value="<%=entry.getValue()%>">
+							<input style="height: 30px" type="text" class="form-control text-center" value="<%=entry.getValue()%>" id="quantity_<%=entry.getKey().getId_Product()%>" data-price="<%=entry.getKey().getPrice()%>" onchange="quantityChanged('<%=entry.getKey().getId_Product()%>', this)">
 							<div class="input-group-btn">
-								<button class="btn btn-sm btn-primary  btn-plus">
+								<button class="btn btn-sm btn-primary  btn-plus" onclick="incrementQuantity('<%=entry.getKey().getId_Product()%>', this, <%=entry.getKey().getPrice()%>)">
 									<i class="fa fa-plus"></i>
 								</button>
 							</div>
 						</div>
 					</td>
-					<td><%=entry.getKey().getPrice() * entry.getValue()%></td>
-					<td>X</td>
+					<td class="total-price"><%= nf.format(entry.getKey().getPrice() * entry.getValue()) %>VNĐ</td>
+
+					<td><a href="RemoveCart?productId=<%=entry.getKey().getId_Product()%>" class="btn btn-danger">Remove</a></td>
 				</tr>
 				<%
 					}
@@ -377,8 +381,83 @@
             </div>
         </div>
         <!--================End Search Box Area =================-->
-        
-        
+
+<script>
+	function updateTotalPrice(productId) {
+		var quantityElement = document.getElementById('quantity_' + productId);
+		var totalElements = document.getElementsByClassName('total-price');
+
+		if (quantityElement && totalElements) {
+			var quantity = parseInt(quantityElement.value);
+			var price = parseFloat(quantityElement.getAttribute('data-price'));
+			var totalPrice = price * quantity;
+
+			// Lặp qua tất cả các phần tử có class 'total-price'
+			for (var i = 0; i < totalElements.length; i++) {
+				totalElements[i].textContent = formatCurrency(totalPrice);
+			}
+
+			// Gọi hàm cập nhật tổng giá tiền khi có thay đổi số lượng
+			updateGrandTotal();
+		}
+	}
+
+	function incrementQuantity(productId) {
+		var quantityElement = document.getElementById('quantity_' + productId);
+		var currentValue = parseInt(quantityElement.value);
+
+		quantityElement.value = currentValue + 1;
+
+		console.log("Incremented quantity for product ID " + productId + ": " + quantityElement.value);
+
+		updateTotalPrice(productId);
+	}
+
+	function decrementQuantity(productId) {
+		var quantityElement = document.getElementById('quantity_' + productId);
+		var currentValue = parseInt(quantityElement.value);
+
+		if (currentValue > 1) {
+			quantityElement.value = currentValue - 1;
+		} else {
+			quantityElement.value = 1;
+		}
+
+		console.log("Decremented quantity for product ID " + productId + ": " + quantityElement.value);
+
+		updateTotalPrice(productId);
+	}
+
+	function quantityChanged(productId) {
+		console.log("Quantity changed for product ID " + productId);
+
+		updateTotalPrice(productId);
+	}
+
+	// Hàm cập nhật tổng giá tiền của toàn bộ giỏ hàng
+	function updateGrandTotal() {
+		var totalElements = document.querySelectorAll('.total');
+		var grandTotal = 0;
+
+		totalElements.forEach(function (element) {
+			grandTotal += parseFloat(element.textContent.replace(/[^\d.-]/g, ''));
+		});
+
+		// Hiển thị tổng giá tiền ở đây, thay thế "updateTotalPrice" bằng id thích hợp của bạn
+		document.getElementById('total_').textContent = formatCurrency(grandTotal);
+	}
+
+	// Hàm định dạng số tiền sang định dạng tiền tệ
+	function formatCurrency(value) {
+		var formatter = new Intl.NumberFormat('vi-VN', {
+			style: 'currency',
+			currency: 'VND'
+		});
+
+		return formatter.format(value);
+	}
+
+</script>
         
         
         
