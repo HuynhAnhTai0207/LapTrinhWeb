@@ -37,7 +37,8 @@ public class ProductDAO {
                         resultSet.getInt("price_buy"),
                         resultSet.getInt("quantity"),
                         resultSet.getInt("product_sold"),
-                        resultSet.getString("detail")
+                        resultSet.getString("detail"),
+                        resultSet.getString("newProduct")
                 );
                 setImageInProduct(product);
                 listProducts.add(product);
@@ -82,7 +83,8 @@ public class ProductDAO {
                         resultSet.getInt("price_buy"),
                         resultSet.getInt("quantity"),
                         resultSet.getInt("product_sold"),
-                        resultSet.getString("detail")
+                        resultSet.getString("detail"),
+                        resultSet.getString("newProduct")
                 );
                 setImageInProduct(product);
             }
@@ -112,7 +114,8 @@ public class ProductDAO {
                         resultSet.getInt("price_buy"),
                         resultSet.getInt("quantity"),
                         resultSet.getInt("product_sold"),
-                        resultSet.getString("detail")
+                        resultSet.getString("detail"),
+                        resultSet.getString("newProduct")
                 );
                 setImageInProduct(product);
                 listProducts.add(product);
@@ -151,7 +154,48 @@ public class ProductDAO {
                         resultSet.getInt("price_buy"),
                         resultSet.getInt("quantity"),
                         resultSet.getInt("product_sold"),
-                        resultSet.getString("detail")
+                        resultSet.getString("detail"),
+                        resultSet.getString("newProduct")
+                );
+                setImageInProduct(product);
+                listProducts.add(product);
+            }
+
+            return listProducts;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Products> getListNewProducts1(String newProduct) {
+        List<Products> listProducts = new ArrayList<>();
+
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            PreparedStatement statement;
+            if(newProduct==null){
+                String query = "SELECT * FROM product";
+                statement = connection.prepareStatement(query);
+            }
+            else {
+                String query = "SELECT * FROM product where newProduct=?";
+                System.out.println("abc");
+                statement = connection.prepareStatement(query);
+                statement.setString(1, newProduct);
+            }
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Products product =  new Products(
+                        resultSet.getString("id_Product"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("price"),
+                        resultSet.getString("category"),
+                        resultSet.getString("stock"),
+                        resultSet.getInt("price_buy"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getInt("product_sold"),
+                        resultSet.getString("detail"),
+                        resultSet.getString("newProduct")
                 );
                 setImageInProduct(product);
                 listProducts.add(product);
@@ -182,7 +226,8 @@ public class ProductDAO {
                         resultSet.getInt("price_buy"),
                         resultSet.getInt("quantity"),
                         resultSet.getInt("product_sold"),
-                        resultSet.getString("detail")
+                        resultSet.getString("detail"),
+                        resultSet.getString("newProduct")
                 );
                 setImageInProduct(product);
                 productList.add(product);

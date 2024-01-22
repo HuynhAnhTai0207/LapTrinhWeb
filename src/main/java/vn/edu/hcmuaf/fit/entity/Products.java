@@ -13,10 +13,11 @@ public class Products  implements  Comparable<Products>{
     private int quantity;
     private int product_sold;
     private String detail;
+    private String newProduct;
     private List<String> images;
 
 
-    public Products(String id_Product, String name, int price, String category, String stock, int price_buy, int quantity, int product_sold, String detail) {
+    public Products(String id_Product, String name, int price, String category, String stock, int price_buy, int quantity, int product_sold, String detail,String newProduct) {
         this.category = category;
         this.id_Product = id_Product;
         this.name = name;
@@ -26,6 +27,7 @@ public class Products  implements  Comparable<Products>{
         this.quantity = quantity;
         this.product_sold = product_sold;
         this.detail = detail;
+        this.newProduct = newProduct;
         this.images = new ArrayList<>();
     }
 
@@ -112,6 +114,14 @@ public class Products  implements  Comparable<Products>{
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public String getNewProduct() {
+        return newProduct;
+    }
+
+    public void setNewProduct(String newProduct) {
+        this.newProduct = newProduct;
     }
 
     @Override

@@ -53,7 +53,8 @@ public class PageDao {
                         resultSet.getInt("price_buy"),
                         resultSet.getInt("quantity"),
                         resultSet.getInt("product_sold"),
-                        resultSet.getString("detail")
+                        resultSet.getString("detail"),
+                        resultSet.getString("newProduct")
                 );
                 setImageInProduct(product);
                 list.add(product);
