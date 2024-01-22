@@ -119,7 +119,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li><a href="trangchu.jsp">Trang chủ</a></li>
+						<li><a href="home">Trang chủ</a></li>
 						<li><a href="cake.jsp">Bánh có sẳn</a></li>
 						<li><a href="menu.jsp">Xem tất cả bánh</a></li>
 						<li class="dropdown submenu">
@@ -156,12 +156,12 @@
 							</ul>
 						</li>
 						<li class="dropdown submenu">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="ListProductPaging" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 							<ul class="dropdown-menu">
-								<li><a href="ListProduct">Cửa hàng chính</a></li>
-								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
-								<li><a href="giohang.jsp">Giỏ hàng</a></li>
-								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
+								<li><a href="ListProductPaging">Cửa hàng chính</a></li>
+								<li><a href="ProductDetailController">Chi tiết sản phẩm</a></li>
+								<li><a href="Cart">Giỏ hàng</a></li>
+								<li><a href="ThanhToan">Thanh toán</a></li>
 							</ul>
 						</li>
 						<li><a href="lienhe.jsp">Liên lạc với chúng tôi</a></li>

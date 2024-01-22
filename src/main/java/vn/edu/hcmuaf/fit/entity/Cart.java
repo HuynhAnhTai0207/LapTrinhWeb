@@ -1,11 +1,5 @@
 package vn.edu.hcmuaf.fit.entity;
 
-import javafx.beans.binding.MapExpression;
-import vn.edu.hcmuaf.fit.dao.ProductDAO;
-
-import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.Set;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +44,7 @@ public class Cart
         }
     }
 
-    private Products getProductById(String productId) {
+    public Products getProductById() {
         // Thực hiện truy vấn cơ sở dữ liệu hoặc lấy từ danh sách sản phẩm
         // Trả về đối tượng Products hoặc null nếu không tìm thấy
         return null;
@@ -64,6 +58,32 @@ public class Cart
         }
         return total;
     }
+
+    public boolean removeProduct(String productToRemove) {
+        if (productToRemove == null) {
+            throw new IllegalArgumentException("Product không thể là null");
+        }
+        Products p = getProductById(productToRemove);
+        // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
+        if (cart.containsKey(p)) {
+            // Xóa sản phẩm khỏi giỏ hàng
+            cart.remove(p);
+            return true;
+        }
+        return false;
+    }
+
+    public Products getProductById(String productId) {
+        // Thực hiện truy vấn cơ sở dữ liệu hoặc lấy từ danh sách sản phẩm
+        // Trả về đối tượng Products hoặc null nếu không tìm thấy
+        for (Map.Entry<Products, Integer> entry : cart.entrySet()) {
+            if (entry.getKey().getId_Product().equals(productId)) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
 
 
 //    public void addProduct(String id, int quantity) {
