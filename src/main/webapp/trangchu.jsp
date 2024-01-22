@@ -54,6 +54,32 @@
 		margin-top: 10px;
 		margin-left: 25px;
 	}
+	body {
+		font-family: Arial, sans-serif;
+	}
+
+	.alert {
+		padding: 20px;
+		background-color: #f195b2;
+		color: white;
+		margin-bottom: 15px;
+	}
+
+	.closebtn {
+		margin-left: 15px;
+		color: white;
+		font-weight: bold;
+		float: right;
+		font-size: 22px;
+		line-height: 20px;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+
+	.closebtn:hover {
+		color: black;
+	}
+
 </style>
 <body>
 
@@ -161,9 +187,6 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" href="cuahang.jsp" role="button" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
 							<ul class="dropdown-menu">
 								<li><a href="ListProductPaging">Cửa hàng chính</a></li>
-								<li><a href="ProductDetailController">Chi tiết sản phẩm</a></li>
-								<li><a href="Cart">Giỏ hàng</a></li>
-								<li><a href="ThanhToan">Thanh toán</a></li>
 								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
 								<li><a href="giohang.jsp">Giỏ hàng</a></li>
 								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
@@ -286,15 +309,21 @@
 <!--================End Slider Area =================-->
 
 <!--================Welcome Area =================-->
-<section class="welcome_bakery_area cake_feature_main p_100">
+<section class="product_area p_100">
 	<div class="container">
 		<div class="main_title">
-			<h2>Bánh nổi bật của chúng tôi</h2>
+			<h2>Bánh của chúng tôi</h2>
 			<h5> Hãy lựa chọn sản phẩm ưa thích của bạn.</h5>
 		</div>
-		<div class="cake_feature_row row">
-			<div class="col-md-12">
-				<div class="row cake_feature_item">
+		<div class="alert">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+			<p><strong>Chú ý!</strong> Tất cả bánh có hạng tối thiểu 15 ngày trong điều kiện dưới 15 độ</p>
+			<p><strong>Chú ý!</strong> Tất cả bánh tại cửa hàng đều sản xuất trong ngày</p>
+		</div>
+
+		<div class="row product_item_inner">
+			<div class="col-lg-9">
+				<div class="row product_item_inner">
 					<% List<Products> listProducts = (List<Products>) request.getAttribute("listProduct");
 						NumberFormat nf = NumberFormat.getInstance();
 						nf.setMaximumFractionDigits(0);
@@ -305,9 +334,9 @@
 						}
 						for(Products p : listProducts){
 					%>
-					<div class="col-lg-3 col-md-3 col-6">
+					<div class="col-lg-4 col-md-4 col-6">
 						<div class="cake_feature_item">
-							<a href="ProductDetailController?productId=<%=p.getId_Product()%>">
+							<a href="ProductDetailController?id_Product=<%=p.getId_Product()%>">
 								<div class="cake_img">
 									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
 								</div>
@@ -321,6 +350,35 @@
 					</div>
 					<% } %>
 				</div>
+				<div class="main_title">
+					<h2>10 sản phẩm bán chạy nhất cửa hàng chúng tôi</h2>
+					<h5> Hãy lựa chọn sản phẩm ưa thích của bạn.</h5>
+				</div>
+				<div class="row cake_feature_item">
+					<% List<Products> listTop = (List<Products>) request.getAttribute("listTopProducts");
+						for (Products p: listTop){
+					%>
+					<div class="col-lg-3 col-md-3 col-6">
+						<div class="cake_feature_item">
+							<a href="ProductDetailController?id_Product=<%=p.getId_Product()%>">
+								<div class="cake_img">
+									<img style="height: 250px; width: 200px" src="<%=p.getImages().get(0)%>" alt="">
+								</div>
+							</a>
+							<div class="cake_text">
+								<h4><%=nf.format(p.getPrice())%>VNĐ</h4>
+								<h3><%=p.getName()%></h3>
+								<ul class="list_style">
+									<p>Đá bán: <%=p.getProduct_sold()%></p>
+								</ul>
+								<a class="pest_btn" href="Cart?id_Product=<%=p.getId_Product()%>">Thêm vào giỏ hàng</a>
+							</div>
+						</div>
+					</div>
+					<% } %>
+				</div>
+
+
 				<div class="product_pagination">
 					<div class="left_btn">
 						<a href="#"><i class="lnr lnr-arrow-left"></i> Trước</a>
@@ -338,9 +396,21 @@
 					<div class="right_btn"><a href="#">Sau <i class="lnr lnr-arrow-right"></i></a></div>
 				</div>
 			</div>
+			<div class="col-lg-3">
+				<div class="product_left_sidebar">
+					<aside class="left_sidebar p_catgories_widget">
+						<div class="p_w_title">
+							<h3>Xem các sản phẩm mới nhất của cửa hàng</h3>
+						</div>
+						<ul class="list_style">
+							<li><a href="home?detail=Bánh mới">Sản phẩm mới nhất</a></li>
+							<li><a href="">Sản phẩm chuẩn bị ra mắt</a></li>
+						</ul>
+					</aside>
+				</div>
+			</div>
 		</div>
 	</div>
-
 </section>
 
 <!--================End Page Navigation=================-->
@@ -483,5 +553,5 @@
 
 <script src="js/theme.js"></script>
 </body>
-
+s
 </html>

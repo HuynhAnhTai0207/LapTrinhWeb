@@ -24,12 +24,15 @@ public class ListProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String indexPage = request.getParameter("index");
+
         String category = request.getParameter("category");
+
+
         if (indexPage == null) {
             indexPage = "1";
         }
         int index = Integer.parseInt(indexPage);
-
+//
 //        List<Products> listProducts = pageDao.paging(index);
         List<Products> listProducts = new ArrayList<>();
         int endPage = 0;
@@ -54,10 +57,9 @@ public class ListProductController extends HttpServlet {
 //        System.out.println(listProducts.size());
 
         request.setAttribute("listProduct", listProducts);
-        ProductDAO productDAO = new ProductDAO();
-        List<Products> listTop = productDAO.getTopproduct();
         request.setAttribute("endP", endPage);
         request.getRequestDispatcher("cuahang.jsp").forward(request, response);
+
     }
 
     @Override

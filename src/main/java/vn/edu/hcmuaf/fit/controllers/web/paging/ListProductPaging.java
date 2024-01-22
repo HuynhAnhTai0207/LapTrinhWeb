@@ -3,7 +3,6 @@ package vn.edu.hcmuaf.fit.controllers.web.paging;
 import vn.edu.hcmuaf.fit.controllers.web.pageProducts.ListProducts;
 import vn.edu.hcmuaf.fit.controllers.web.products.ListProductController;
 import vn.edu.hcmuaf.fit.dao.PageDao;
-import vn.edu.hcmuaf.fit.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.entity.Products;
 
 
@@ -19,7 +18,6 @@ import java.util.List;
 public class ListProductPaging extends HttpServlet {
         @Inject
         PageDao pageDao= new PageDao();
-        ProductDAO productDAO = new ProductDAO();
         @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
@@ -39,9 +37,6 @@ public class ListProductPaging extends HttpServlet {
         }
         List<Products> list = pageDao.paging(index);
 //        System.out.println(list.size());
-        ProductDAO productDAO = new ProductDAO();
-        List<Products> listTop = productDAO.getTopproduct();
-        request.setAttribute("listTopProducts",listTop);
         request.setAttribute("listProduct",list);
         request.setAttribute("endP",endPage);
         request.getRequestDispatcher("cuahang.jsp").forward(request, response);

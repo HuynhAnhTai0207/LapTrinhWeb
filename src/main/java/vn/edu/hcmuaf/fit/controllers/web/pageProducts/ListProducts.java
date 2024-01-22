@@ -1,14 +1,11 @@
 package vn.edu.hcmuaf.fit.controllers.web.pageProducts;
 
 import vn.edu.hcmuaf.fit.dao.PageDao;
-import vn.edu.hcmuaf.fit.dao.ProductDAO;
-import vn.edu.hcmuaf.fit.entity.Products;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "ListProducts", value = "/ListProducts")
 public class ListProducts extends HttpServlet {
@@ -30,9 +27,6 @@ public class ListProducts extends HttpServlet {
         if (dao.getTotalProduct() % 10 != 0) {
             endPage++;
         }
-        ProductDAO productDAO = new ProductDAO();
-        List<Products> listTop = productDAO.getTopproduct();
-        request.setAttribute("listTopProducts",listTop);
         request.setAttribute("endP", endPage);
         request.getRequestDispatcher("cuahang.jsp").forward(request, response);
     }

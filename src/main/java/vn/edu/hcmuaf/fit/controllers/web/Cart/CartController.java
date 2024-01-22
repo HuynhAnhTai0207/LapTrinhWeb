@@ -51,16 +51,6 @@ public class CartController extends HttpServlet {
                 if (product != null) {
                     cart.addProductUpdate(product,1);
                 }
-//        System.out.println("List of Products in CartController: " + listProducts);
-        if (id_Product != null) {
-            ProductDAO productDAO = new ProductDAO();
-
-            Products product = productDAO.getProductById(id_Product);
-
-            // Kiểm tra nếu sản phẩm tồn tại
-            if (product != null) {
-                cart.addProductUpdate(product,1);
-            }
 //            }
 
 

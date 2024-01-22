@@ -1,8 +1,6 @@
 <%@ page import="vn.edu.hcmuaf.fit.entity.Account" %>
 <%@ page import="vn.edu.hcmuaf.fit.entity.Products" %>
 <%@ page import="java.text.DecimalFormat" %>
-<%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -230,41 +228,11 @@
 				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 					<p>Trọng lượng: 150g</p>
 					<p>Đường kính: 8cm</p>
-			<% Products product = (Products) request.getAttribute("product");
-				NumberFormat nf = NumberFormat.getInstance();
-				nf.setMaximumFractionDigits(0);
-
-				if (product != null) { %>
-
-			<div class="row product_d_price">
-				<div class="col-lg-6">
-					<div class="product_img">
-						<img class="img-fluid" src="<%=product.getImages().get(0)%>" alt="">
-					</div>
 				</div>
-				<div class="col-lg-6">
-					<div class="product_details_text">
-						<h4><%=product.getName()%></h4>
-						<h5><%=nf.format(product.getPrice())%>VNĐ</span></h5>
-						<p>Mô tả: <%=product.getDetail()%></p>
-
-						<% if (product.getDetail() != null && !product.getDetail().isEmpty()) { %>
-						<p>Chi tiết sản phẩm: <%=product.getDetail()%></p>
-						<% } else { %>
-						<p>Không có chi tiết sản phẩm nào.</p>
-						<% } %>
-
-						<a class="pink_more" href="Cart?id_Product=<%=product.getId_Product()%>">Thêm vào giỏ hàng</a>
-					</div>
+				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+					<p>Tôi thích nếu những chiếc bánh này không ngọt như vậy; với tôi nó nếm như ăn một khối bơ cực kỳ ngọt. Có lẽ bạn có thể sử dụng một nửa cả đường và bơ? Cần nếm hương vị và không bơ và đường nhiều.</p>
 				</div>
 			</div>
-
-			<%
-				} else { %>
-
-			<h3>Không có chi tiết sản phẩm nào.</h3>
-
-			<% } %>
 		</div>
 	</div>
 </section>

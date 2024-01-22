@@ -54,6 +54,32 @@
 		margin-top: 10px;
 		margin-left: 25px;
 	}
+	body {
+		font-family: Arial, sans-serif;
+	}
+
+	.alert {
+		padding: 20px;
+		background-color: #f195b2;
+		color: white;
+		margin-bottom: 15px;
+	}
+
+	.closebtn {
+		margin-left: 15px;
+		color: white;
+		font-weight: bold;
+		float: right;
+		font-size: 22px;
+		line-height: 20px;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+
+	.closebtn:hover {
+		color: black;
+	}
+
 </style>
 <body>
 
@@ -164,9 +190,6 @@
 								<li><a href="ProductDetailController">Chi tiết sản phẩm</a></li>
 								<li><a href="Cart">Giỏ hàng</a></li>
 								<li><a href="ThanhToan">Thanh toán</a></li>
-								<li><a href="chitietsanpham.jsp">Chi tiết sản phẩm</a></li>
-								<li><a href="giohang.jsp">Giỏ hàng</a></li>
-								<li><a href="thanhtoan.jsp">Thanh toán</a></li>
 							</ul>
 						</li>
 						<li><a href="lienhe.jsp">Liên lạc với chúng tôi</a></li>
@@ -195,6 +218,11 @@
 <!--================Product Area =================-->
 <section class="product_area p_100">
 	<div class="container">
+		<div class="alert">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+			<p><strong>Chú ý!</strong> Tất cả bánh có hạng tối thiểu 15 ngày trong điều kiện dưới 15 độ</p>
+			<p><strong>Chú ý!</strong> Tất cả bánh tại cửa hàng đều sản xuất trong ngày</p>
+		</div>
 		<div class="row product_inner_row">
 			<div class="col-lg-9">
 				<div class="row product_item_inner">
@@ -211,7 +239,6 @@
 					<div class="col-lg-4 col-md-4 col-6">
 						<div class="cake_feature_item">
 							<a href="ProductDetailController?productId=<%=p.getId_Product()%>">
-							<a href="ProductDetailController?id_Product=<%=p.getId_Product()%>">
 								<div class="cake_img">
 									<img style="height: 260px; width: 290px" src="<%=p.getImages().get(0)%>" alt="">
 								</div>
@@ -268,27 +295,6 @@
 								<button type="submit">Lọc</button>
 							</div>
 						</form>
-					</aside>
-					<aside class="left_sidebar p_sale_widget">
-						<div class="p_w_title">
-							<h3>Sản phẩm bán chạy nhất</h3>
-						</div>
-						<% List<Products> listTop = (List<Products>) request.getAttribute("listTopProducts");
-							for (Products p: listTop){
-						%>
-						<div class="media">
-							<div class="d-flex">
-								<img style="height: 160px; width: 190px;" src="<%=p.getImages().get(0)%>" alt="" >
-							</div>
-							<div class="media-body">
-								<a href="#"><h4 > <%=p.getName()%> </h4></a>
-								<ul class="list_style">
-									<p>Đá bán: <%=p.getProduct_sold()%></p>
-								</ul>
-								<h5><%=p.getPrice_buy()%> VNĐ</h5>
-							</div>
-						</div>
-						<% } %>
 					</aside>
 				</div>
 			</div>
