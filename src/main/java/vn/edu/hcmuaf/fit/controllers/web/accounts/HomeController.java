@@ -39,9 +39,10 @@ public class HomeController extends HttpServlet {
         }
         int index = Integer.parseInt(indexPage);
         int endPage = 0;
-        System.out.println(newProduct+"abc");
+
         if (newProduct != null) {
             listNewProducts = dao.getListNewProducts(newProduct);
+            System.out.println(newProduct+"abc");
 //            int count = listProducts.size();
 //            endPage = count / 20;
 //            if (count % 20 != 0) {

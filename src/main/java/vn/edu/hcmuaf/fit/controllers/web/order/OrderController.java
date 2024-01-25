@@ -21,7 +21,7 @@ public class OrderController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account account = (Account) request.getSession().getAttribute("account");
         List<Orders> listOrder = orderService.findByCustomerId(account.getIdUser());
-        System.out.println(listOrder.get(0).getFullname());
+//        System.out.println(listOrder.get(0).getFullname());
         request.getSession().setAttribute("orders",listOrder);
         request.getRequestDispatcher("lichsudonhang.jsp").forward(request, response);
     }

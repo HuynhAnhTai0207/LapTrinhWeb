@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 public class OrderMapper implements RowMapper<Orders> {
 
     @Override
-    public Orders mapRow(ResultSet resultSet) {
+    public Orders mapRow(ResultSet resultSet) { // moi resultset sẽ thành 1 oject tương ứng
         Orders order = null;
         try
         {

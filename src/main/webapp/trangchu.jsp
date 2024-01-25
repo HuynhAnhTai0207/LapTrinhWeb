@@ -404,7 +404,7 @@
 						</div>
 						<ul class="list_style">
 							<li><a href="home?newProduct=Bánh mới">Sản phẩm mới nhất</a></li>
-							<li><a href="home?newProduct=Sấp ra mắt">Top 10 bánh bán chạy nhất</a></li>
+							<li><a href="home?newProduct=Sắp ra mắt">Sản phẩm sắp ra mắt</a></li>
 						</ul>
 					</aside>
 				</div>

@@ -9,7 +9,7 @@ public class OrderDao extends AbstractDAO<Orders>{
     public Long save(Orders order){
         String sql = "INSERT INTO `order` (`fullname`,`customer_id`,`address`,`phone_number`,`status`,`total`,`notes`) VALUES(?,?,?,?,?,?,?);";
         return insert(sql,order.getFullname(),order.getCustomerId(),order.getAddress(),order.getPhoneNumber(),order.getStatus(),order.getTotal(),order.getNotes());
-    }
+    } // câu insert gọi về abstract
 
     public List<Orders> findByCustomerId(int id){
         String sql = "SELECT * FROM `order` where customer_id = ?";

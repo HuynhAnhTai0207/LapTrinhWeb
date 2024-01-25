@@ -11,8 +11,8 @@ public class FormUtil {
         T object =null;
         try {
             request.setCharacterEncoding("UTF-8");
-            object=tClass.newInstance();
-            BeanUtils.populate(object,request.getParameterMap());
+            object=tClass.newInstance(); // khởi tạo object
+            BeanUtils.populate(object,request.getParameterMap()); // map những Parameter thành object
         } catch (Exception e) {
             System.out.println("eror "+e.getMessage());
         }

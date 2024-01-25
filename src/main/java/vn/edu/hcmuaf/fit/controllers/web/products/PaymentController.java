@@ -26,18 +26,17 @@ public class PaymentController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Orders orderForm = FormUtil.toModel(Orders.class,request);
+        Orders orderForm = FormUtil.toModel(Orders.class,request);// chuyển requet thành model
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         Account account = (Account) request.getSession().getAttribute("account");
-        orderForm.setCustomerId(account.getIdUser());
+        orderForm.setCustomerId(account.getIdUser()); //set user id zo order
         System.out.println(account.getFullName());
-        Orders order = orderService.saveOder(orderForm,cart);
+        Orders order = orderService.saveOder(orderForm,cart); //gọi về lớp service lưu order về
         if(order!=null){
             cart = new Cart();
             request.getSession().setAttribute("cart", cart);
-
             request.getRequestDispatcher("thanhtoanthanhcong.jsp").forward(request, response);
-        }else {
+        }else { // lưu xuống không thành công
             System.out.println("Thanh toan that bai");
             request.getRequestDispatcher("thanhtoanthatbai.jsp").forward(request, response);
         }

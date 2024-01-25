@@ -23,14 +23,14 @@ public class OrderServiceImpl {
     @Inject
     private OrderDetailDao orderDetailDao = new OrderDetailDao();
     public Orders saveOder(Orders order, Cart cart){
-        order.setStatus("thành công");
+        order.setStatus("thành công"); // lưu order xuoonsgg để lấy order id vì ordeId là khóa ngoại của order detail
         order.setTotal(cart.getTotal());
-        Long orderId = orderDao.save(order);
+        Long orderId = orderDao.save(order); // dùng lớp dao để lưu order về kqua trả về là orderID
         if (orderId== null){
             return null;
         }
         for(Map.Entry<Products,Integer> entry : cart.getCart().entrySet())
-
+//duyệt qua cart lâ sp ra, tạo order detail
         {
             OrderDetail orderDetail = new OrderDetail();
 
@@ -38,10 +38,9 @@ public class OrderServiceImpl {
             orderDetail.setProductId(entry.getKey().getId_Product());
             orderDetail.setQuantity(entry.getValue());
             orderDetail.setTotal(entry.getKey().getPrice()*entry.getValue());
-            boolean isSaved = orderDetailDao.save(orderDetail);
+            boolean isSaved = orderDetailDao.save(orderDetail); // lưu về order detail
             if(!isSaved){
                 return null;
-
             }
         }
 

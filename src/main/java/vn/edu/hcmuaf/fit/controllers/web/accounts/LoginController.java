@@ -49,7 +49,7 @@ public class LoginController extends HttpServlet {
                 if ("admin".equals(account.getRole())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("admin", account);
-                    response.sendRedirect("adminIndex");
+                    response.sendRedirect("admin-home");
                 } else if ("user".equals(account.getRole())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("account", account);

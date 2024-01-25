@@ -96,13 +96,13 @@ public class AbstractDAO<T> {
         PreparedStatement statement=null;
         try{
             connection=getConnection();
-            connection.setAutoCommit(false);
-            statement= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            connection.setAutoCommit(false);// không tự động lưu về db, cho tới khi commit
+            statement= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS); // thuwcj hiện query, Statement.RETURN_GENERATED_KEYS trả về id của record mới tạo
             setParameter(statement,parameters);
             statement.executeUpdate();
-            connection.commit();
+            connection.commit(); // dòng commit
             Long id = null;
-            ResultSet resultSet =statement.getGeneratedKeys();
+            ResultSet resultSet =statement.getGeneratedKeys(); // lấy id ra
             if(resultSet.next())
             {
                 id = resultSet.getLong(1);
@@ -111,11 +111,11 @@ public class AbstractDAO<T> {
         }catch (Exception e){
             System.out.println("Error when  "+e.getMessage());
             try{
-                connection.rollback();
+                connection.rollback(); // nếu lỗi trả về db ban đầu
             }catch (Exception e1){
                 System.out.println("Error when update : "+e1.getMessage());
             }
-        }finally {
+        }finally { // sau khi thực hiện đống kết nối
             try{
                 if(connection!=null){
                     connection.close();
@@ -129,7 +129,7 @@ public class AbstractDAO<T> {
         }
         return null;
     }
-    private void setParameter(PreparedStatement statement,Object... parameters){
+    private void setParameter(PreparedStatement statement,Object... parameters){ //ktra kiểu dlieu set vào statement
         try {
             for(int i=0;i<parameters.length;i++){
                 Object parameter=parameters[i];

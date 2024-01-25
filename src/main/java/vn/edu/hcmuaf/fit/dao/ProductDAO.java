@@ -49,6 +49,54 @@ public class ProductDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Products> getAllProduct() {
+        List<Products> listProducts = new ArrayList<>();
+
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            PreparedStatement statement;
+            String query = "SELECT * FROM product WHERE status = 1";
+            statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Products product =  new Products(
+                        resultSet.getString("id_Product"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("price"),
+                        resultSet.getString("category"),
+                        resultSet.getString("stock"),
+                        resultSet.getInt("price_buy"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getInt("product_sold"),
+                        resultSet.getString("detail"),
+                        resultSet.getString("newProduct")
+                );
+                setImageInProduct(product);
+                listProducts.add(product);
+            }
+            return listProducts;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteProductById(String id) {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = "UPDATE product\n" +
+                "SET status = 0\n" +
+                "WHERE id_Product=?;";
+        PreparedStatement statement = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setString(1,id);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+            }
+        }
+    }
+
     private void setImageInProduct(Products products){
         String query = "SELECT * FROM product_images where id_Product=?";
         try {
@@ -62,6 +110,34 @@ public class ProductDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public int insertProduct(String id, String name, int quantityInt, String isNew, String catalog, int primeCost, int price, String description ) {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = "INSERT INTO product(id_Product, name, category, stock, price_buy, price, quantity, product_sold, detail, newProduct, status)\n" +
+                "                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, id);
+                statement.setString(2, name);
+                statement.setString(3, catalog);
+                statement.setString(4, "Còn hàng");
+                statement.setInt(5, primeCost);
+                statement.setInt(6, price);
+                statement.setInt(7, quantityInt);
+                statement.setInt(8, 0);
+                statement.setString(9, description);
+                statement.setString(10, isNew);
+                statement.setInt(11, 1);
+                return statement.executeUpdate();
+            } catch (SQLException e) {
+                return 0;
+            }
+        }
+        return 0;
+
     }
 
     public Products getProductById(String id_Product) {
@@ -127,21 +203,21 @@ public class ProductDAO {
         }
     }
 
-    public List<Products> getListNewProducts(String detail) {
+    public List<Products> getListNewProducts(String newProduct) {
         List<Products> listProducts = new ArrayList<>();
 
         try {
             Connection connection = JDBCConnector.getConnection();
             PreparedStatement statement;
-            if(detail==null){
+            if(newProduct==null){
                 String query = "SELECT * FROM product";
                 statement = connection.prepareStatement(query);
             }
             else {
-                String query = "SELECT * FROM product where detail=?";
+                String query = "SELECT * FROM product where newProduct=?";
                 System.out.println("abc");
                 statement = connection.prepareStatement(query);
-                statement.setString(1, detail);
+                statement.setString(1, newProduct);
             }
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -240,7 +316,30 @@ public class ProductDAO {
     }
 
 
+    public void UpdateProduct(String id, String name, int quantityInt, String isNew, String catalog, int primeCostInt, int priceInt, String description) {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = "UPDATE product\n" +
+                "SET\n" +
+                "  name = ?, category = ?,price_buy = ?,price = ?,quantity = ?, detail = ?,newProduct = ?\n" +
+                "WHERE\n" +
+                "  id_Product = ?;";
+        PreparedStatement statement = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, name);
+                statement.setString(2, catalog);
+                statement.setInt(3, primeCostInt);
+                statement.setInt(4, priceInt);
+                statement.setInt(5, quantityInt);
+                statement.setString(6, description);
+                statement.setString(7, isNew);
+                statement.setString(8,id);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+            }
+        }
 
 
-
+    }
 }
